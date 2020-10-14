@@ -96,7 +96,7 @@ Example:
 (tbot/send-message mybot {:chat_id 789 :text "Hello Bot World!"})
 ```
 
-Respones from the API are parsed back into a Clojure hash map.
+Responses from the API are parsed back into a Clojure hash map.
 
 Example:
 
