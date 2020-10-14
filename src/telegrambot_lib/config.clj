@@ -5,7 +5,7 @@
 (def default-settings
   "Default settings map for the TBot."
   {:log-level :info
-   :token nil})
+   :bot-token nil})
 
 (defn custom-settings
   "Create a merged settings map.
@@ -14,8 +14,8 @@
   (merge default-settings custom))
 
 (comment
-  (custom-settings {:token "test123"})
-  (custom-settings {:token "test123"
+  (custom-settings {:bot-token "test123"})
+  (custom-settings {:bot-token "test123"
                     :log-level :debug}))
 
 (defn get-token

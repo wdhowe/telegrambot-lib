@@ -30,7 +30,7 @@
 (defn gen-url
   "Generate the url to use for the http call."
   [this endpoint]
-  (str bot-api (:token this) "/" endpoint))
+  (str bot-api (:bot-token this) "/" endpoint))
 
 (defn parse-resp
   "Parse the endpoint response."

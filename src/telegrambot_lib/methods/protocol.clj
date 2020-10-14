@@ -6,6 +6,9 @@
 (defprotocol Methods
   "Bot API available method definitions."
 
+  (call [this] [this content]
+    "A generic function to call any endpoint that may not have been added yet.")
+
   (get-me [this]
     "A simple method for testing your bot's auth token. Requires no parameters.
      Returns basic information about the bot in form of a User object.")

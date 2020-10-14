@@ -34,14 +34,14 @@
 (defn create
   "Create a new Telegram Bot API instance.
    No argument attempts to load the `bot-token` from the environment.
-   1 argument will use the passed in `token`.
-   2 arguments will use the passed in `token` and `log-level`"
+   1 argument will use the passed in `bot-token`.
+   2 arguments will use the passed in `bot-token` and `log-level`"
   ([]
    (create (conf/get-token)))
-  ([token]
-   (create token (:log-level conf/default-settings)))
-  ([token log-level]
-   (let [settings (conf/custom-settings {:token token :log-level log-level})]
+  ([bot-token]
+   (create bot-token (:log-level conf/default-settings)))
+  ([bot-token log-level]
+   (let [settings (conf/custom-settings {:bot-token bot-token :log-level log-level})]
      (map->TBot settings))))
 
 (import-vars
@@ -59,6 +59,7 @@
  [telegrambot-lib.inline.core
   answer-inline-query]
  [telegrambot-lib.methods.core
+  call
   get-me
   send-message
   forward-message

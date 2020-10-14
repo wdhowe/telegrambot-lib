@@ -5,6 +5,14 @@
   (:gen-class)
   (:require [telegrambot-lib.http :as http]))
 
+(defn call
+  "A generic function to call any endpoint with optional content that may not
+   have been added to this library yet to."
+  ([this endpoint]
+   (call this endpoint nil))
+  ([this endpoint content]
+   (http/request this endpoint content)))
+
 (defn get-me
   "A simple method for testing your bot's auth token. Requires no parameters.
    Returns basic information about the bot in form of a User object."
@@ -338,7 +346,8 @@
 
 (def behavior
   "Map for extending the core TBot record with functions."
-  {:get-me get-me
+  {:call call
+   :get-me get-me
    :send-message send-message
    :forward-message forward-message
    :send-photo send-photo
