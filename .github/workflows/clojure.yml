@@ -1,0 +1,35 @@
+name: ci/cd
+
+on:
+  push:
+    branches: [master, release/*]
+  pull_request:
+    branches: [master, release/*]
+
+jobs:
+  build:
+    name: Build on OpenJDK ${{ matrix.jdk_version }} / ${{ matrix.os }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        jdk_version: [8, 11, 14, 15, 16]
+        os: [ubuntu-latest]
+
+    container:
+      image: clojure:openjdk-${{ matrix.jdk_version }}-lein
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Dependencies
+        run: lein deps
+      - name: Version
+        run: lein version
+      - name: Build
+        run: lein compile
+      - name: Tests
+        run: lein test
+      - name: Docs
+        run: lein codox
+      - name: Package
+        run: lein uberjar
