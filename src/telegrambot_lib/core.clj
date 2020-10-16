@@ -19,7 +19,7 @@
             [telegrambot-lib.updates.protocol :refer [Updates]]
             [potemkin :refer [import-vars]]))
 
-(defrecord TBot [])
+(defrecord TBot [bot-token])
 
 ;; Add each part of the Telegram API to the TBot type.
 (extend TBot Edit edit/behavior)
@@ -34,15 +34,11 @@
 (defn create
   "Create a new Telegram Bot API instance.
    No argument attempts to load the `bot-token` from the environment.
-   1 argument will use the passed in `bot-token`.
-   2 arguments will use the passed in `bot-token` and `log-level`"
+   1 argument will use the passed in `bot-token`."
   ([]
    (create (conf/get-token)))
   ([bot-token]
-   (create bot-token (:log-level conf/default-settings)))
-  ([bot-token log-level]
-   (let [settings (conf/custom-settings {:bot-token bot-token :log-level log-level})]
-     (map->TBot settings))))
+   (map->TBot {:bot-token bot-token})))
 
 (import-vars
  [telegrambot-lib.edit.core
