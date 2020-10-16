@@ -17,7 +17,7 @@
              ;; only edit :profiles/* in profiles.clj
              :profiles/dev {}
              :profiles/test {}
-             :project/dev {:env {:log-level :debug}
+             :project/dev {:env {:log-level "debug"}
                            :plugins [[lein-environ "1.1.0"]]}
-             :project/test {:env {:log-level :info}
+             :project/test {:env {:log-level "info"}
                             :plugins [[lein-environ "1.1.0"]]}})
