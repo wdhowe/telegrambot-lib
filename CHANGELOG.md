@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file. This change
 
 ## [Unreleased]
 
-### Unreleased Changed
+- None yet.
+
+## [0.1.1] - 2020-10-16
+
+### 0.1.1 Changed
 
 - Improved documentation and logging.
 - Simplified configuration.
@@ -16,7 +20,8 @@ All notable changes to this project will be documented in this file. This change
 - Initial release of project.
 - Basic library functionality, tests, documentation, github pipeline.
 
-[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/wdhowe/telegrambot-lib/compare/0.1.0...0.1.1
 
 [comment]: # (Types of changes)
 [comment]: # ('Added' for new features.)
