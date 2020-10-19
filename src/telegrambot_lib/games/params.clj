@@ -41,7 +41,7 @@
             ])
 
 (defrecord get-game-high-scores-inline-params
-           [;; Required            
+           [;; Required
             inline_message_id ; id of the sent message
             user_id ; target user
             ])
