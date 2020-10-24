@@ -42,7 +42,7 @@ Pre-Reqs:
 The bot api auth token can be given to the bot instance by either:
 
 - Environment variable
-- Passed argument
+- Function parameter
 
 #### Create a bot - with a token env var
 
@@ -52,9 +52,9 @@ This method looks for "bot-token" or "BOT_TOKEN" from the environment.
 (def mybot (tbot/create))
 ```
 
-#### Create a bot - with a token argument
+#### Create a bot - with a token parameter
 
-This method requires passing the token as an argument at creation time.
+This method requires passing the token as a parameter at creation time.
 
 ```clojure
 (def mybot (tbot/create my-token))
@@ -87,6 +87,8 @@ All of the Telegram Bot API functions in this library are imported into the tele
 
 This makes them available by their non-namespaced names and are all listed within the "import-vars" function (in telegram-lib.core).
 
+### Generic Function Call
+
 Additionally, there is a generic 'call' function that may be used to send a request to any endpoint if the function does not exist yet.
 
 ```clojure
@@ -99,33 +101,17 @@ Additionally, there is a generic 'call' function that may be used to send a requ
 
 ## Sending/Receiving Content
 
-TLDR: Send a map, get a map.
+Most functions are multi-arity with the following options:
 
-Currently, if the functions require content passed, it is accepted in the form of a Clojure hash map.
+- Send all parameters in a 'content' map.
+- Send only the required parameters as simple values.
+- Send the required paraemters as simple values and then 'optional' parameters in a map.
 
-This may change in the future with more explicit required/optional fields when calling the functions.
+Required parameters are named to match the Telegram API, so they should be self explanatory in most cases.
 
-For now, refer to the [Telegram Bot API Documentation](https://core.telegram.org/bots/api) for which fields are required per API resource.
+Refer to the [Telegram Bot API Documentation](https://core.telegram.org/bots/api) for optional parameter content.
 
-Example:
-
-```clojure
-(tbot/send-message mybot {:chat_id 789 :text "Hello Bot World!"})
-```
-
-Responses from the API are parsed back into a Clojure hash map.
-
-Example:
-
-```clojure
-{:ok true,
- :result
- {:message_id 7,
-  :from {:id 123, :is_bot true, :first_name "mybot", :username "my_roboto"},
-  :chat {:id 789, :first_name "Bill", :last_name "Howe", :username "myusername", :type "private"},
-  :date 1602717364,
-  :text "Hello Bot World!"}}
-```
+See the below 'How to send a chat message' section for examples on the different ways to pass parameters.
 
 ## How to send a chat message
 
@@ -135,19 +121,27 @@ Example:
   - In this case, the sender is (from id) is the same as the chat id. (ie: this is a private direct message)
 
 ```clojure
+;; some functions, such as get-updates only take the bot (this) as a parameter
 (tbot/get-updates mybot)
 
-;; response
+;; response - parsed into a Clojure map
 {:ok true, :result [{:update_id 761420707, :message {:message_id 9, :from {:id 789, :is_bot false, :first_name "Bill", :last_name "Howe", :username "myusername", :language_code "en"}, :chat {:id 789, :first_name "Bill", :last_name "Howe", :username "myusername", :type "private"}, :date 1602815917, :text "oh hi"}}]}
 ```
 
 - Send your message to the target chat id.
-  - Notice the incrementing message_id number. (this is useful to keep track of message order)
+  - Notice the incrementing message_id number. This is useful to keep track of message order and which messages have already been processed.
 
 ```clojure
+;; Option 1: send all 'content' as a map
 (tbot/send-message mybot {:chat_id 789 :text "oh hi yourself."})
 
-;; response
+;; Option 2: send only required parameters as simple values
+(tbot/send-message mybot 789 "oh hi yourself.")
+
+;; Option 3: send required parameters as simple values, optional values as a map
+(tbot/send-message mybot 789 "oh hi yourself." {:disable_notification true})
+
+;; response - parsed into a Clojure map
 {:ok true, :result {:message_id 10, :from {:id 123, :is_bot true, :first_name "mybot", :username "my_roboto"}, :chat {:id 789, :first_name "Bill", :last_name "Howe", :username "myusername", :type "private"}, :date 1602816282, :text "oh hi yourself."}}
 ```
 
