@@ -1,4 +1,5 @@
 (ns telegrambot-lib.config
+  "Global configuration/settings."
   (:gen-class)
   (:require [environ.core :as environ]
             [taoensso.timbre :as log]))

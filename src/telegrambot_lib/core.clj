@@ -1,4 +1,6 @@
 (ns telegrambot-lib.core
+  "A Clojure library for interacting with the Telegram Bot API.
+   https://github.com/wdhowe/telegrambot-lib#usage"
   (:gen-class)
   (:require [telegrambot-lib.config :as conf]
             [telegrambot-lib.edit.core :as edit]
@@ -69,7 +71,9 @@
   send-media-group
   send-location
   edit-message-live-location
+  edit-message-live-location-inline
   stop-message-live-location
+  stop-message-live-location-inline
   send-venue
   send-contact
   send-poll
