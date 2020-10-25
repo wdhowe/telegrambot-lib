@@ -8,7 +8,7 @@
 
 (defmulti client
   "Send http requests to the url."
-  (fn [http-method & more] http-method))
+  (fn [http-method & _] http-method))
 
 (defmethod client :post
   ([http-method url]
@@ -27,7 +27,7 @@
                    :content-type content-type})))
 
 (defmethod client :default
-  [http-method & more]
+  [http-method & _]
   (log/error http-method "http method not supported"))
 
 (def bot-api "https://api.telegram.org/bot")

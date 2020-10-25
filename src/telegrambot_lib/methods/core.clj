@@ -12,6 +12,11 @@
   (:gen-class)
   (:require [telegrambot-lib.http :as http]))
 
+(defn content-map?
+  "Used throughout the multi-methods in order to check if content is a map or not."
+  [_ content & _]
+  (map? content))
+
 (defn call
   "A generic function to call any `endpoint` with optional `content`.
    Provided in the case where methods are added to the API and
@@ -296,7 +301,7 @@
    live_period expires.
    On success, if the message was sent by the bot, the sent
    Message is returned, otherwise True is returned."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod stop-message-live-location-inline true
   [this content]
@@ -385,7 +390,7 @@
 (defmulti send-dice
   "Use this method to send an animated emoji that will display a random value.
    On success, the sent Message is returned."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod send-dice true
   [this content]
@@ -423,7 +428,7 @@
 (defmulti get-user-profile-photos
   "Use this method to get a list of profile pictures for a user.
    Returns a UserProfilePhotos object."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod get-user-profile-photos true
   [this content]
@@ -447,7 +452,7 @@
    where <file_path> is taken from the response.
    It is guaranteed that the link will be valid for at least 1 hour.
    When the link expires, a new one can be requested by calling getFile again."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod get-file true
   [this content]
@@ -565,7 +570,7 @@
    link is revoked. The bot must be an administrator in the chat for this to work and
    must have the appropriate admin rights.
    Returns the new invite link as String on success."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod export-chat-invite-link true
   [this content]
@@ -595,7 +600,7 @@
    The bot must be an administrator in the chat for this to work and
    must have the appropriate admin rights.
    Returns True on success."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod delete-chat-photo true
   [this content]
@@ -659,7 +664,7 @@
    must have the 'can_pin_messages' admin right in the supergroup or
    'can_edit_messages' admin right in the channel.
    Returns True on success."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod unpin-chat-message true
   [this content]
@@ -673,7 +678,7 @@
 (defmulti leave-chat
   "Use this method for your bot to leave a group, supergroup or channel.
    Returns True on success."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod leave-chat true
   [this content]
@@ -689,7 +694,7 @@
    (current name of the user for one-on-one conversations,
    current username of a user, group or channel, etc.).
    Returns a Chat object on success."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod get-chat true
   [this content]
@@ -706,7 +711,7 @@
    all chat administrators except other bots.
    If the chat is a group or a supergroup and no administrators were appointed,
    only the creator will be returned."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod get-chat-administrators true
   [this content]
@@ -720,7 +725,7 @@
 (defmulti get-chat-members-count
   "Use this method to get the number of members in a chat.
    Returns Int on success."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod get-chat-members-count true
   [this content]
@@ -764,7 +769,7 @@
    Use the field can_set_sticker_set optionally returned in getChat requests to
    check if the bot can use this method.
    Returns True on success."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod delete-chat-sticker-set true
   [this content]
@@ -780,7 +785,7 @@
    The answer will be displayed to the user as a notification at the top of the
    chat screen or as an alert.
    On success, True is returned."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod answer-callback-query true
   [this content]
@@ -799,7 +804,7 @@
 (defmulti set-my-commands
   "Use this method to change the list of the bot's commands.
    Returns True on success."
-  (fn [this content & optional] (map? content)))
+  content-map?)
 
 (defmethod set-my-commands true
   [this content]
