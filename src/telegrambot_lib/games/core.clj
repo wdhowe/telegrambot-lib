@@ -13,7 +13,15 @@
   (:require [telegrambot-lib.http :as http]))
 
 (defn send-game
-  "Use this method to send a game. On success, the sent Message is returned."
+  "Use this method to send a game.
+   On success, the sent Message is returned.
+   ;; Required
+   chat_id ; target chat id
+   game_short_name ; serves as unique id for the game
+   ;; Optional
+   disable_notification ; send message silently
+   reply_to_message_id ; id of original message
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "sendGame" content))
 
@@ -32,7 +40,15 @@
   "Use this method to set the score of the specified user in a game.
    On success, if the message was sent by the bot, returns the edited Message,
    otherwise returns True. Returns an error, if the new score is not greater
-   than the user's current score in the chat and force is False."
+   than the user's current score in the chat and force is False.
+   ;; Required
+   chat_id ; id of target chat
+   message_id ; id of the sent message
+   user_id ; user identifier
+   score ; new score, non-negative
+   ;; Optional
+   force ; true if high score is allowed to decrease
+   disable_edit_message ; true if game msg should not be auto edited to include the scoreboard"
   ([this content]
    (http/request this "setGameScore" content))
 
@@ -55,7 +71,14 @@
   "Use this method to set the inline score of the specified user in a game.
    On success, if the message was sent by the bot, returns the edited Message,
    otherwise returns True. Returns an error, if the new score is not greater
-   than the user's current score in the chat and force is False."
+   than the user's current score in the chat and force is False.
+   ;; Required
+   inline_message_id ; id of the inline message
+   user_id ; user identifier
+   score ; new score, non-negative
+   ;; Optional
+   force ; true if high score is allowed to decrease
+   disable_edit_message ; true if game msg should not be auto edited to include the scoreboard"
   ([this content]
    (http/request this "setGameScore" content))
 
@@ -75,7 +98,11 @@
 (defn get-game-high-scores
   "Use this method to get data for high score tables.
    Will return the score of the specified user and several of their neighbors in a game.
-   On success, returns an Array of GameHighScore objects."
+   On success, returns an Array of GameHighScore objects.
+   ;; Required
+   chat_id ; id of the target chat
+   message_id ; id of the sent message
+   user_id ; target user"
   ([this content]
    (http/request this "getGameHighScores" content))
 
@@ -88,7 +115,10 @@
 (defn get-game-high-scores-inline
   "Use this method to get data for inline high score tables.
    Will return the score of the specified user and several of their neighbors in a game.
-   On success, returns an Array of GameHighScore objects."
+   On success, returns an Array of GameHighScore objects.
+   ;; Required
+   inline_message_id ; id of the sent message
+   user_id ; target user"
   ([this content]
    (http/request this "getGameHighScores" content))
 
