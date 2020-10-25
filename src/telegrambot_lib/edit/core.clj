@@ -15,7 +15,16 @@
 (defn edit-message-text
   "Use this method to edit text and game messages.
    On success, if edited message is sent by the bot, the edited Message is
-   returned, otherwise True is returned."
+   returned, otherwise True is returned.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)
+   message_id ; id of message to edit
+   text ; new text of message
+   ;; Optional
+   parse_mode ; entity parsing in message
+   disable_web_page_preview ; disable link previews
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageText" content))
 
@@ -35,7 +44,15 @@
 (defn edit-message-text-inline
   "Use this method to edit inline text and game messages.
    On success, if edited message is sent by the bot, the edited Message is
-   returned, otherwise True is returned."
+   returned, otherwise True is returned.
+   Parameters
+   ;; Required
+   inline_message_id ; id of the inline message
+   text ; new text of message
+   ;; Optional
+   parse_mode ; entity parsing in message
+   disable_web_page_preview ; disable link previews
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageText" content))
 
@@ -53,7 +70,15 @@
 (defn edit-message-caption
   "Use this method to edit captions of messages.
    On success, if edited message is sent by the bot, the edited Message is
-   returned, otherwise True is returned."
+   returned, otherwise True is returned.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)
+   message_id ; id of message to edit
+   caption ; new caption of message
+   ;; Optional
+   parse_mode ; entity parsing in message
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageCaption" content))
 
@@ -73,7 +98,14 @@
 (defn edit-message-caption-inline
   "Use this method to edit captions of inline messages.
    On success, if edited message is sent by the bot, the edited Message is
-   returned, otherwise True is returned."
+   returned, otherwise True is returned.
+   Parameters
+   ;; Required
+   inline_message_id ; id of the inline message
+   caption ; new caption of message
+   ;; Optional
+   parse_mode ; entity parsing in message
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageCaption" content))
 
@@ -95,7 +127,14 @@
    When inline message is edited, new file can't be uploaded.
    Use previously uploaded file via its file_id or specify a URL.
    On success, if the edited message was sent by the bot, the edited Message
-   is returned, otherwise True is returned."
+   is returned, otherwise True is returned.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)
+   message_id ; id of message to edit
+   media ; json object for new media content
+   ;; Optional
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageMedia" content))
 
@@ -119,7 +158,13 @@
    When inline message is edited, new file can't be uploaded.
    Use previously uploaded file via its file_id or specify a URL.
    On success, if the edited message was sent by the bot, the edited Message
-   is returned, otherwise True is returned."
+   is returned, otherwise True is returned.
+   Parameters
+   ;; Required
+   inline_message_id ; id of the inline message
+   media ; json object for new media content
+   ;; Optional
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageMedia" content))
 
@@ -137,7 +182,12 @@
 (defn edit-message-reply-markup
   "Use this method to edit only the reply markup of messages.
    On success, if edited message is sent by the bot, the edited Message is
-   returned, otherwise True is returned."
+   returned, otherwise True is returned.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)
+   message_id ; id of message to edit
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageReplyMarkup" content))
 
@@ -150,7 +200,11 @@
 (defn edit-message-reply-markup-inline
   "Use this method to edit only the reply markup of inline messages.
    On success, if edited message is sent by the bot, the edited Message is
-   returned, otherwise True is returned."
+   returned, otherwise True is returned.
+   Parameters
+   ;; Required
+   inline_message_id ; id of the inline message
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageReplyMarkup" content))
 
@@ -161,7 +215,13 @@
 
 (defn stop-poll
   "Use this method to stop a poll which was sent by the bot.
-   On success, the stopped Poll with the final results is returned."
+   On success, the stopped Poll with the final results is returned.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)
+   message_id ; id of original message with the poll
+   ;; Optional
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "stopPoll" content))
 
@@ -178,7 +238,11 @@
 
 (defn delete-message
   "Use this method to delete a message, including service messages.
-   Returns True on success."
+   Returns True on success.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)
+   message_id ; id of message to delete"
   ([this content]
    (http/request this "deleteMessage" content))
 
