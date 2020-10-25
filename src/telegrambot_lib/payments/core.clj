@@ -1,7 +1,14 @@
 (ns telegrambot-lib.payments.core
   "Telegram Payments - function implementations.
    
-   * https://core.telegram.org/bots/api#payments"
+   * https://core.telegram.org/bots/api#payments
+
+   Most functions are multi-arity with the following options:
+
+   - Send all parameters in a 'content' map.
+   - Send only the required parameters as simple values.
+   - Send the required paraemters as simple values and then 'optional' parameters in a map."
+
   (:gen-class)
   (:require [telegrambot-lib.http :as http]))
 
