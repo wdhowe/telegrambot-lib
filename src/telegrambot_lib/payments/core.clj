@@ -12,6 +12,11 @@
   (:gen-class)
   (:require [telegrambot-lib.http :as http]))
 
+(defn content-map?
+  "Used throughout the multi-methods in order to check if content is a map or not."
+  [_ content & _]
+  (map? content))
+
 (defn send-invoice
   "Use this method to send invoices.
    On success, the sent Message is returned."
@@ -75,16 +80,20 @@
                   :error_message error_message}]
      (answer-shipping-query-error this content))))
 
-(defn answer-precheckout-query-ok
+(defmulti answer-precheckout-query-ok
   "Once the user has confirmed their payment and shipping details,
    the Bot API sends the final confirmation in the form of an Update
    with the field pre_checkout_query.
    Use this method to respond to such pre-checkout queries.
    On success, True is returned.
    Sets 'ok' param to true."
-  ([this content]
-   (http/request this "answerPreCheckoutQuery" content))
+  content-map?)
 
+(defmethod answer-precheckout-query-ok true
+  ([this content]
+   (http/request this "answerPreCheckoutQuery" content)))
+
+(defmethod answer-precheckout-query-ok false
   ([this pre_checkout_query_id]
    (let [content {:pre_checkout_query_id pre_checkout_query_id
                   :ok true}]
