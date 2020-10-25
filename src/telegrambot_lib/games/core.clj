@@ -1,7 +1,14 @@
 (ns telegrambot-lib.games.core
   "Telegram Bot API Games - function implementations.
-   
-   * https://core.telegram.org/bots/api#games"
+
+   * https://core.telegram.org/bots/api#games
+
+   Most functions are multi-arity with the following options:
+
+   - Send all parameters in a 'content' map.
+   - Send only the required parameters as simple values.
+   - Send the required paraemters as simple values and then 'optional' parameters in a map."
+
   (:gen-class)
   (:require [telegrambot-lib.http :as http]))
 
