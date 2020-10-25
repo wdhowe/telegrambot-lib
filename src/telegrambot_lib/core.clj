@@ -46,9 +46,13 @@
 (import-vars
  [telegrambot-lib.edit.core
   edit-message-text
+  edit-message-text-inline
   edit-message-caption
+  edit-message-caption-inline
   edit-message-media
+  edit-message-media-inline
   edit-message-reply-markup
+  edit-message-reply-markup-inline
   stop-poll
   delete-message]
  [telegrambot-lib.games.core
