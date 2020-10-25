@@ -42,6 +42,7 @@
   ([bot-token]
    (map->TBot {:bot-token bot-token})))
 
+;; Make all Telegram functions available directly in this namespace.
 (import-vars
  [telegrambot-lib.edit.core
   edit-message-text

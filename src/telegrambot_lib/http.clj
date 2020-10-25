@@ -1,4 +1,5 @@
 (ns telegrambot-lib.http
+  "Formats and sends the http request to the API endpoints."
   (:gen-class)
   (:require [cheshire.core :as json]
             [clj-http.client :as clj-http]
