@@ -115,8 +115,10 @@
   set-passport-data-errors]
  [telegrambot-lib.payments.core
   send-invoice
-  answer-shipping-query
-  answer-precheckout-query]
+  answer-shipping-query-ok
+  answer-shipping-query-error
+  answer-precheckout-query-ok
+  answer-precheckout-query-error]
  [telegrambot-lib.stickers.core
   send-sticker
   get-sticker-set
