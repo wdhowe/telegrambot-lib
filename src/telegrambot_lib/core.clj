@@ -58,7 +58,9 @@
  [telegrambot-lib.games.core
   send-game
   set-game-score
-  get-game-high-scores]
+  set-game-score-inline
+  get-game-high-scores
+  get-game-high-scores-inline]
  [telegrambot-lib.inline.core
   answer-inline-query]
  [telegrambot-lib.methods.core
