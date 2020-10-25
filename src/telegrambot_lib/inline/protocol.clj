@@ -7,5 +7,7 @@
   "The following methods and objects allow your bot to work in inline mode."
 
   (answer-inline-query [this content]
+    [this inline_query_id results]
+    [this inline_query_id results & optional]
     "Use this method to send answers to an inline query. On success, True is returned.
      No more than 50 results per query are allowed."))

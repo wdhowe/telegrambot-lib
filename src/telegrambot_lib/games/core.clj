@@ -15,6 +15,7 @@
 (defn send-game
   "Use this method to send a game.
    On success, the sent Message is returned.
+   Parameters
    ;; Required
    chat_id ; target chat id
    game_short_name ; serves as unique id for the game
@@ -41,6 +42,7 @@
    On success, if the message was sent by the bot, returns the edited Message,
    otherwise returns True. Returns an error, if the new score is not greater
    than the user's current score in the chat and force is False.
+   Parameters
    ;; Required
    chat_id ; id of target chat
    message_id ; id of the sent message
@@ -72,6 +74,7 @@
    On success, if the message was sent by the bot, returns the edited Message,
    otherwise returns True. Returns an error, if the new score is not greater
    than the user's current score in the chat and force is False.
+   Parameters
    ;; Required
    inline_message_id ; id of the inline message
    user_id ; user identifier
@@ -99,6 +102,7 @@
   "Use this method to get data for high score tables.
    Will return the score of the specified user and several of their neighbors in a game.
    On success, returns an Array of GameHighScore objects.
+   Parameters
    ;; Required
    chat_id ; id of the target chat
    message_id ; id of the sent message
@@ -116,6 +120,7 @@
   "Use this method to get data for inline high score tables.
    Will return the score of the specified user and several of their neighbors in a game.
    On success, returns an Array of GameHighScore objects.
+   Parameters
    ;; Required
    inline_message_id ; id of the sent message
    user_id ; target user"
