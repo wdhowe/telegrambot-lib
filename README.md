@@ -13,7 +13,7 @@ Get started using the telegrambot-lib.
 Leiningen/Boot Project file
 
 ```clojure
-[telegrambot-lib "0.1.1"]
+[telegrambot-lib "0.2.0"]
 ```
 
 ### Include the Library
@@ -109,7 +109,7 @@ Most functions are multi-arity with the following options:
 
 Required parameters are named to match the Telegram API, so they should be self explanatory in most cases.
 
-Refer to the [Telegram Bot API Documentation](https://core.telegram.org/bots/api) for optional parameter content.
+Refer to the function docstrings or the [Telegram Bot API Documentation](https://core.telegram.org/bots/api) for optional parameter content.
 
 See the below 'How to send a chat message' section for examples on the different ways to pass parameters.
 
