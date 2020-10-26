@@ -38,7 +38,7 @@
   (str bot-api (:bot-token this) "/" path))
 
 (defn parse-resp
-  "Parse the response."
+  "Parse the json response body into a keywordized map."
   [resp]
   (-> resp
       (:body)

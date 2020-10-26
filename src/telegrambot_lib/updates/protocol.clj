@@ -10,7 +10,8 @@
     "Use this method to receive incoming updates using long polling.
      An Array of Update objects is returned.")
 
-  (set-webhook [this content]
+  (set-webhook [this url]
+    [this url & optional]
     "Use this method to specify a url and receive incoming updates via
      an outgoing webhook. Whenever there is an update for the bot, we
      will send an HTTPS POST request to the specified url, containing
