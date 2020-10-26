@@ -14,6 +14,7 @@
 
 (defn set-passport-data-errors
   "Informs a user that some of the Telegram Passport elements they provided contains errors.
+   Parameters
    ;; Required
    user_id ; user identifier
    errors ; json array of 'PassportElementError' describing the errors"

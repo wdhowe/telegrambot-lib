@@ -19,7 +19,33 @@
 
 (defn send-invoice
   "Use this method to send invoices.
-   On success, the sent Message is returned."
+   On success, the sent Message is returned.
+   Parameters
+   ;; Required
+   chat_id ; id for the target private chat
+   title ; product name
+   description ; product description
+   payload ; internal bot defined invoice payload
+   provider_token ; payments provider token
+   start_parameter ; 'deep-linking' start param
+   currency ; three letter ISO 4217 currency code
+   prices ; 'LabeledPrice' array breakdown (price, tax, discount, delivery, etc)
+   ;; Optional
+   provider_data ; json data about invoice, payment provider specific
+   photo_url ; product photo for the invoice
+   photo_size
+   photo_width
+   photo_height
+   need_name ; true if the user's full name is required for order
+   need_phone_number ; true if the user's phone number is required for order
+   need_email ; true if the user's email is required for order
+   need_shipping_address ; true if the user's address is required for order
+   send_phone_number_to_provider ; true to send phone number to provider
+   send_email_to_provider ; true to send email to provider
+   is_flexible ; true if final price depends on shipping method
+   disable_notification ; send message silently
+   reply_to_message_id ; id of original message if a reply
+   reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "sendInvoice" content))
 
@@ -54,7 +80,12 @@
    will send an Update with a shipping_query field to the bot.
    Use this method to reply to shipping queries.
    On success, True is returned.
-   Sets 'ok' param to true."
+   Sets 'ok' param to true.
+   Parameters
+   ;; Required
+   shipping_query_id ; id of query to be answered
+   ok ; true if delivery to address is possible (auto set by this function)
+   shipping_options ; Required if 'ok' is true, array of shipping options"
   ([this content]
    (http/request this "answerShippingQuery" content))
 
@@ -70,7 +101,12 @@
    will send an Update with a shipping_query field to the bot.
    Use this method to reply to shipping queries.
    On success, True is returned.
-   Sets 'ok' param to false."
+   Sets 'ok' param to false.
+   Parameters
+   ;; Required
+   shipping_query_id ; id of query to be answered
+   ok ; true if delivery to address is possible (auto set by this function)
+   error_message ; Required if 'ok' is false, message why order cannot complete"
   ([this content]
    (http/request this "answerShippingQuery" content))
 
@@ -86,7 +122,12 @@
    with the field pre_checkout_query.
    Use this method to respond to such pre-checkout queries.
    On success, True is returned.
-   Sets 'ok' param to true."
+   Sets 'ok' param to true.
+   Parameters
+   ;; Required
+   pre_checkout_query_id ; id of query to be answered
+   ok ; true if all is good (in stock, etc) and bot is ready to proceed with order
+      ; (auto set by this function)"
   content-map?)
 
 (defmethod answer-precheckout-query-ok true
@@ -105,7 +146,13 @@
    with the field pre_checkout_query.
    Use this method to respond to such pre-checkout queries.
    On success, True is returned.
-   Sets 'ok' param to false."
+   Sets 'ok' param to false.
+   Parameters
+   ;; Required
+   pre_checkout_query_id ; id of query to be answered
+   ok ; true if all is good (in stock, etc) and bot is ready to proceed with order
+      ; (auto set by this function)
+   error_message ; Required if 'ok' is false, message why checkout cannot proceed"
   ([this content]
    (http/request this "answerPreCheckoutQuery" content))
 
