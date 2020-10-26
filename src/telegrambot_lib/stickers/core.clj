@@ -19,7 +19,15 @@
 
 (defn send-sticker
   "Use this method to send static .WEBP or animated .TGS stickers.
-   On success, the sent Message is returned."
+   On success, the sent Message is returned.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)
+   sticker ; sticker to send, file_id for existing on Telegram servers
+   ;; Optional
+   disable_notification ; true to send message silently
+   reply_to_message_id ; id of original message if reply
+   reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendSticker" content))
 
@@ -36,7 +44,10 @@
 
 (defmulti get-sticker-set
   "Use this method to get a sticker set.
-   On success, a StickerSet object is returned."
+   On success, a StickerSet object is returned.
+   Parameters
+   ;; Required
+   name ; name of the sticker set"
   content-map?)
 
 (defmethod get-sticker-set true
@@ -51,7 +62,11 @@
 (defn upload-sticker-file
   "Use this method to upload a .PNG file with a sticker for later use
    in createNewStickerSet and addStickerToSet methods (can be used multiple times).
-   Returns the uploaded File on success."
+   Returns the uploaded File on success.
+   Parameters
+   ;; Required
+   user_id ; id of sticker file owner
+   png_sticker ; PNG image with the sticker"
   ([this content]
    (http/request this "uploadStickerFile" content))
 
@@ -64,7 +79,18 @@
   "Use this method to create a new sticker set owned by a user. The bot will
    be able to edit the sticker set thus created.
    You must use exactly one of the fields png_sticker or tgs_sticker.
-   Returns True on success."
+   Returns True on success.
+   Parameters
+   ;; Required
+   user_id ; id of created sticker set owner
+   name ; short name of sticker set for use in URLs
+   title ; sticker set title
+   emojis ; one or more emoji corresponding to the sticker
+   ;; Optional
+   png_sticker ; PNG image with the sticker
+   tgs_sticker ; TGS animation with the sticker
+   contains_masks ; true to create a set of mask stickers
+   mask_position ; json object for where the mask should be placed on faces"
   ([this content]
    (http/request this "createNewStickerSet" content))
 
@@ -89,7 +115,16 @@
    Animated stickers can be added to animated sticker sets and only to them.
    Animated sticker sets can have up to 50 stickers.
    Static sticker sets can have up to 120 stickers.
-   Returns True on success."
+   Returns True on success.
+   Parameters
+   ;; Required
+   user_id ; id of sticker set owner
+   name ; sticker set name
+   emojis ; one or more emoji corresponding to the sticker
+   ;; Optional
+   png_sticker ; PNG image with the sticker
+   tgs_sticker ; TGS animation with the sticker
+   mask_position ; json object for where the mask should be placed on faces"
   ([this content]
    (http/request this "addStickerToSet" content))
 
@@ -109,7 +144,11 @@
 (defn set-sticker-position-in-set
   "Use this method to move a sticker in a set created by the bot to
    a specific position.
-   Returns True on success."
+   Returns True on success.
+   Parameters
+   ;; Required
+   sticker ; file id of the sticker
+   position ; new sticker position in the set"
   ([this content]
    (http/request this "setStickerPositionInSet" content))
 
@@ -120,7 +159,10 @@
 
 (defmulti delete-sticker-from-set
   "Use this method to delete a sticker from a set created by the bot.
-   Returns True on success."
+   Returns True on success.
+   Parameters
+   ;; Required
+   sticker ; file id of the sticker"
   content-map?)
 
 (defmethod delete-sticker-from-set true
@@ -135,7 +177,13 @@
 (defn set-sticker-set-thumb
   "Use this method to set the thumbnail of a sticker set.
    Animated thumbnails can be set for animated sticker sets only.
-   Returns True on success."
+   Returns True on success.
+   Parameters
+   ;; Required
+   name ; sticker set name
+   user_id ; id of the sticker set owner
+   ;; Optional
+   thumb ; PNG image with the thumbnail"
   ([this content]
    (http/request this "setStickerSetThumb" content))
 
