@@ -112,8 +112,7 @@
      On success, if the message was sent by the bot, the sent
      Message is returned, otherwise True is returned.")
 
-  (stop-message-live-location-inline [this content]
-    [this inline_message_id]
+  (stop-message-live-location-inline [this inline_message_id]
     [this inline_message_id & optional]
     "Use this method to stop updating a live location inline message before live_period expires.
      On success, if the message was sent by the bot, the sent
@@ -138,8 +137,7 @@
     "Use this method to send a native poll.
      On success, the sent Message is returned.")
 
-  (send-dice [this content]
-    [this chat_id]
+  (send-dice [this chat_id]
     [this chat_id & optional]
     "Use this method to send an animated emoji that will display a random value.
      On success, the sent Message is returned.")
@@ -152,14 +150,12 @@
      arrives from your bot, Telegram clients clear its typing status).
      Returns True on success.")
 
-  (get-user-profile-photos [this content]
-    [this user_id]
+  (get-user-profile-photos [this user_id]
     [this user_id & optional]
     "Use this method to get a list of profile pictures for a user.
      Returns a UserProfilePhotos object.")
 
-  (get-file [this content]
-    [this file_id]
+  (get-file [this file_id]
     "Use this method to get basic info about a file and prepare it for downloading.
      For the moment, bots can download files of up to 20MB in size.
      On success, a File object is returned. The file can then be downloaded via
@@ -216,8 +212,7 @@
      and must have the can_restrict_members admin rights.
      Returns True on success.")
 
-  (export-chat-invite-link [this content]
-    [this chat_id]
+  (export-chat-invite-link [this chat_id]
     "Use this method to generate a new invite link for a chat; any previously generated
      link is revoked. The bot must be an administrator in the chat for this to work and
      must have the appropriate admin rights.
@@ -231,8 +226,7 @@
      must have the appropriate admin rights.
      Returns True on success.")
 
-  (delete-chat-photo [this content]
-    [this chat_id]
+  (delete-chat-photo [this chat_id]
     "Use this method to delete a chat photo. Photos can't be changed for private chats.
      The bot must be an administrator in the chat for this to work and
      must have the appropriate admin rights.
@@ -262,36 +256,31 @@
      'can_edit_messages' admin right in the channel.
      Returns True on success.")
 
-  (unpin-chat-message [this content]
-    [this chat_id]
+  (unpin-chat-message [this chat_id]
     "Use this method to unpin a message in a group, a supergroup, or a channel.
      The bot must be an administrator in the chat for this to work and
      must have the 'can_pin_messages' admin right in the supergroup or
      'can_edit_messages' admin right in the channel.
      Returns True on success.")
 
-  (leave-chat [this content]
-    [this chat_id]
+  (leave-chat [this chat_id]
     "Use this method for your bot to leave a group, supergroup or channel.
      Returns True on success.")
 
-  (get-chat [this content]
-    [this chat_id]
+  (get-chat [this chat_id]
     "Use this method to get up to date information about the chat
      (current name of the user for one-on-one conversations,
      current username of a user, group or channel, etc.).
      Returns a Chat object on success.")
 
-  (get-chat-administrators [this content]
-    [this chat_id]
+  (get-chat-administrators [this chat_id]
     "Use this method to get a list of administrators in a chat.
      On success, returns an Array of ChatMember objects that contains information about
      all chat administrators except other bots.
      If the chat is a group or a supergroup and no administrators were appointed,
      only the creator will be returned.")
 
-  (get-chat-members-count [this content]
-    [this chat_id]
+  (get-chat-members-count [this chat_id]
     "Use this method to get the number of members in a chat.
      Returns Int on success.")
 
@@ -309,8 +298,7 @@
      check if the bot can use this method.
      Returns True on success.")
 
-  (delete-chat-sticker-set [this content]
-    [this chat_id]
+  (delete-chat-sticker-set [this chat_id]
     "Use this method to delete a group sticker set from a supergroup.
      The bot must be an administrator in the chat for this to work and
      must have the appropriate admin rights.
@@ -318,16 +306,14 @@
      check if the bot can use this method.
      Returns True on success.")
 
-  (answer-callback-query [this content]
-    [this chat_id]
+  (answer-callback-query [this chat_id]
     [this chat_id & optional]
     "Use this method to send answers to callback queries sent from inline keyboards.
      The answer will be displayed to the user as a notification at the top of the
      chat screen or as an alert.
      On success, True is returned.")
 
-  (set-my-commands [this content]
-    [this commands]
+  (set-my-commands [this commands]
     "Use this method to change the list of the bot's commands.
      Returns True on success.")
 
