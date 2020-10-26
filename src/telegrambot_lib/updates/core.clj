@@ -19,7 +19,13 @@
 
 (defn get-updates
   "Use this method to receive incoming updates using long polling.
-   An Array of Update objects is returned."
+   An Array of Update objects is returned.
+   Parameters
+   ;; Optional - map of the following
+   offset ; id of first update to return
+   limit ; num of updates to retrieve (1-100). default: 100
+   timeout ; timeout in seconds. default: 0 (short poll)
+   allowed_updates ; json array of update types bot will receive"
   ([this]
    (get-updates this nil))
   ([this content]
@@ -31,7 +37,14 @@
    will send an HTTPS POST request to the specified url, containing
    a JSON-serialized Update. In case of an unsuccessful request, we
    will give up after a reasonable amount of attempts.
-   Returns True on success."
+   Returns True on success.
+   Parameters
+   ;; Required
+   url ; https url to send updates to. empty string to remove webhook
+   ;; Optional
+   certificate ; upload public key cert
+   max_connections ; max allowed simultaneous https connections for updates. (1-100) default: 40
+   allowed_updates ; json array of update types bot will receive"
   content-map?)
 
 (defmethod set-webhook true
