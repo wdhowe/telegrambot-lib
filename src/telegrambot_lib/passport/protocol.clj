@@ -10,4 +10,6 @@
    that require real-world ID (finance, ICOs, etc.)."
 
   (set-passport-data-errors [this content]
-    "Informs a user that some of the Telegram Passport elements they provided contains errors."))
+    [this user_id errors]
+    "Informs a user that some of the Telegram Passport elements they
+     provided contains errors."))

@@ -13,7 +13,10 @@
   (:require [telegrambot-lib.http :as http]))
 
 (defn set-passport-data-errors
-  "Informs a user that some of the Telegram Passport elements they provided contains errors."
+  "Informs a user that some of the Telegram Passport elements they provided contains errors.
+   ;; Required
+   user_id ; user identifier
+   errors ; json array of 'PassportElementError' describing the errors"
   ([this content]
    (http/request this "setPassportDataErrors" content))
 
