@@ -1,5 +1,5 @@
 (ns telegrambot-lib.core-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [telegrambot-lib.core :as lib-core]))
 
 (deftest create-test-1

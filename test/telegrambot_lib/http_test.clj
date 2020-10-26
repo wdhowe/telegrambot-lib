@@ -1,5 +1,5 @@
 (ns telegrambot-lib.http-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [telegrambot-lib.http :as http]))
 
 (defrecord faux-bot [bot-token])
