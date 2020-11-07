@@ -2,8 +2,8 @@
   "A Clojure library for interacting with the Telegram Bot API.
    https://github.com/wdhowe/telegrambot-lib#usage
 
-   Implemented Telegram functions accurate as of 'Bot API 4.9':
-   https://core.telegram.org/bots/api-changelog#june-4-2020"
+   Implemented Telegram functions accurate as of 'Bot API 5.0':
+   https://core.telegram.org/bots/api#november-4-2020"
   (:gen-class)
   (:require [telegrambot-lib.config :as conf]
             [telegrambot-lib.edit.core :as edit]
