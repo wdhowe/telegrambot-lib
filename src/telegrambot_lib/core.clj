@@ -69,8 +69,11 @@
  [telegrambot-lib.methods.core
   call
   get-me
+  log-out
+  close
   send-message
   forward-message
+  copy-message
   send-photo
   send-audio
   send-document
@@ -104,6 +107,7 @@
   set-chat-description
   pin-chat-message
   unpin-chat-message
+  unpin-all-chat-messages
   leave-chat
   get-chat
   get-chat-administrators
