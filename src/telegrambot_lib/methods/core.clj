@@ -203,6 +203,7 @@
    caption ; document caption
    parse_mode ; entity parsing in document caption
    thumb ; thumbnail of the file sent
+   disable_content_type_detection ; disable auto content type detection for files uploaded
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
    reply_markup ; additional interface options"
@@ -995,7 +996,9 @@
    Returns True on success.
    Parameters
    ;; Required
-   chat_id ; target chat or username (@user)"
+   chat_id ; target chat or username (@user)
+   ;; Optional
+   message_id ; id of message to unpin (unpins most recent if not specified)"
   content-map?)
 
 (defmethod unpin-chat-message true
@@ -1003,9 +1006,14 @@
   (http/request this "unpinChatMessage" content))
 
 (defmethod unpin-chat-message false
-  [this chat_id]
-  (let [content {:chat_id chat_id}]
-    (unpin-chat-message this content)))
+  ([this chat_id]
+   (let [content {:chat_id chat_id}]
+     (unpin-chat-message this content)))
+
+  ([this chat_id & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id})]
+     (unpin-chat-message this content))))
 
 (defmulti unpin-all-chat-messages
   "Use this method to clear the list of pinned messages in a chat.
