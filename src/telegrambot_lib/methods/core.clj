@@ -378,7 +378,10 @@
    latitude ; lat of location
    longitude ; long of location
    ;; Optional
+   horizontal_accuracy ; 1-1500 meters radius of uncertainty
    live_period ; seconds for which location will be updated (60-86400)
+   heading ; 1-360 degrees direction user is moving
+   proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
    reply_markup ; additional interface options"
@@ -411,6 +414,9 @@
    latitude ; lat of new location
    longitude ; long of new location
    ;; Optional
+   horizontal_accuracy ; 1-1500 meters radius of uncertainty
+   heading ; 1-360 degrees direction user is moving
+   proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "editMessageLiveLocation" content))
