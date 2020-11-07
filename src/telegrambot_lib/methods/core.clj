@@ -755,13 +755,21 @@
    Parameters
    ;; Required
    chat_id ; target chat or username (@user)
-   user_id ; id of target user"
+   user_id ; id of target user
+   ;; Optional
+   only_if_banned ; Do nothing if the user is not banned"
   ([this content]
    (http/request this "unbanChatMember" content))
 
   ([this chat_id user_id]
    (let [content {:chat_id chat_id
                   :user_id user_id}]
+     (unban-chat-member this content)))
+
+  ([this chat_id user_id & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :user_id user_id})]
      (unban-chat-member this content))))
 
 (defn restrict-chat-member
