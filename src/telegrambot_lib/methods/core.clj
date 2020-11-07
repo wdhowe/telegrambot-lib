@@ -34,6 +34,23 @@
   [this]
   (http/request this "getMe"))
 
+(defn log-out
+  "Use this method to log out from the cloud Bot API server before launching
+   the bot locally. You must log out the bot before running it locally,
+   otherwise there is no guarantee that the bot will receive updates.
+   Returns True on success. Requires no parameters."
+  [this]
+  (http/request this "logOut"))
+
+(defn close
+  "Use this method to close the bot instance before moving it from one local
+   server to another. You need to delete the webhook before calling this method
+   to ensure that the bot isn't launched again after server restart. The method
+   will return error 429 in the first 10 minutes after the bot is launched.
+   Returns True on success. Requires no parameters."
+  [this]
+  (http/request this "close"))
+
 (defn send-message
   "Use this method to send text messages.
    On success, the sent Message is returned.
@@ -86,6 +103,34 @@
                          :from_chat_id from_chat_id
                          :message_id message_id})]
      (forward-message this content))))
+
+(defn copy-message
+  "Use this method to copy messages of any kind.
+   The method is analogous to the method forwardMessages, but the copied
+   message doesn't have a link to the original message.
+   Returns the MessageId of the sent message on success.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)
+   from_chat_id ; id of chat from original message
+   message_id ; message id in chat specified in 'from_chat_id'
+   ;; Optional
+   disable_notification ; send silently"
+  ([this content]
+   (http/request this "copyMessage" content))
+
+  ([this chat_id from_chat_id message_id]
+   (let [content {:chat_id chat_id
+                  :from_chat_id from_chat_id
+                  :message_id message_id}]
+     (copy-message this content)))
+
+  ([this chat_id from_chat_id message_id & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :from_chat_id from_chat_id
+                         :message_id message_id})]
+     (copy-message this content))))
 
 (defn send-photo
   "Use this method to send photos.
@@ -954,6 +999,26 @@
   (let [content {:chat_id chat_id}]
     (unpin-chat-message this content)))
 
+(defmulti unpin-all-chat-messages
+  "Use this method to clear the list of pinned messages in a chat.
+   If the chat is not a private chat, the bot must be an administrator in
+   the chat for this to work and must have the 'can_pin_messages' admin
+   right in a supergroup or 'can_edit_messages' admin right in a channel.
+   Returns True on success.
+   Parameters
+   ;; Required
+   chat_id ; target chat or username (@user)"
+  content-map?)
+
+(defmethod unpin-all-chat-messages true
+  [this content]
+  (http/request this "unpinAllChatMessages" content))
+
+(defmethod unpin-all-chat-messages false
+  [this chat_id]
+  (let [content {:chat_id chat_id}]
+    (unpin-all-chat-messages this content)))
+
 (defmulti leave-chat
   "Use this method for your bot to leave a group, supergroup or channel.
    Returns True on success.
@@ -1139,8 +1204,11 @@
   "Map for extending the core TBot record with functions."
   {:call call
    :get-me get-me
+   :log-out log-out
+   :close close
    :send-message send-message
    :forward-message forward-message
+   :copy-message copy-message
    :send-photo send-photo
    :send-audio send-audio
    :send-document send-document
@@ -1174,6 +1242,7 @@
    :set-chat-description set-chat-description
    :pin-chat-message pin-chat-message
    :unpin-chat-message unpin-chat-message
+   :unpin-all-chat-messages unpin-all-chat-messages
    :leave-chat leave-chat
    :get-chat get-chat
    :get-chat-administrators get-chat-administrators

@@ -14,6 +14,19 @@
     "A simple method for testing your bot's auth token. Requires no parameters.
      Returns basic information about the bot in form of a User object.")
 
+  (log-out [this]
+    "Use this method to log out from the cloud Bot API server before launching
+     the bot locally. You must log out the bot before running it locally,
+     otherwise there is no guarantee that the bot will receive updates.
+     Returns True on success. Requires no parameters.")
+
+  (close [this]
+    "Use this method to close the bot instance before moving it from one local
+     server to another. You need to delete the webhook before calling this method
+     to ensure that the bot isn't launched again after server restart. The method
+     will return error 429 in the first 10 minutes after the bot is launched.
+     Returns True on success. Requires no parameters.")
+
   (send-message [this content]
     [this chat_id text]
     [this chat_id text & optional]
@@ -25,6 +38,14 @@
     [this chat_id from_chat_id message_id & optional]
     "Use this method to forward messages of any kind.
      On success, the sent Message is returned.")
+
+  (copy-message [this content]
+    [this chat_id from_chat_id message_id]
+    [this chat_id from_chat_id message_id & optional]
+    "Use this method to copy messages of any kind.
+     The method is analogous to the method forwardMessages, but the copied
+     message doesn't have a link to the original message.
+     Returns the MessageId of the sent message on success.")
 
   (send-photo [this content]
     [this chat_id photo]
@@ -261,6 +282,13 @@
      The bot must be an administrator in the chat for this to work and
      must have the 'can_pin_messages' admin right in the supergroup or
      'can_edit_messages' admin right in the channel.
+     Returns True on success.")
+
+  (unpin-all-chat-messages [this chat_id]
+    "Use this method to clear the list of pinned messages in a chat.
+     If the chat is not a private chat, the bot must be an administrator in
+     the chat for this to work and must have the 'can_pin_messages' admin
+     right in a supergroup or 'can_edit_messages' admin right in a channel.
      Returns True on success.")
 
   (leave-chat [this chat_id]
