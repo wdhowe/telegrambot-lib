@@ -197,6 +197,7 @@
 
   (unban-chat-member [this content]
     [this chat_id user_id]
+    [this chat_id user_id & optional]
     "Use this method to unban a previously kicked user in a supergroup or channel.
      The user will not return to the group or channel automatically, but will be able
      to join via link, etc. The bot must be an administrator for this to work.
