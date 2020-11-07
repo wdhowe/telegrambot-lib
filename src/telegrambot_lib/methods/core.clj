@@ -820,6 +820,7 @@
    chat_id ; target chat or username (@user)
    user_id ; id of target user
    ;; Optional
+   is_anonymous ; true if admin presence in chat is hidden
    can_change_info ; true if admin can change chat title, photo, other settings
    can_post_messages ; true if admin can create channel posts
    can_edit_messages ; true if admin can edit messages of other users, pin messages
