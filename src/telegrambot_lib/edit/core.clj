@@ -23,6 +23,7 @@
    text ; new text of message
    ;; Optional
    parse_mode ; entity parsing in message
+   entities ; list of MessageEntity - can use instead of parse_mode
    disable_web_page_preview ; disable link previews
    reply_markup ; inline keyboard markup"
   ([this content]
@@ -78,6 +79,7 @@
    caption ; new caption of message
    ;; Optional
    parse_mode ; entity parsing in message
+   caption_entities ; list of MessageEntity - can use instead of parse_mode
    reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "editMessageCaption" content))

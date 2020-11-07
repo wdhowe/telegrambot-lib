@@ -60,6 +60,7 @@
    text ; message to send
    ;; Optional
    parse_mode ; entity parsing in message
+   entities ; list of MessageEntity - can use instead of parse_mode
    disable_web_page_preview ; disable link previews
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
@@ -142,6 +143,7 @@
    ;; Optional
    caption ; photo caption
    parse_mode ; entity parsing in photo caption
+   caption_entities ; list of MessageEntity - can use instead of parse_mode
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
    reply_markup ; additional interface options"
@@ -171,6 +173,7 @@
    ;; Optional
    caption ; audio caption
    parse_mode ; entity parsing in audio caption
+   caption_entities ; list of MessageEntity - can use instead of parse_mode
    duration ; duration of audio in seconds
    performer ; audio performer
    title ; audio track title
@@ -202,6 +205,7 @@
    ;; Optional
    caption ; document caption
    parse_mode ; entity parsing in document caption
+   caption_entities ; list of MessageEntity - can use instead of parse_mode
    thumb ; thumbnail of the file sent
    disable_content_type_detection ; disable auto content type detection for files uploaded
    disable_notification ; send silently
@@ -235,6 +239,7 @@
    height
    caption ; video caption
    parse_mode ; entity parsing in video caption
+   caption_entities ; list of MessageEntity - can use instead of parse_mode
    thumb ; thumbnail of file sent
    supports_streaming ; true if uploaded video is ok for streaming
    disable_notification ; send silently
@@ -268,6 +273,7 @@
    height
    caption ; animation caption
    parse_mode ; entity parsing in animation caption
+   caption_entities ; list of MessageEntity - can use instead of parse_mode
    thumb ; thumbnail of file sent
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
@@ -300,6 +306,7 @@
    duration ; duration of voice message in seconds
    caption ; voice message caption
    parse_mode ; entity parsing in voice message caption
+   caption_entities ; list of MessageEntity - can use instead of parse_mode
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
    reply_markup ; additional interface options"
@@ -604,6 +611,7 @@
    correct_option_id ; 0-based id of correct answer. Required for quiz mode
    explanation ; shown when user chooses incorrect answer
    explanation_parse_mode ; parsing entities in explanation
+   explanation_entities ; list of MessageEntity - can use instead of parse_mode
    open_period ; 5-600 seconds - time poll will be active
    close_date ; unix timestamp when poll will be auto closed (5-600 secs in future)
    is_closed ; true if poll needs to be immediately closed
