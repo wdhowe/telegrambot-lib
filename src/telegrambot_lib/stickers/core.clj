@@ -27,6 +27,7 @@
    ;; Optional
    disable_notification ; true to send message silently
    reply_to_message_id ; id of original message if reply
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendSticker" content))

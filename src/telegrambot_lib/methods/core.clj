@@ -64,6 +64,7 @@
    disable_web_page_preview ; disable link previews
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendMessage" content))
@@ -146,6 +147,7 @@
    caption_entities ; list of MessageEntity - can use instead of parse_mode
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendPhoto" content))
@@ -180,6 +182,7 @@
    thumb ; thumbnail of the file sent
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendAudio" content))
@@ -210,6 +213,7 @@
    disable_content_type_detection ; disable auto content type detection for files uploaded
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendDocument" content))
@@ -244,6 +248,7 @@
    supports_streaming ; true if uploaded video is ok for streaming
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendVideo" content))
@@ -277,6 +282,7 @@
    thumb ; thumbnail of file sent
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendAnimation" content))
@@ -309,6 +315,7 @@
    caption_entities ; list of MessageEntity - can use instead of parse_mode
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendVoice" content))
@@ -337,6 +344,7 @@
    thumb ; thumbnail of the file sent
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendVideoNote" content))
@@ -361,7 +369,8 @@
    media ; json array describing photos/videos to be sent
    ;; Optional
    disable_notification ; send silently
-   reply_to_message_id ; id of the original message"
+   reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found"
   ([this content]
    (http/request this "sendMediaGroup" content))
 
@@ -391,6 +400,7 @@
    proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendLocation" content))
@@ -535,8 +545,11 @@
    ;; Optional
    foursquare_id ; foursquare id of venue
    foursquare_type ; foursquare type of venue
+   google_place_id ; Google Places id of venue
+   google_place_type ; Google Places type of venue
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendVenue" content))
@@ -571,6 +584,7 @@
    vcard ; 'vCard' formatted additional data
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendContact" content))
@@ -617,6 +631,7 @@
    is_closed ; true if poll needs to be immediately closed
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendPoll" content))
@@ -645,6 +660,7 @@
    emoji ; image for dice animation (default: dice)
    disable_notification ; send silently
    reply_to_message_id ; id of the original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; additional interface options"
   content-map?)
 

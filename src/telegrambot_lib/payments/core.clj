@@ -45,6 +45,7 @@
    is_flexible ; true if final price depends on shipping method
    disable_notification ; send message silently
    reply_to_message_id ; id of original message if a reply
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "sendInvoice" content))
