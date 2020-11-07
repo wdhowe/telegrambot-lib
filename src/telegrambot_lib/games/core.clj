@@ -22,6 +22,7 @@
    ;; Optional
    disable_notification ; send message silently
    reply_to_message_id ; id of original message
+   allow_sending_without_reply ; true to send message even if replied-to message is not found
    reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "sendGame" content))
