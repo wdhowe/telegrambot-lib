@@ -43,8 +43,10 @@
    url ; https url to send updates to. empty string to remove webhook
    ;; Optional
    certificate ; upload public key cert
+   ip_address ; use this IP instead of resolving URL in DNS
    max_connections ; max allowed simultaneous https connections for updates. (1-100) default: 40
-   allowed_updates ; json array of update types bot will receive"
+   allowed_updates ; json array of update types bot will receive
+   drop_pending_updates ; Pass True to drop all pending updates"
   content-map?)
 
 (defmethod set-webhook true
@@ -65,9 +67,14 @@
   "Use this method to remove webhook integration if you decide to
    switch back to getUpdates.
    Returns True on success.
-   Requires no parameters."
-  [this]
-  (http/request this "deleteWebhook"))
+   Parameters
+   ;; Optional
+   drop_pending_updates ; Pass True to drop all pending updates"
+  ([this]
+   (delete-webhook this nil))
+
+  ([this content]
+   (http/request this "deleteWebhook" content)))
 
 (defn get-webhook
   "Use this method to get current webhook status.

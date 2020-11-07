@@ -19,11 +19,10 @@
      will give up after a reasonable amount of attempts.
      Returns True on success.")
 
-  (delete-webhook [this]
+  (delete-webhook [this] [this content]
     "Use this method to remove webhook integration if you decide to
      switch back to getUpdates.
-     Returns True on success.
-     Requires no parameters.")
+     Returns True on success.")
 
   (get-webhook [this]
     "Use this method to get current webhook status.
