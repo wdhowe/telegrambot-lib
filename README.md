@@ -4,7 +4,7 @@
 
 A Clojure library for interacting with the Telegram Bot API.
 
-Implemented Telegram functions accurate as of [Bot API 4.9](https://core.telegram.org/bots/api-changelog#june-4-2020)
+Implemented Telegram functions accurate as of [Bot API 5.0](https://core.telegram.org/bots/api#november-4-2020)
 
 ## Usage
 
@@ -15,7 +15,7 @@ Get started using the telegrambot-lib.
 Leiningen/Boot Project file
 
 ```clojure
-[telegrambot-lib "0.2.0"]
+[telegrambot-lib "0.3.0"]
 ```
 
 ### Include the Library
