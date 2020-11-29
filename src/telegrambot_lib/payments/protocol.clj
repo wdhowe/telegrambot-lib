@@ -1,7 +1,6 @@
 (ns telegrambot-lib.payments.protocol
   "Telegram Payments - protocol definitions.
-   
-   * https://core.telegram.org/bots/api#payments")
+   - <https://core.telegram.org/bots/api#payments>")
 
 (defprotocol Payments
   "Bots accepting payments from users."

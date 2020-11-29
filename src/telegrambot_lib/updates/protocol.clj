@@ -1,7 +1,6 @@
 (ns telegrambot-lib.updates.protocol
   "Getting updates - protocol definitions.
-   
-   * https://core.telegram.org/bots/api#getupdates")
+   - <https://core.telegram.org/bots/api#getupdates>")
 
 (defprotocol Updates
   "Getting bot message updates."
@@ -26,7 +25,6 @@
 
   (get-webhook [this]
     "Use this method to get current webhook status.
-     Requires no parameters.
      On success, returns a WebhookInfo object.
      If the bot is using getUpdates, will return an object with the
      url field empty."))

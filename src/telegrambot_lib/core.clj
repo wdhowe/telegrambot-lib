@@ -1,9 +1,7 @@
 (ns telegrambot-lib.core
   "A Clojure library for interacting with the Telegram Bot API.
-   https://github.com/wdhowe/telegrambot-lib#usage
-
-   Implemented Telegram functions accurate as of 'Bot API 5.0':
-   https://core.telegram.org/bots/api#november-4-2020"
+   - [Getting started](https://github.com/wdhowe/telegrambot-lib#usage)
+   - Functions accurate as of: [Telegram Bot API 5.0](https://core.telegram.org/bots/api#november-4-2020)"
   (:gen-class)
   (:require [telegrambot-lib.config :as conf]
             [telegrambot-lib.edit.core :as edit]
@@ -38,8 +36,8 @@
 
 (defn create
   "Create a new Telegram Bot API instance.
-   No argument attempts to load the `bot-token` from the environment.
-   1 argument will use the passed in `bot-token`."
+   - No argument attempts to load the `bot-token` from the environment.
+   - 1 argument will use the passed in `bot-token`."
   ([]
    (create (conf/get-token)))
   ([bot-token]

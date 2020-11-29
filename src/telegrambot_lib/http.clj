@@ -1,5 +1,5 @@
 (ns telegrambot-lib.http
-  "Formats and sends the http request to the API endpoints."
+  "Formats and sends the http request to the Telegram Bot API."
   (:gen-class)
   (:require [cheshire.core :as json]
             [clj-http.client :as clj-http]
@@ -7,7 +7,8 @@
             [taoensso.timbre :as log]))
 
 (defmulti client
-  "Send http requests to the url."
+  "Send http requests to the url. Methods supported:
+   - post"
   (fn [http-method & _] http-method))
 
 (defmethod client :post
@@ -30,10 +31,10 @@
   [http-method & _]
   (log/error http-method "http method not supported"))
 
-(def bot-api "https://api.telegram.org/bot")
+(def bot-api "Telegram Bot API URL." "https://api.telegram.org/bot")
 
 (defn gen-url
-  "Generate the url to use for the http call."
+  "Generate the url to use for the http call, given the method `path`."
   [this path]
   (str bot-api (:bot-token this) "/" path))
 
@@ -45,7 +46,7 @@
       (json/parse-string true)))
 
 (defn request
-  "Send the request to the http path."
+  "Send the request to the http `path` with optional `content`."
   ([this path]
    (request this path nil))
 

@@ -1,7 +1,7 @@
 (ns telegrambot-lib.methods.protocol
   "Telegram Bot API Methods - protocol definitions.
    
-   * https://core.telegram.org/bots/api#available-methods")
+   - <https://core.telegram.org/bots/api#available-methods>")
 
 (defprotocol Methods
   "Bot API available method definitions."
@@ -11,21 +11,21 @@
     "A generic function to call any endpoint that may not have been added yet.")
 
   (get-me [this]
-    "A simple method for testing your bot's auth token. Requires no parameters.
+    "A simple method for testing your bot's auth token.
      Returns basic information about the bot in form of a User object.")
 
   (log-out [this]
     "Use this method to log out from the cloud Bot API server before launching
      the bot locally. You must log out the bot before running it locally,
      otherwise there is no guarantee that the bot will receive updates.
-     Returns True on success. Requires no parameters.")
+     Returns True on success.")
 
   (close [this]
     "Use this method to close the bot instance before moving it from one local
      server to another. You need to delete the webhook before calling this method
      to ensure that the bot isn't launched again after server restart. The method
      will return error 429 in the first 10 minutes after the bot is launched.
-     Returns True on success. Requires no parameters.")
+     Returns True on success.=")
 
   (send-message [this content]
     [this chat_id text]
@@ -180,8 +180,8 @@
     "Use this method to get basic info about a file and prepare it for downloading.
      For the moment, bots can download files of up to 20MB in size.
      On success, a File object is returned. The file can then be downloaded via
-     the link https://api.telegram.org/file/bot<token>/<file_path>,
-     where <file_path> is taken from the response.
+     the link https://api.telegram.org/file/bot`token`/`file_path`,
+     where `file_path` is taken from the response.
      It is guaranteed that the link will be valid for at least 1 hour.
      When the link expires, a new one can be requested by calling getFile again.")
 
@@ -349,5 +349,4 @@
 
   (get-my-commands [this]
     "Use this method to get the current list of the bot's commands.
-     Requires no parameters.
      Returns Array of BotCommand on success."))
