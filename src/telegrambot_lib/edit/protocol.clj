@@ -1,7 +1,6 @@
 (ns telegrambot-lib.edit.protocol
   "Telegram Bot API Updating/Modifying Messages - protocol definitions.
-   
-   * https://core.telegram.org/bots/api#updating-messages")
+   - <https://core.telegram.org/bots/api#updating-messages>")
 
 (defprotocol Edit
   "The following methods allow you to change an existing message in the message

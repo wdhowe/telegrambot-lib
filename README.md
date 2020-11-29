@@ -4,6 +4,16 @@
 
 A Clojure library for interacting with the Telegram Bot API.
 
+The goal of this library is to be a complete implementation of the Telegram Bot
+API in Clojure, without adding extra bot logic.
+
+Each Bot API call is implemented in a Clojure function, with docstrings
+outlining required and optional parameters.
+
+This allows for minimal reference to the Telegram documentation and staying in the editor.
+
+Focus on writing your bot and leave the API call handling to this library.
+
 Implemented Telegram functions accurate as of [Bot API 5.0](https://core.telegram.org/bots/api#november-4-2020)
 
 ## Usage
@@ -87,7 +97,7 @@ Current [ClojureDocs documentation is here][cljdoc-link].
 
 All of the Telegram Bot API functions in this library are imported into the telegrambot-lib.core namespace.
 
-This makes them available by their non-namespaced names and are all listed within the "import-vars" function (in telegram-lib.core).
+This makes them available by their non-namespaced names and are all listed within the [import-vars function in telegram-lib.core](https://github.com/wdhowe/telegrambot-lib/blob/main/src/telegrambot_lib/core.clj#L46).
 
 ### Generic Function Call
 

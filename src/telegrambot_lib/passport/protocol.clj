@@ -1,7 +1,6 @@
 (ns telegrambot-lib.passport.protocol
   "Telegram Passport - protocol definitions.
-   
-   * https://core.telegram.org/bots/api#telegram-passport")
+   - <https://core.telegram.org/bots/api#telegram-passport>")
 
 (defprotocol Passport
   "Telegram Passport is a unified authorization method for services

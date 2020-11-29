@@ -1,14 +1,11 @@
 (ns telegrambot-lib.payments.core
   "Telegram Payments - function implementations.
-   
-   * https://core.telegram.org/bots/api#payments
+   - <https://core.telegram.org/bots/api#payments>
 
    Most functions are multi-arity with the following options:
-
    - Send all parameters in a 'content' map.
    - Send only the required parameters as simple values.
    - Send the required paraemters as simple values and then 'optional' parameters in a map."
-
   (:gen-class)
   (:require [telegrambot-lib.http :as http]))
 
@@ -20,33 +17,35 @@
 (defn send-invoice
   "Use this method to send invoices.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; id for the target private chat
-   title ; product name
-   description ; product description
-   payload ; internal bot defined invoice payload
-   provider_token ; payments provider token
-   start_parameter ; 'deep-linking' start param
-   currency ; three letter ISO 4217 currency code
-   prices ; 'LabeledPrice' array breakdown (price, tax, discount, delivery, etc)
-   ;; Optional
-   provider_data ; json data about invoice, payment provider specific
-   photo_url ; product photo for the invoice
-   photo_size
-   photo_width
-   photo_height
-   need_name ; true if the user's full name is required for order
-   need_phone_number ; true if the user's phone number is required for order
-   need_email ; true if the user's email is required for order
-   need_shipping_address ; true if the user's address is required for order
-   send_phone_number_to_provider ; true to send phone number to provider
-   send_email_to_provider ; true to send email to provider
-   is_flexible ; true if final price depends on shipping method
-   disable_notification ; send message silently
-   reply_to_message_id ; id of original message if a reply
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; inline keyboard markup"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; id for the target private chat
+   - title ; product name
+   - description ; product description
+   - payload ; internal bot defined invoice payload
+   - provider_token ; payments provider token
+   - start_parameter ; 'deep-linking' start param
+   - currency ; three letter ISO 4217 currency code
+   - prices ; 'LabeledPrice' array breakdown (price, tax, discount, delivery, etc)
+
+   Optional
+   - provider_data ; json data about invoice, payment provider specific
+   - photo_url ; product photo for the invoice
+   - photo_size
+   - photo_width
+   - photo_height
+   - need_name ; true if the user's full name is required for order
+   - need_phone_number ; true if the user's phone number is required for order
+   - need_email ; true if the user's email is required for order
+   - need_shipping_address ; true if the user's address is required for order
+   - send_phone_number_to_provider ; true to send phone number to provider
+   - send_email_to_provider ; true to send email to provider
+   - is_flexible ; true if final price depends on shipping method
+   - disable_notification ; send message silently
+   - reply_to_message_id ; id of original message if a reply
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; inline keyboard markup"
   ([this content]
    (http/request this "sendInvoice" content))
 
@@ -82,11 +81,12 @@
    Use this method to reply to shipping queries.
    On success, True is returned.
    Sets 'ok' param to true.
-   Parameters
-   ;; Required
-   shipping_query_id ; id of query to be answered
-   ok ; true if delivery to address is possible (auto set by this function)
-   shipping_options ; Required if 'ok' is true, array of shipping options"
+
+   Required
+   - this ; a bot instance
+   - shipping_query_id ; id of query to be answered
+   - ok ; true if delivery to address is possible (auto set by this function)
+   - shipping_options ; Required if 'ok' is true, array of shipping options"
   ([this content]
    (http/request this "answerShippingQuery" content))
 
@@ -103,11 +103,12 @@
    Use this method to reply to shipping queries.
    On success, True is returned.
    Sets 'ok' param to false.
-   Parameters
-   ;; Required
-   shipping_query_id ; id of query to be answered
-   ok ; true if delivery to address is possible (auto set by this function)
-   error_message ; Required if 'ok' is false, message why order cannot complete"
+
+   Required
+   - this ; a bot instance
+   - shipping_query_id ; id of query to be answered
+   - ok ; true if delivery to address is possible (auto set by this function)
+   - error_message ; Required if 'ok' is false, message why order cannot complete"
   ([this content]
    (http/request this "answerShippingQuery" content))
 
@@ -124,11 +125,12 @@
    Use this method to respond to such pre-checkout queries.
    On success, True is returned.
    Sets 'ok' param to true.
-   Parameters
-   ;; Required
-   pre_checkout_query_id ; id of query to be answered
-   ok ; true if all is good (in stock, etc) and bot is ready to proceed with order
-      ; (auto set by this function)"
+
+   Required
+   - this ; a bot instance
+   - pre_checkout_query_id ; id of query to be answered
+   - ok ; true if all is good (in stock, etc) and bot is ready to proceed with order
+          (auto set by this function)"
   content-map?)
 
 (defmethod answer-precheckout-query-ok true
@@ -148,12 +150,13 @@
    Use this method to respond to such pre-checkout queries.
    On success, True is returned.
    Sets 'ok' param to false.
-   Parameters
-   ;; Required
-   pre_checkout_query_id ; id of query to be answered
-   ok ; true if all is good (in stock, etc) and bot is ready to proceed with order
-      ; (auto set by this function)
-   error_message ; Required if 'ok' is false, message why checkout cannot proceed"
+
+   Required
+   - this ; a bot instance
+   - pre_checkout_query_id ; id of query to be answered
+   - ok ; true if all is good (in stock, etc) and bot is ready to proceed with order
+          (auto set by this function)
+   - error_message ; Required if 'ok' is false, message why checkout cannot proceed"
   ([this content]
    (http/request this "answerPreCheckoutQuery" content))
 

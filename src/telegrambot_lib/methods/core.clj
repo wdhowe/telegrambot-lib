@@ -1,14 +1,11 @@
 (ns telegrambot-lib.methods.core
   "Telegram Bot API Methods - function implementations.
-
-   * https://core.telegram.org/bots/api#available-methods
+   - <https://core.telegram.org/bots/api#available-methods>
 
    Most functions are multi-arity with the following options:
-
    - Send all parameters in a 'content' map.
    - Send only the required parameters as simple values.
    - Send the required paraemters as simple values and then 'optional' parameters in a map."
-
   (:gen-class)
   (:require [telegrambot-lib.http :as http]))
 
@@ -20,7 +17,14 @@
 (defn call
   "A generic function to call any `endpoint` with optional `content`.
    Provided in the case where methods are added to the API and
-   are not available in this library yet."
+   are not available in this library yet.
+
+   Required
+   - this ; a bot instance
+   - endpoint ; the api method path
+
+   Optional
+   - content ; parameters for the api method"
   ([this endpoint]
    (call this endpoint nil))
 
@@ -29,8 +33,10 @@
 
 (defn get-me
   "A simple method for testing your bot's auth token.
-   Requires no parameters.
-   Returns basic information about the bot in form of a User object."
+   Returns basic information about the bot in form of a User object.
+
+   Required
+   - this ; a bot instance"
   [this]
   (http/request this "getMe"))
 
@@ -38,7 +44,10 @@
   "Use this method to log out from the cloud Bot API server before launching
    the bot locally. You must log out the bot before running it locally,
    otherwise there is no guarantee that the bot will receive updates.
-   Returns True on success. Requires no parameters."
+   Returns True on success.
+
+   Required
+   - this ; a bot instance"
   [this]
   (http/request this "logOut"))
 
@@ -47,25 +56,30 @@
    server to another. You need to delete the webhook before calling this method
    to ensure that the bot isn't launched again after server restart. The method
    will return error 429 in the first 10 minutes after the bot is launched.
-   Returns True on success. Requires no parameters."
+   Returns True on success.
+
+   Required
+   - this ; a bot instance"
   [this]
   (http/request this "close"))
 
 (defn send-message
   "Use this method to send text messages.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   text ; message to send
-   ;; Optional
-   parse_mode ; entity parsing in message
-   entities ; list of MessageEntity - can use instead of parse_mode
-   disable_web_page_preview ; disable link previews
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - text ; message to send
+
+   Optional
+   - parse_mode ; entity parsing in message
+   - entities ; list of MessageEntity - can use instead of parse_mode
+   - disable_web_page_preview ; disable link previews
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendMessage" content))
 
@@ -83,13 +97,15 @@
 (defn forward-message
   "Use this method to forward messages of any kind.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   from_chat_id ; id of chat from original message
-   message_id ; message id in chat specified in 'from_chat_id'
-   ;; Optional
-   disable_notification ; send silently"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - from_chat_id ; id of chat from original message
+   - message_id ; message id in chat specified in 'from_chat_id'
+
+   Optional
+   - disable_notification ; send silently"
   ([this content]
    (http/request this "forwardMessage" content))
 
@@ -111,13 +127,15 @@
    The method is analogous to the method forwardMessages, but the copied
    message doesn't have a link to the original message.
    Returns the MessageId of the sent message on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   from_chat_id ; id of chat from original message
-   message_id ; message id in chat specified in 'from_chat_id'
-   ;; Optional
-   disable_notification ; send silently"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - from_chat_id ; id of chat from original message
+   - message_id ; message id in chat specified in 'from_chat_id'
+
+   Optional
+   - disable_notification ; send silently"
   ([this content]
    (http/request this "copyMessage" content))
 
@@ -137,18 +155,20 @@
 (defn send-photo
   "Use this method to send photos.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   photo ; 'file_id' of photo to send that exists on Telegram servers or url
-   ;; Optional
-   caption ; photo caption
-   parse_mode ; entity parsing in photo caption
-   caption_entities ; list of MessageEntity - can use instead of parse_mode
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - photo ; 'file_id' of photo to send that exists on Telegram servers or url
+
+   Optional
+   - caption ; photo caption
+   - parse_mode ; entity parsing in photo caption
+   - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendPhoto" content))
 
@@ -168,22 +188,24 @@
    display them in the music player. Your audio must be in the .MP3 or
    .M4A format.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   audio ; 'file_id' of audio to send that exists on Telegram servers or url
-   ;; Optional
-   caption ; audio caption
-   parse_mode ; entity parsing in audio caption
-   caption_entities ; list of MessageEntity - can use instead of parse_mode
-   duration ; duration of audio in seconds
-   performer ; audio performer
-   title ; audio track title
-   thumb ; thumbnail of the file sent
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - audio ; 'file_id' of audio to send that exists on Telegram servers or url
+
+   Optional
+   - caption ; audio caption
+   - parse_mode ; entity parsing in audio caption
+   - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - duration ; duration of audio in seconds
+   - performer ; audio performer
+   - title ; audio track title
+   - thumb ; thumbnail of the file sent
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendAudio" content))
 
@@ -201,20 +223,22 @@
 (defn send-document
   "Use this method to send general files.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   document ; 'file_id' of document to send that exists on Telegram servers or url
-   ;; Optional
-   caption ; document caption
-   parse_mode ; entity parsing in document caption
-   caption_entities ; list of MessageEntity - can use instead of parse_mode
-   thumb ; thumbnail of the file sent
-   disable_content_type_detection ; disable auto content type detection for files uploaded
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - document ; 'file_id' of document to send that exists on Telegram servers or url
+
+   Optional
+   - caption ; document caption
+   - parse_mode ; entity parsing in document caption
+   - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - thumb ; thumbnail of the file sent
+   - disable_content_type_detection ; disable auto content type detection for files uploaded
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendDocument" content))
 
@@ -233,23 +257,25 @@
   "Use tffhis method to send video files, Telegram clients support mp4 videos
    other formats may be sent as Document).
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   video ; 'file_id' of video to send that exists on Telegram servers or url
-   ;; Optional
-   duration ; duration of video in seconds
-   width
-   height
-   caption ; video caption
-   parse_mode ; entity parsing in video caption
-   caption_entities ; list of MessageEntity - can use instead of parse_mode
-   thumb ; thumbnail of file sent
-   supports_streaming ; true if uploaded video is ok for streaming
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - video ; 'file_id' of video to send that exists on Telegram servers or url
+
+   Optional
+   - duration ; duration of video in seconds
+   - width
+   - height
+   - caption ; video caption
+   - parse_mode ; entity parsing in video caption
+   - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - thumb ; thumbnail of file sent
+   - supports_streaming ; true if uploaded video is ok for streaming
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendVideo" content))
 
@@ -268,22 +294,24 @@
   "Use this method to send animation files (GIF or H.264/MPEG-4 AVC video
    without sound).
    On success, the sent Message is rbeturned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   animation ; 'file_id' of animation to send that exists on Telegram servers or url
-   ;; Optional
-   duration ; duration of animation in seconds
-   width
-   height
-   caption ; animation caption
-   parse_mode ; entity parsing in animation caption
-   caption_entities ; list of MessageEntity - can use instead of parse_mode
-   thumb ; thumbnail of file sent
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - animation ; 'file_id' of animation to send that exists on Telegram servers or url
+
+   Optional
+   - duration ; duration of animation in seconds
+   - width
+   - height
+   - caption ; animation caption
+   - parse_mode ; entity parsing in animation caption
+   - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - thumb ; thumbnail of file sent
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendAnimation" content))
 
@@ -304,19 +332,21 @@
    audio must be in an .OGG file encoded with OPUS (other formats may be
    sent as Audio or Document).
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   voice ; 'file_id' of audio file that exists on Telegram servers or url
-   ;; Optional
-   duration ; duration of voice message in seconds
-   caption ; voice message caption
-   parse_mode ; entity parsing in voice message caption
-   caption_entities ; list of MessageEntity - can use instead of parse_mode
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - voice ; 'file_id' of audio file that exists on Telegram servers or url
+
+   Optional
+   - duration ; duration of voice message in seconds
+   - caption ; voice message caption
+   - parse_mode ; entity parsing in voice message caption
+   - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendVoice" content))
 
@@ -333,19 +363,21 @@
 
 (defn send-video-note
   "Use this method to send video messages.
-     On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   video_note ; 'file_id' of video note that exists on Telegram servers or url
-   ;; Optional
-   duration ; duration of video in seconds
-   length ; video width and height
-   thumb ; thumbnail of the file sent
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+   On success, the sent Message is returned.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - video_note ; 'file_id' of video note that exists on Telegram servers or url
+
+   Optional
+   - duration ; duration of video in seconds
+   - length ; video width and height
+   - thumb ; thumbnail of the file sent
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendVideoNote" content))
 
@@ -363,14 +395,16 @@
 (defn send-media-group
   "Use this method to send a group of photos or videos as an album.
    On success, an array of the sent Messages is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   media ; json array describing photos/videos to be sent
-   ;; Optional
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - media ; json array describing photos/videos to be sent
+
+   Optional
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found"
   ([this content]
    (http/request this "sendMediaGroup" content))
 
@@ -388,20 +422,22 @@
 (defn send-location
   "Use this method to send point on the map.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   latitude ; lat of location
-   longitude ; long of location
-   ;; Optional
-   horizontal_accuracy ; 1-1500 meters radius of uncertainty
-   live_period ; seconds for which location will be updated (60-86400)
-   heading ; 1-360 degrees direction user is moving
-   proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - latitude ; lat of location
+   - longitude ; long of location
+
+   Optional
+   - horizontal_accuracy ; 1-1500 meters radius of uncertainty
+   - live_period ; seconds for which location will be updated (60-86400)
+   - heading ; 1-360 degrees direction user is moving
+   - proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendLocation" content))
 
@@ -424,17 +460,19 @@
    explicitly disabled by a call to stopMessageLiveLocation.
    On success, if the edited message was sent by the bot, the edited
    Message is returned, otherwise True is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   message_id ; id of the message to edit
-   latitude ; lat of new location
-   longitude ; long of new location
-   ;; Optional
-   horizontal_accuracy ; 1-1500 meters radius of uncertainty
-   heading ; 1-360 degrees direction user is moving
-   proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_id ; id of the message to edit
+   - latitude ; lat of new location
+   - longitude ; long of new location
+
+   Optional
+   - horizontal_accuracy ; 1-1500 meters radius of uncertainty
+   - heading ; 1-360 degrees direction user is moving
+   - proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "editMessageLiveLocation" content))
 
@@ -459,13 +497,15 @@
    explicitly disabled by a call to stopMessageLiveLocation.
    On success, if the edited message was sent by the bot, the edited
    Message is returned, otherwise True is returned.
-   Parameters
-   ;; Required
-   inline_message_id ; id of the inline message to edit
-   latitude ; lat of new location
-   longitude ; long of new location
-   ;; Optional
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - inline_message_id ; id of the inline message to edit
+   - latitude ; lat of new location
+   - longitude ; long of new location
+
+   Optional
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "editMessageLiveLocation" content))
 
@@ -486,12 +526,14 @@
   "Use this method to stop updating a live location message before live_period expires.
    On success, if the message was sent by the bot, the sent
    Message is returned, otherwise True is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   message_id ; id of the message to edit
-   ;; Optional
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_id ; id of the message to edit
+
+   Optional
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "stopMessageLiveLocation" content))
 
@@ -511,11 +553,13 @@
    live_period expires.
    On success, if the message was sent by the bot, the sent
    Message is returned, otherwise True is returned.
-   Parameters
-   ;; Required
-   inline_message_id ; id of the inline message to edit
-   ;; Optional
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - inline_message_id ; id of the inline message to edit
+
+   Optional
+   - reply_markup ; additional interface options"
   content-map?)
 
 (defmethod stop-message-live-location-inline true
@@ -535,22 +579,24 @@
 (defn send-venue
   "Use this method to send information about a venue.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   latitude ; lat of venue
-   longitude ; long of venue
-   title ; name of venue
-   address ; address of venue
-   ;; Optional
-   foursquare_id ; foursquare id of venue
-   foursquare_type ; foursquare type of venue
-   google_place_id ; Google Places id of venue
-   google_place_type ; Google Places type of venue
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - latitude ; lat of venue
+   - longitude ; long of venue
+   - title ; name of venue
+   - address ; address of venue
+
+   Optional
+   - foursquare_id ; foursquare id of venue
+   - foursquare_type ; foursquare type of venue
+   - google_place_id ; Google Places id of venue
+   - google_place_type ; Google Places type of venue
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendVenue" content))
 
@@ -574,18 +620,20 @@
 (defn send-contact
   "Use this method to send phone contacts.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   phone_number ; contact phone number
-   first_name
-   ;; Optional
-   last_name
-   vcard ; 'vCard' formatted additional data
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - phone_number ; contact phone number
+   - first_name
+
+   Optional
+   - last_name
+   - vcard ; 'vCard' formatted additional data
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendContact" content))
 
@@ -613,26 +661,28 @@
 (defn send-poll
   "Use this method to send a native poll.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   question ; poll question
-   options ; array/list of answer options
-   ;; Optional
-   is_anonymous ; true if poll is anonymous
-   type ; 'quiz' or 'regular' (default: regular)
-   allows_multiple_answers ; true poll allows multiple answers
-   correct_option_id ; 0-based id of correct answer. Required for quiz mode
-   explanation ; shown when user chooses incorrect answer
-   explanation_parse_mode ; parsing entities in explanation
-   explanation_entities ; list of MessageEntity - can use instead of parse_mode
-   open_period ; 5-600 seconds - time poll will be active
-   close_date ; unix timestamp when poll will be auto closed (5-600 secs in future)
-   is_closed ; true if poll needs to be immediately closed
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - question ; poll question
+   - options ; array/list of answer options
+
+   Optional
+   - is_anonymous ; true if poll is anonymous
+   - type ; 'quiz' or 'regular' (default: regular)
+   - allows_multiple_answers ; true poll allows multiple answers
+   - correct_option_id ; 0-based id of correct answer. Required for quiz mode
+   - explanation ; shown when user chooses incorrect answer
+   - explanation_parse_mode ; parsing entities in explanation
+   - explanation_entities ; list of MessageEntity - can use instead of parse_mode
+   - open_period ; 5-600 seconds - time poll will be active
+   - close_date ; unix timestamp when poll will be auto closed (5-600 secs in future)
+   - is_closed ; true if poll needs to be immediately closed
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "sendPoll" content))
 
@@ -653,15 +703,17 @@
 (defmulti send-dice
   "Use this method to send an animated emoji that will display a random value.
    On success, the sent Message is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   ;; Optional
-   emoji ; image for dice animation (default: dice)
-   disable_notification ; send silently
-   reply_to_message_id ; id of the original message
-   allow_sending_without_reply ; true to send message even if replied-to message is not found
-   reply_markup ; additional interface options"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+
+   Optional
+   - emoji ; image for dice animation (default: dice)
+   - disable_notification ; send silently
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   content-map?)
 
 (defmethod send-dice true
@@ -683,12 +735,13 @@
    on the bot's side. The status is set for 5 seconds or less (when a message
    arrives from your bot, Telegram clients clear its typing status).
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   action ; type of action to broadcast (typing, upload_photo, record_video, upload_video,
-          ; record_audio, upload_audio, upload_document, find_location,
-          ; record_video_note, upload_video_note)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - action ; type of action to broadcast (typing, upload_photo, record_video, upload_video,
+              record_audio, upload_audio, upload_document, find_location,
+              record_video_note, upload_video_note)"
   ([this content]
    (http/request this "sendChatAction" content))
 
@@ -706,12 +759,14 @@
 (defmulti get-user-profile-photos
   "Use this method to get a list of profile pictures for a user.
    Returns a UserProfilePhotos object.
-   Parameters
-   ;; Required
-   user_id ; id of target user
-   ;; Optional
-   offset ; number of first photo returned
-   limit ; limit number of photos retrieved (1-100, default: 100)"
+
+   Required
+   - this ; a bot instance
+   - user_id ; id of target user
+
+   Optional
+   - offset ; number of first photo returned
+   - limit ; limit number of photos retrieved (1-100, default: 100)"
   content-map?)
 
 (defmethod get-user-profile-photos true
@@ -732,13 +787,14 @@
   "Use this method to get basic info about a file and prepare it for downloading.
    For the moment, bots can download files of up to 20MB in size.
    On success, a File object is returned. The file can then be downloaded via
-   the link https://api.telegram.org/file/bot<token>/<file_path>,
-   where <file_path> is taken from the response.
+   the link https://api.telegram.org/file/bot`token`/`file_path`,
+   where `file_path` is taken from the response.
    It is guaranteed that the link will be valid for at least 1 hour.
    When the link expires, a new one can be requested by calling getFile again.
-   Parameters
-   ;; Required
-   file_id ; file id to get info about"
+
+   Required
+   - this ; a bot instance
+   - file_id ; file id to get info about"
   content-map?)
 
 (defmethod get-file true
@@ -757,13 +813,15 @@
    The bot must be an administrator in the chat for this to work and must have the
    appropriate admin rights.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   user_id ; id of target user
-   ;; Optional
-   until_date ; unix time when user is unbanned. 30 seconds - 366 days.
-              ; if less or more, user is banned forever."
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user
+
+   Optional
+   - until_date ; unix time when user is unbanned. 30 seconds - 366 days.
+                  if less or more, user is banned forever."
   ([this content]
    (http/request this "kickChatMember" content))
 
@@ -783,12 +841,14 @@
    The user will not return to the group or channel automatically, but will be able
    to join via link, etc. The bot must be an administrator for this to work.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   user_id ; id of target user
-   ;; Optional
-   only_if_banned ; Do nothing if the user is not banned"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user
+
+   Optional
+   - only_if_banned ; Do nothing if the user is not banned"
   ([this content]
    (http/request this "unbanChatMember" content))
 
@@ -809,14 +869,16 @@
    must have the appropriate admin rights. Pass True for all permissions to lift
    restrictions from a user.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   user_id ; id of target user
-   permissions ; json object 'ChatPermissions' for new user permissions
-   ;; Optional
-   until_date ; unix time when user is unbanned. 30 seconds - 366 days.
-              ; if less or more, user is banned forever."
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user
+   - permissions ; json object 'ChatPermissions' for new user permissions
+
+   Optional
+   - until_date ; unix time when user is unbanned. 30 seconds - 366 days.
+                  if less or more, user is banned forever."
   ([this content]
    (http/request this "restrictChatMember" content))
 
@@ -839,20 +901,22 @@
    have the appropriate admin rights.
    Pass False for all boolean parameters to demote a user.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   user_id ; id of target user
-   ;; Optional
-   is_anonymous ; true if admin presence in chat is hidden
-   can_change_info ; true if admin can change chat title, photo, other settings
-   can_post_messages ; true if admin can create channel posts
-   can_edit_messages ; true if admin can edit messages of other users, pin messages
-   can_delete_messages ; true if admin can delete messages of other users
-   can_invite_users ; true if admin can invite new users to chat
-   can_restrict_members ; true if admin can restrict, ban, unban members
-   can_pin_messages ; true if admin can pin messages
-   can_promote_members ; true if admin can add new admins"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user
+
+   Optional
+   - is_anonymous ; true if admin presence in chat is hidden
+   - can_change_info ; true if admin can change chat title, photo, other settings
+   - can_post_messages ; true if admin can create channel posts
+   - can_edit_messages ; true if admin can edit messages of other users, pin messages
+   - can_delete_messages ; true if admin can delete messages of other users
+   - can_invite_users ; true if admin can invite new users to chat
+   - can_restrict_members ; true if admin can restrict, ban, unban members
+   - can_pin_messages ; true if admin can pin messages
+   - can_promote_members ; true if admin can add new admins"
   ([this content]
    (http/request this "promoteChatMember" content))
 
@@ -871,11 +935,12 @@
   "Use this method to set a custom title for an administrator in a supergroup
    promoted by the bot.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   user_id ; id of target user
-   custom_title ; new custom title for the admin"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user
+   - custom_title ; new custom title for the admin"
   ([this content]
    (http/request this "setChatAdministratorCustomTitle" content))
 
@@ -890,10 +955,11 @@
    The bot must be an administrator in the group or a supergroup for this to work
    and must have the can_restrict_members admin rights.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   permissions ; new default chat permissions"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - permissions ; new default chat permissions"
   ([this content]
    (http/request this "setChatPermissions" content))
 
@@ -907,9 +973,10 @@
    link is revoked. The bot must be an administrator in the chat for this to work and
    must have the appropriate admin rights.
    Returns the new invite link as String on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
   content-map?)
 
 (defmethod export-chat-invite-link true
@@ -927,10 +994,11 @@
    The bot must be an administrator in the chat for this to work and
    must have the appropriate admin rights.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   photo ; new chat photo"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - photo ; new chat photo"
   ([this content]
    (http/request this "setChatPhoto" content))
 
@@ -944,9 +1012,10 @@
    The bot must be an administrator in the chat for this to work and
    must have the appropriate admin rights.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
   content-map?)
 
 (defmethod delete-chat-photo true
@@ -964,10 +1033,11 @@
    The bot must be an administrator in the chat for this to work and
    must have the appropriate admin rights.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   title ; new chat title"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - title ; new chat title"
   ([this content]
    (http/request this "setChatTitle" content))
 
@@ -981,10 +1051,11 @@
    The bot must be an administrator in the chat for this to work and
    must have the appropriate admin rights.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   description ; new chat description"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - description ; new chat description"
   ([this content]
    (http/request this "setChatDescription" content))
 
@@ -999,12 +1070,14 @@
    must have the 'can_pin_messages' admin right in the supergroup or
    'can_edit_messages' admin right in the channel.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   message_id ; id of message to pin
-   ;; Optional
-   disable_notification ; true to pin silently. default true in channels."
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_id ; id of message to pin
+
+   Optional
+   - disable_notification ; true to pin silently. default true in channels."
   ([this content]
    (http/request this "pinChatMessage" content))
 
@@ -1025,11 +1098,13 @@
    must have the 'can_pin_messages' admin right in the supergroup or
    'can_edit_messages' admin right in the channel.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   ;; Optional
-   message_id ; id of message to unpin (unpins most recent if not specified)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+
+   Optional
+   - message_id ; id of message to unpin (unpins most recent if not specified)"
   content-map?)
 
 (defmethod unpin-chat-message true
@@ -1052,9 +1127,10 @@
    the chat for this to work and must have the 'can_pin_messages' admin
    right in a supergroup or 'can_edit_messages' admin right in a channel.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
   content-map?)
 
 (defmethod unpin-all-chat-messages true
@@ -1069,9 +1145,10 @@
 (defmulti leave-chat
   "Use this method for your bot to leave a group, supergroup or channel.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
   content-map?)
 
 (defmethod leave-chat true
@@ -1088,9 +1165,10 @@
    (current name of the user for one-on-one conversations,
    current username of a user, group or channel, etc.).
    Returns a Chat object on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
   content-map?)
 
 (defmethod get-chat true
@@ -1108,9 +1186,10 @@
    all chat administrators except other bots.
    If the chat is a group or a supergroup and no administrators were appointed,
    only the creator will be returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
   content-map?)
 
 (defmethod get-chat-administrators true
@@ -1125,9 +1204,10 @@
 (defmulti get-chat-members-count
   "Use this method to get the number of members in a chat.
    Returns Int on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
   content-map?)
 
 (defmethod get-chat-members-count true
@@ -1142,10 +1222,11 @@
 (defn get-chat-member
   "Use this method to get information about a member of a chat.
    Returns a ChatMember object on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   user_id ; id of target user"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user"
   ([this content]
    (http/request this "getChatMember" content))
 
@@ -1161,10 +1242,11 @@
    Use the field can_set_sticker_set optionally returned in getChat requests to
    check if the bot can use this method.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   sticker_set_name ; name of sticker set"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - sticker_set_name ; name of sticker set"
   ([this content]
    (http/request this "setChatStickerSet" content))
 
@@ -1180,9 +1262,10 @@
    Use the field can_set_sticker_set optionally returned in getChat requests to
    check if the bot can use this method.
    Returns True on success.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
   content-map?)
 
 (defmethod delete-chat-sticker-set true
@@ -1199,14 +1282,16 @@
    The answer will be displayed to the user as a notification at the top of the
    chat screen or as an alert.
    On success, True is returned.
-   Parameters
-   ;; Required
-   chat_id ; target chat or username (@user)
-   ;; Optional
-   text ; text of the notification
-   show_alert ; if true, show alert instead of a notification
-   url ; url that will be opened by the user's client.
-   cache_time ; max time in seconds for caching callback query. (default: 0)"
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+
+   Optional
+   - text ; text of the notification
+   - show_alert ; if true, show alert instead of a notification
+   - url ; url that will be opened by the user's client.
+   - cache_time ; max time in seconds for caching callback query. (default: 0)"
   content-map?)
 
 (defmethod answer-callback-query true
@@ -1226,9 +1311,10 @@
 (defmulti set-my-commands
   "Use this method to change the list of the bot's commands.
    Returns True on success.
-   Parameters
-   ;; Required
-   commands ; json array/list of 'BotCommand'"
+
+   Required
+   - this ; a bot instance
+   - commands ; json array/list of 'BotCommand'"
   content-map?)
 
 (defmethod set-my-commands true
@@ -1242,8 +1328,10 @@
 
 (defn get-my-commands
   "Use this method to get the current list of the bot's commands.
-   Requires no parameters.
-   Returns Array of BotCommand on success."
+   Returns Array of BotCommand on success.
+
+   Required
+   - this ; a bot instance"
   [this]
   (http/request this "getMyCommands"))
 

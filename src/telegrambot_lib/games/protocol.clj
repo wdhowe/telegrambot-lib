@@ -1,7 +1,6 @@
 (ns telegrambot-lib.games.protocol
   "Telegram Bot API Games - protocol definitions.
-   
-   * https://core.telegram.org/bots/api#games")
+   - <https://core.telegram.org/bots/api#games>")
 
 (defprotocol Games
   "Bot API for HTML5 games on Telegram."

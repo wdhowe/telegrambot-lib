@@ -1,7 +1,6 @@
 (ns telegrambot-lib.stickers.protocol
   "Telegram Stickers - protocol definitions.
-   
-   * https://core.telegram.org/bots/api#stickers")
+   - <https://core.telegram.org/bots/api#stickers>")
 
 (defprotocol Stickers
   "The following methods allow your bot to handle stickers and sticker sets."

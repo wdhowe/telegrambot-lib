@@ -1,14 +1,11 @@
 (ns telegrambot-lib.updates.core
   "Getting updates - function implementations.
-   
-   * https://core.telegram.org/bots/api#getupdates
+   - <https://core.telegram.org/bots/api#getupdates>
 
    Most functions are multi-arity with the following options:
-
    - Send all parameters in a 'content' map.
    - Send only the required parameters as simple values.
    - Send the required paraemters as simple values and then 'optional' parameters in a map."
-
   (:gen-class)
   (:require [telegrambot-lib.http :as http]))
 
@@ -20,12 +17,15 @@
 (defn get-updates
   "Use this method to receive incoming updates using long polling.
    An Array of Update objects is returned.
-   Parameters
-   ;; Optional - map of the following
-   offset ; id of first update to return
-   limit ; num of updates to retrieve (1-100). default: 100
-   timeout ; timeout in seconds. default: 0 (short poll)
-   allowed_updates ; json array of update types bot will receive"
+
+   Required
+   - this ; a bot instance
+
+   Optional - map of the following
+   - offset ; id of first update to return
+   - limit ; num of updates to retrieve (1-100). default: 100
+   - timeout ; timeout in seconds. default: 0 (short poll)
+   - allowed_updates ; json array of update types bot will receive"
   ([this]
    (get-updates this nil))
   ([this content]
@@ -38,15 +38,17 @@
    a JSON-serialized Update. In case of an unsuccessful request, we
    will give up after a reasonable amount of attempts.
    Returns True on success.
-   Parameters
-   ;; Required
-   url ; https url to send updates to. empty string to remove webhook
-   ;; Optional
-   certificate ; upload public key cert
-   ip_address ; use this IP instead of resolving URL in DNS
-   max_connections ; max allowed simultaneous https connections for updates. (1-100) default: 40
-   allowed_updates ; json array of update types bot will receive
-   drop_pending_updates ; Pass True to drop all pending updates"
+
+   Required
+   - this ; a bot instance
+   - url ; https url to send updates to. empty string to remove webhook
+
+   Optional
+   - certificate ; upload public key cert
+   - ip_address ; use this IP instead of resolving URL in DNS
+   - max_connections ; max allowed simultaneous https connections for updates. (1-100) default: 40
+   - allowed_updates ; json array of update types bot will receive
+   - drop_pending_updates ; Pass True to drop all pending updates"
   content-map?)
 
 (defmethod set-webhook true
@@ -67,9 +69,12 @@
   "Use this method to remove webhook integration if you decide to
    switch back to getUpdates.
    Returns True on success.
-   Parameters
-   ;; Optional
-   drop_pending_updates ; Pass True to drop all pending updates"
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - drop_pending_updates ; Pass True to drop all pending updates"
   ([this]
    (delete-webhook this nil))
 
@@ -78,10 +83,12 @@
 
 (defn get-webhook
   "Use this method to get current webhook status.
-   Requires no parameters.
    On success, returns a WebhookInfo object.
    If the bot is using getUpdates, will return an object with the
-   url field empty."
+   url field empty.
+
+   Required
+   - this ; a bot instance"
   [this]
   (http/request this "getWebhook"))
 
