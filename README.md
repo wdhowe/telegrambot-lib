@@ -25,7 +25,7 @@ Get started using the telegrambot-lib.
 Leiningen/Boot Project file
 
 ```clojure
-[telegrambot-lib "0.3.0"]
+[telegrambot-lib "0.3.1"]
 ```
 
 ### Include the Library
