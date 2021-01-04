@@ -28,6 +28,12 @@ Leiningen/Boot Project file
 [telegrambot-lib "0.3.1"]
 ```
 
+Clojure CLI/deps.edn
+
+```clojure
+telegrambot-lib/telegrambot-lib {:mvn/version "0.3.1"}
+```
+
 ### Include the Library
 
 In the REPL
