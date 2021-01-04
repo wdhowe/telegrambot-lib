@@ -9,8 +9,6 @@
                  [environ "1.2.0"]
                  [org.clojure/clojure "1.10.0"]
                  [potemkin "0.4.5"]]
-  :plugins [[lein-codox "0.10.7"]]
-  :codox {:output-path "doc"}
   :repl-options {:init-ns telegrambot-lib.core}
   :profiles {:dev [:project/dev :profiles/dev]
              :test [:project/test :profiles/test]

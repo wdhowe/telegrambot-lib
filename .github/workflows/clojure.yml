@@ -29,7 +29,5 @@ jobs:
         run: lein compile
       - name: Tests
         run: lein test
-      - name: Docs
-        run: lein codox
       - name: Package
         run: lein uberjar
