@@ -240,6 +240,27 @@
      must have the appropriate admin rights.
      Returns the new invite link as String on success.")
 
+  (create-chat-invite-link [this chat_id]
+    [this chat_id & optional]
+    "Use this method to create an additional invite link for a chat.
+     The bot must be an administrator in the chat for this to work and must have
+     the appropriate admin rights. The link can be revoked using the method revokeChatInviteLink.
+     Returns the new invite link as ChatInviteLink object.")
+
+  (edit-chat-invite-link [this content]
+    [this chat_id invite_link]
+    [this chat_id invite_link & optional]
+    "Use this method to edit a non-primary invite link created by the bot.
+     The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     Returns the edited invite link as a ChatInviteLink object.")
+
+  (revoke-chat-invite-link [this content]
+    [this chat_id invite_link]
+    "Use this method to revoke an invite link created by the bot.
+     If the primary link is revoked, a new link is automatically generated.
+     The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     Returns the revoked invite link as ChatInviteLink object.")
+
   (set-chat-photo [this content]
     [this chat_id photo]
     "Use this method to set a new profile photo for the chat.

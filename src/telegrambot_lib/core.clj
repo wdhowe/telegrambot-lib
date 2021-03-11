@@ -99,6 +99,9 @@
   set-chat-administrator-custom-title
   set-chat-permissions
   export-chat-invite-link
+  create-chat-invite-link
+  edit-chat-invite-link
+  revoke-chat-invite-link
   set-chat-photo
   delete-chat-photo
   set-chat-title

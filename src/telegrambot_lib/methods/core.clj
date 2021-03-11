@@ -821,7 +821,9 @@
 
    Optional
    - until_date ; unix time when user is unbanned. 30 seconds - 366 days.
-                  if less or more, user is banned forever."
+                  if less or more, user is banned forever.
+   - revoke_messages ; true to delete all messages from chat for user being removed.
+                       always true for supergroups and channels."
   ([this content]
    (http/request this "kickChatMember" content))
 
@@ -909,12 +911,14 @@
 
    Optional
    - is_anonymous ; true if admin presence in chat is hidden
+   - can_manage_chat ; true if admin can access logs, stats, members, etc.
    - can_change_info ; true if admin can change chat title, photo, other settings
    - can_post_messages ; true if admin can create channel posts
    - can_edit_messages ; true if admin can edit messages of other users, pin messages
    - can_delete_messages ; true if admin can delete messages of other users
    - can_invite_users ; true if admin can invite new users to chat
    - can_restrict_members ; true if admin can restrict, ban, unban members
+   - can_manage_voice_chats ; true if admin can manage voice chats, supergroups only
    - can_pin_messages ; true if admin can pin messages
    - can_promote_members ; true if admin can add new admins"
   ([this content]
@@ -987,6 +991,80 @@
   [this chat_id]
   (let [content {:chat_id chat_id}]
     (export-chat-invite-link this content)))
+
+(defmulti create-chat-invite-link
+  "Use this method to create an additional invite link for a chat.
+   The bot must be an administrator in the chat for this to work and must have
+   the appropriate admin rights. The link can be revoked using the method revokeChatInviteLink.
+   Returns the new invite link as ChatInviteLink object.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+
+   Optional
+   - expire_date ; unix timestamp when the link will expire
+   - member_limit ; max num users that can be members simulatneously (1-99999)"
+  content-map?)
+
+(defmethod create-chat-invite-link true
+  [this content]
+  (http/request this "createChatInviteLink" content))
+
+(defmethod create-chat-invite-link false
+  ([this chat_id]
+   (let [content {:chat_id chat_id}]
+     (create-chat-invite-link this content)))
+
+  ([this chat_id & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id})]
+     (create-chat-invite-link this content))))
+
+(defn edit-chat-invite-link
+  "Use this method to edit a non-primary invite link created by the bot.
+   The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+   Returns the edited invite link as a ChatInviteLink object.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - invite_link ; invite link to edit
+
+   Optional
+   - expire_date ; unix timestamp when the link will expire
+   - member_limit ; max num users that can be members simulatneously (1-99999)"
+  ([this content]
+   (http/request this "editChatInviteLink" content))
+
+  ([this chat_id invite_link]
+   (let [content {:chat_id chat_id
+                  :invite_link invite_link}]
+     (edit-chat-invite-link this content)))
+
+  ([this chat_id invite_link & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :invite_link invite_link})]
+     (edit-chat-invite-link this content))))
+
+(defn revoke-chat-invite-link
+  "Use this method to revoke an invite link created by the bot.
+   If the primary link is revoked, a new link is automatically generated.
+   The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+   Returns the revoked invite link as ChatInviteLink object.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - invite_link ; invite link to revoke"
+  ([this content]
+   (http/request this "revokeChatInviteLink" content))
+
+  ([this chat_id invite_link]
+   (let [content {:chat_id chat_id
+                  :invite_link invite_link}]
+     (revoke-chat-invite-link this content))))
 
 (defn set-chat-photo
   "Use this method to set a new profile photo for the chat.
@@ -1371,6 +1449,9 @@
    :set-chat-administrator-custom-title set-chat-administrator-custom-title
    :set-chat-permissions set-chat-permissions
    :export-chat-invite-link export-chat-invite-link
+   :create-chat-invite-link create-chat-invite-link
+   :edit-chat-invite-link edit-chat-invite-link
+   :revoke-chat-invite-link revoke-chat-invite-link
    :set-chat-photo set-chat-photo
    :delete-chat-photo delete-chat-photo
    :set-chat-title set-chat-title
