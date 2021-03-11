@@ -14,7 +14,7 @@ This allows for minimal reference to the Telegram documentation and staying in t
 
 Focus on writing your bot and leave the API call handling to this library.
 
-Implemented Telegram functions accurate as of [Bot API 5.0](https://core.telegram.org/bots/api#november-4-2020)
+Implemented Telegram functions accurate as of [Bot API 5.1](https://core.telegram.org/bots/api-changelog#march-9-2021)
 
 ## Usage
 
@@ -25,13 +25,13 @@ Get started using the telegrambot-lib.
 Leiningen/Boot Project file
 
 ```clojure
-[telegrambot-lib "0.3.1"]
+[telegrambot-lib "0.3.2"]
 ```
 
 Clojure CLI/deps.edn
 
 ```clojure
-telegrambot-lib/telegrambot-lib {:mvn/version "0.3.1"}
+telegrambot-lib/telegrambot-lib {:mvn/version "0.3.2"}
 ```
 
 ### Include the Library

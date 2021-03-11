@@ -6,6 +6,20 @@ All notable changes to this project will be documented in this file. This change
 
 - None yet.
 
+## [0.3.2] - 2021-03-10
+
+### 0.3.2 Added
+
+- New methods and optional params in support of the Telegram Bot API 5.1 release.
+
+### 0.3.2 Changed
+
+- Minor developer centric project updates.
+  - Stopped using lein codox
+  - Updated README for CLJ/deps dependency command
+  - JDK version changes in the ci/cd pipeline
+  - gitignore updates
+
 ## [0.3.1] - 2020-11-29
 
 ### 0.3.1 Changed
@@ -39,7 +53,8 @@ All notable changes to this project will be documented in this file. This change
 - Initial release of project.
 - Basic library functionality, tests, documentation, github pipeline.
 
-[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.1...HEAD
+[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.2...HEAD
+[0.3.2]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/wdhowe/telegrambot-lib/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/wdhowe/telegrambot-lib/compare/0.1.1...0.2.0
