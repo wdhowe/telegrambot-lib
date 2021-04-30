@@ -25,13 +25,13 @@ Get started using the telegrambot-lib.
 Leiningen/Boot Project file
 
 ```clojure
-[telegrambot-lib "0.3.2"]
+[telegrambot-lib "0.3.3"]
 ```
 
 Clojure CLI/deps.edn
 
 ```clojure
-telegrambot-lib/telegrambot-lib {:mvn/version "0.3.2"}
+telegrambot-lib/telegrambot-lib {:mvn/version "0.3.3"}
 ```
 
 ### Include the Library

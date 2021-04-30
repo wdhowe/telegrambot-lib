@@ -740,7 +740,7 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - action ; type of action to broadcast (typing, upload_photo, record_video, upload_video,
-              record_audio, upload_audio, upload_document, find_location,
+              record_voice, upload_voice, upload_document, find_location,
               record_video_note, upload_video_note)"
   ([this content]
    (http/request this "sendChatAction" content))
