@@ -6,6 +6,16 @@ All notable changes to this project will be documented in this file. This change
 
 - None yet.
 
+## [0.3.3] - 2021-04-30
+
+### 0.3.3 Added
+
+- New optional parameters and updates in support of the Telegram Bot API 5.2 release.
+
+### 0.3.3 Changed
+
+- Bumped project dependencies versions to the latest available.
+
 ## [0.3.2] - 2021-03-10
 
 ### 0.3.2 Added
@@ -53,7 +63,8 @@ All notable changes to this project will be documented in this file. This change
 - Initial release of project.
 - Basic library functionality, tests, documentation, github pipeline.
 
-[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.2...HEAD
+[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.3...HEAD
+[0.3.3]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.2...0.3.3
 [0.3.2]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/wdhowe/telegrambot-lib/compare/0.2.0...0.3.0

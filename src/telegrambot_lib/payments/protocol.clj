@@ -7,9 +7,9 @@
 
   (send-invoice [this content]
     [this chat_id title description payload provider_token
-     start_parameter currency prices]
+     currency prices]
     [this chat_id title description payload provider_token
-     start_parameter currency prices & optional]
+     currency prices & optional]
     "Use this method to send invoices.
      On success, the sent Message is returned.")
 
