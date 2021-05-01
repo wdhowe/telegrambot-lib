@@ -14,7 +14,7 @@ This allows for minimal reference to the Telegram documentation and staying in t
 
 Focus on writing your bot and leave the API call handling to this library.
 
-Implemented Telegram functions accurate as of [Bot API 5.1](https://core.telegram.org/bots/api-changelog#march-9-2021)
+Implemented Telegram functions accurate as of [Bot API 5.2](https://core.telegram.org/bots/api-changelog#april-26-2021)
 
 ## Usage
 
