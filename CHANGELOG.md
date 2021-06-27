@@ -6,11 +6,25 @@ All notable changes to this project will be documented in this file. This change
 
 - None yet.
 
+## [0.3.4] - 2021-06-26
+
+### 0.3.4 Added
+
+- New optional parameters and updates in support of the [Telegram Bot API 5.3 release](https://core.telegram.org/bots/api-changelog#june-25-2021).
+
+### 0.3.4 Changed
+
+- Removed version information from the README.
+  - Bot API versions moved to changelog.
+  - Removed library version info from the Installation section and now refers to Clojars.
+- Dependency version bumps
+  - clj-http
+
 ## [0.3.3] - 2021-04-30
 
 ### 0.3.3 Added
 
-- New optional parameters and updates in support of the Telegram Bot API 5.2 release.
+- New optional parameters and updates in support of the [Telegram Bot API 5.2 release](https://core.telegram.org/bots/api-changelog#april-26-2021).
 
 ### 0.3.3 Changed
 
@@ -20,7 +34,7 @@ All notable changes to this project will be documented in this file. This change
 
 ### 0.3.2 Added
 
-- New methods and optional params in support of the Telegram Bot API 5.1 release.
+- New methods and optional params in support of the [Telegram Bot API 5.1 release](https://core.telegram.org/bots/api-changelog#march-9-2021).
 
 ### 0.3.2 Changed
 
@@ -41,7 +55,7 @@ All notable changes to this project will be documented in this file. This change
 
 ### 0.3.0 Added
 
-- New methods and optional params in support of the Telegram Bot API 5.0 release.
+- New methods and optional params in support of the [Telegram Bot API 5.0 release](https://core.telegram.org/bots/api-changelog#november-4-2020).
 
 ## [0.2.0] - 2020-10-25
 
@@ -63,7 +77,8 @@ All notable changes to this project will be documented in this file. This change
 - Initial release of project.
 - Basic library functionality, tests, documentation, github pipeline.
 
-[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.3...HEAD
+[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.4...HEAD
+[0.3.4]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.3...0.3.4
 [0.3.3]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.2...0.3.3
 [0.3.2]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.0...0.3.1

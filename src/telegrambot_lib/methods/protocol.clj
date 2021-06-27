@@ -188,7 +188,17 @@
   (kick-chat-member [this content]
     [this chat_id user_id]
     [this chat_id user_id & optional]
-    "Use this method to kick a user from a group, a supergroup or a channel.
+    "DEPRECATED: Use this method to kick a user from a group, a supergroup or a channel.
+     In the case of supergroups and channels, the user will not be able to
+     return to the group on their own using invite links, etc., unless unbanned first.
+     The bot must be an administrator in the chat for this to work and must have the
+     appropriate admin rights.
+     Returns True on success.")
+
+  (ban-chat-member [this content]
+    [this chat_id user_id]
+    [this chat_id user_id & optional]
+    "Use this method to ban a user from a group, a supergroup or a channel.
      In the case of supergroups and channels, the user will not be able to
      return to the group on their own using invite links, etc., unless unbanned first.
      The bot must be an administrator in the chat for this to work and must have the
@@ -332,6 +342,10 @@
      only the creator will be returned.")
 
   (get-chat-members-count [this chat_id]
+    "DEPRECATED: Use this method to get the number of members in a chat.
+     Returns Int on success.")
+
+  (get-chat-member-count [this chat_id]
     "Use this method to get the number of members in a chat.
      Returns Int on success.")
 
@@ -365,9 +379,17 @@
      On success, True is returned.")
 
   (set-my-commands [this commands]
+    [this commands & optional]
     "Use this method to change the list of the bot's commands.
      Returns True on success.")
 
+  (delete-my-commands [this]
+    [this content]
+    "Use this method to delete the list of the bot's commands for the given scope and user language.
+     After deletion, higher level commands will be shown to affected users.
+     Returns True on success.")
+
   (get-my-commands [this]
+    [this content]
     "Use this method to get the current list of the bot's commands.
      Returns Array of BotCommand on success."))
