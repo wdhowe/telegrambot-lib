@@ -807,7 +807,7 @@
     (get-file this content)))
 
 (defn kick-chat-member
-  "Use this method to kick a user from a group, a supergroup or a channel.
+  "DEPRECATED: Use this method to kick a user from a group, a supergroup or a channel.
    In the case of supergroups and channels, the user will not be able to
    return to the group on their own using invite links, etc., unless unbanned first.
    The bot must be an administrator in the chat for this to work and must have the
@@ -824,6 +824,8 @@
                   if less or more, user is banned forever.
    - revoke_messages ; true to delete all messages from chat for user being removed.
                        always true for supergroups and channels."
+  {:deprecated "0.3.4"
+   :use-instead (symbol 'ban-chat-member)}
   ([this content]
    (http/request this "kickChatMember" content))
 
@@ -837,6 +839,39 @@
                         {:chat_id chat_id
                          :user_id user_id})]
      (kick-chat-member this content))))
+
+(defn ban-chat-member
+  "Use this method to ban a user from a group, a supergroup or a channel.
+   In the case of supergroups and channels, the user will not be able to
+   return to the group on their own using invite links, etc., unless unbanned first.
+   The bot must be an administrator in the chat for this to work and must have the
+   appropriate admin rights.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user
+
+   Optional
+   - until_date ; unix time when user is unbanned. 30 seconds - 366 days.
+                  if less or more, user is banned forever.
+   - revoke_messages ; true to delete all messages from chat for user being removed.
+                       always true for supergroups and channels."
+  {:added "0.3.4"}
+  ([this content]
+   (http/request this "banChatMember" content))
+
+  ([this chat_id user_id]
+   (let [content {:chat_id chat_id
+                  :user_id user_id}]
+     (ban-chat-member this content)))
+
+  ([this chat_id user_id & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :user_id user_id})]
+     (ban-chat-member this content))))
 
 (defn unban-chat-member
   "Use this method to unban a previously kicked user in a supergroup or channel.
@@ -1280,12 +1315,14 @@
     (get-chat-administrators this content)))
 
 (defmulti get-chat-members-count
-  "Use this method to get the number of members in a chat.
+  "DEPRECATED: Use this method to get the number of members in a chat.
    Returns Int on success.
 
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
+  {:deprecated "0.3.4"
+   :use-instead (symbol 'get-chat-member-count)}
   content-map?)
 
 (defmethod get-chat-members-count true
@@ -1296,6 +1333,25 @@
   [this chat_id]
   (let [content {:chat_id chat_id}]
     (get-chat-members-count this content)))
+
+(defmulti get-chat-member-count
+  "Use this method to get the number of members in a chat.
+   Returns Int on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)"
+  {:added "0.3.4"}
+  content-map?)
+
+(defmethod get-chat-member-count true
+  [this content]
+  (http/request this "getChatMemberCount" content))
+
+(defmethod get-chat-member-count false
+  [this chat_id]
+  (let [content {:chat_id chat_id}]
+    (get-chat-member-count this content)))
 
 (defn get-chat-member
   "Use this method to get information about a member of a chat.
@@ -1392,7 +1448,11 @@
 
    Required
    - this ; a bot instance
-   - commands ; json array/list of 'BotCommand'"
+   - commands ; json array/list of 'BotCommand'
+
+   Optional
+   - scope ; JSON object, scope of users that commands are relevant for. (default: BotCommandScopeDefault)
+   - language_code ; Two-letter ISO 639-1 lang code. If empty, commands applied to all users from given scope."
   content-map?)
 
 (defmethod set-my-commands true
@@ -1400,18 +1460,48 @@
   (http/request this "setMyCommands" content))
 
 (defmethod set-my-commands false
-  [this commands]
-  (let [content {:commands commands}]
-    (set-my-commands this content)))
+  ([this commands]
+   (let [content {:commands commands}]
+     (set-my-commands this content)))
+
+  ([this commands & optional]
+   (let [content (merge (first optional)
+                        {:commands commands})]
+     (set-my-commands this content))))
+
+(defn delete-my-commands
+  "Use this method to delete the list of the bot's commands for the given scope and user language.
+   After deletion, higher level commands will be shown to affected users.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - scope ; JSON object, scope of users that commands are relevant for. (default: BotCommandScopeDefault)
+   - language_code ; Two-letter ISO 639-1 lang code. If empty, commands applied to all users from given scope."
+  {:added "0.3.4"}
+  ([this]
+   (http/request this "deleteMyCommands"))
+
+  ([this content]
+   (http/request this "deleteMyCommands" content)))
 
 (defn get-my-commands
   "Use this method to get the current list of the bot's commands.
    Returns Array of BotCommand on success.
 
    Required
-   - this ; a bot instance"
-  [this]
-  (http/request this "getMyCommands"))
+   - this ; a bot instance
+
+   Optional
+   - scope ; JSON object, scope of users that commands are relevant for. (default: BotCommandScopeDefault)
+   - language_code ; Two-letter ISO 639-1 lang code. If empty, commands applied to all users from given scope."
+  ([this]
+   (http/request this "getMyCommands"))
+
+  ([this content]
+   (http/request this "getMyCommands" content)))
 
 (def behavior
   "Map for extending the core TBot record with functions."
@@ -1443,6 +1533,7 @@
    :get-user-profile-photos get-user-profile-photos
    :get-file get-file
    :kick-chat-member kick-chat-member
+   :ban-chat-member ban-chat-member
    :unban-chat-member unban-chat-member
    :restrict-chat-member restrict-chat-member
    :promote-chat-member promote-chat-member
@@ -1463,9 +1554,11 @@
    :get-chat get-chat
    :get-chat-administrators get-chat-administrators
    :get-chat-members-count get-chat-members-count
+   :get-chat-member-count get-chat-member-count
    :get-chat-member get-chat-member
    :set-chat-sticker-set set-chat-sticker-set
    :delete-chat-sticker-set delete-chat-sticker-set
    :answer-callback-query answer-callback-query
    :set-my-commands set-my-commands
+   :delete-my-commands delete-my-commands
    :get-my-commands get-my-commands})

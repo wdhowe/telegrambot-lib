@@ -7,14 +7,10 @@ A Clojure library for interacting with the Telegram Bot API.
 The goal of this library is to be a complete implementation of the Telegram Bot
 API in Clojure, without adding extra bot logic.
 
-Each Bot API call is implemented in a Clojure function, with docstrings
-outlining required and optional parameters.
+Each API call is a Clojure function, with docstrings outlining required and
+optional parameters.
 
-This allows for minimal reference to the Telegram documentation and staying in the editor.
-
-Focus on writing your bot and leave the API call handling to this library.
-
-Implemented Telegram functions accurate as of [Bot API 5.2](https://core.telegram.org/bots/api-changelog#april-26-2021)
+See the [Changelog](CHANGELOG.md) for details on Bot API version updates.
 
 ## Usage
 
@@ -22,17 +18,7 @@ Get started using the telegrambot-lib.
 
 ### Installation
 
-Leiningen/Boot Project file
-
-```clojure
-[telegrambot-lib "0.3.3"]
-```
-
-Clojure CLI/deps.edn
-
-```clojure
-telegrambot-lib/telegrambot-lib {:mvn/version "0.3.3"}
-```
+See the [telegrambot-lib Clojars page][clojars] for details on adding this library to projects for Leiningen, Boot, and CLI/deps.edn.
 
 ### Include the Library
 
@@ -99,11 +85,9 @@ Verify your bot instance is working with the "get-me" function.
 
 ## Available Functions
 
-Current [ClojureDocs documentation is here][cljdoc-link].
+All of the Telegram Bot API functions in this library are available from the telegrambot-lib.core namespace.
 
-All of the Telegram Bot API functions in this library are imported into the telegrambot-lib.core namespace.
-
-This makes them available by their non-namespaced names and are all listed within the [import-vars function in telegram-lib.core](https://github.com/wdhowe/telegrambot-lib/blob/main/src/telegrambot_lib/core.clj#L46).
+[Available functions documentation](https://cljdoc.org/d/telegrambot-lib/telegrambot-lib/CURRENT/api/telegrambot-lib.core).
 
 ### Generic Function Call
 
@@ -123,13 +107,13 @@ Most functions are multi-arity with the following options:
 
 - Send all parameters in a 'content' map.
 - Send only the required parameters as simple values.
-- Send the required paraemters as simple values and then 'optional' parameters in a map.
+- Send the required parameters as simple values and then 'optional' parameters in a map.
 
-Required parameters are named to match the Telegram API, so they should be self explanatory in most cases.
+Required parameters are named to match the Telegram API.
 
 Refer to the function docstrings or the [Telegram Bot API Documentation](https://core.telegram.org/bots/api) for optional parameter content.
 
-See the below 'How to send a chat message' section for examples on the different ways to pass parameters.
+See the below, [How to send a chat message](#how-to-send-a-chat-message), section for examples on the different ways to pass parameters.
 
 ## How to send a chat message
 

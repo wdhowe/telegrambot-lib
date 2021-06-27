@@ -1,7 +1,6 @@
 (ns telegrambot-lib.core
   "A Clojure library for interacting with the Telegram Bot API.
-   - [Getting started](https://github.com/wdhowe/telegrambot-lib#usage)
-   - Functions accurate as of: [Telegram Bot API 5.0](https://core.telegram.org/bots/api#november-4-2020)"
+   - [Getting started](https://github.com/wdhowe/telegrambot-lib#usage)"
   (:gen-class)
   (:require [telegrambot-lib.config :as conf]
             [telegrambot-lib.edit.core :as edit]
@@ -93,6 +92,7 @@
   get-user-profile-photos
   get-file
   kick-chat-member
+  ban-chat-member
   unban-chat-member
   restrict-chat-member
   promote-chat-member
@@ -113,11 +113,13 @@
   get-chat
   get-chat-administrators
   get-chat-members-count
+  get-chat-member-count
   get-chat-member
   set-chat-sticker-set
   delete-chat-sticker-set
   answer-callback-query
   set-my-commands
+  delete-my-commands
   get-my-commands]
  [telegrambot-lib.passport.core
   set-passport-data-errors]
