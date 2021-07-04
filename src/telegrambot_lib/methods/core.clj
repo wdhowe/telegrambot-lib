@@ -1419,7 +1419,7 @@
 
    Required
    - this ; a bot instance
-   - chat_id ; target chat or username (@user)
+   - callback_query_id ; unique identifier for the query to be answered
 
    Optional
    - text ; text of the notification
@@ -1433,13 +1433,13 @@
   (http/request this "answerCallbackQuery" content))
 
 (defmethod answer-callback-query false
-  ([this chat_id]
-   (let [content {:chat_id chat_id}]
+  ([this callback_query_id]
+   (let [content {:callback_query_id callback_query_id}]
      (answer-callback-query this content)))
 
-  ([this chat_id & optional]
+  ([this callback_query_id & optional]
    (let [content (merge (first optional)
-                        {:chat_id chat_id})]
+                        {:callback_query_id callback_query_id})]
      (answer-callback-query this content))))
 
 (defmulti set-my-commands
