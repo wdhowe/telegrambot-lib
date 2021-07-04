@@ -142,4 +142,4 @@
   get-updates
   set-webhook
   delete-webhook
-  get-webhook])
+  get-webhook-info])

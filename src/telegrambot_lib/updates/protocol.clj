@@ -23,7 +23,7 @@
      switch back to getUpdates.
      Returns True on success.")
 
-  (get-webhook [this]
+  (get-webhook-info [this]
     "Use this method to get current webhook status.
      On success, returns a WebhookInfo object.
      If the bot is using getUpdates, will return an object with the
