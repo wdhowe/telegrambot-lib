@@ -371,8 +371,8 @@
      check if the bot can use this method.
      Returns True on success.")
 
-  (answer-callback-query [this chat_id]
-    [this chat_id & optional]
+  (answer-callback-query [this callback_query_id]
+    [this callback_query_id & optional]
     "Use this method to send answers to callback queries sent from inline keyboards.
      The answer will be displayed to the user as a notification at the top of the
      chat screen or as an alert.
