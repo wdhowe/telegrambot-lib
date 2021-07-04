@@ -81,7 +81,7 @@
   ([this content]
    (http/request this "deleteWebhook" content)))
 
-(defn get-webhook
+(defn get-webhook-info
   "Use this method to get current webhook status.
    On success, returns a WebhookInfo object.
    If the bot is using getUpdates, will return an object with the
@@ -90,11 +90,11 @@
    Required
    - this ; a bot instance"
   [this]
-  (http/request this "getWebhook"))
+  (http/request this "getWebhookInfo"))
 
 (def behavior
   "Map for extending the core TBot record with functions."
   {:get-updates get-updates
    :set-webhook set-webhook
    :delete-webhook delete-webhook
-   :get-webhook get-webhook})
+   :get-webhook-info get-webhook-info})
