@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. This change
 
 ## [Unreleased]
 
+- None yet.
+
+## [0.3.5] - 2021-07-04
+
+### 0.3.5 Fixed
+
 - answerCallbackQuery parameter correction.
 - getWebhookInfo method name correction.
 
@@ -78,7 +84,8 @@ All notable changes to this project will be documented in this file. This change
 - Initial release of project.
 - Basic library functionality, tests, documentation, github pipeline.
 
-[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.4...HEAD
+[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.5...HEAD
+[0.3.5]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.4...0.3.5
 [0.3.4]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.3...0.3.4
 [0.3.3]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.2...0.3.3
 [0.3.2]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.1...0.3.2
