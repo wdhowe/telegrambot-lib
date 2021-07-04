@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file. This change
 
 ## [Unreleased]
 
-- None yet.
+- answerCallbackQuery parameter correction.
+- getWebhookInfo method name correction.
 
 ## [0.3.4] - 2021-06-26
 
