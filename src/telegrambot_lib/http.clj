@@ -1,7 +1,8 @@
 (ns telegrambot-lib.http
   "Formats and sends the http request to the Telegram Bot API."
   (:gen-class)
-  (:require [cheshire.core :as json]
+  (:require [clojure.core.async :as a]
+            [cheshire.core :as json]
             [clj-http.client :as clj-http]
             [clojure.string :as string]
             [taoensso.timbre :as log]))
@@ -15,17 +16,13 @@
   ([http-method url]
    (client http-method url nil))
 
-  ([http-method url content]
-   (client http-method url content :auto))
-
-  ([http-method url content content-type]
+  ([http-method url req & [respond raise]]
    (log/debug "http"
               (string/upper-case (name http-method))
               (str "/" (last (string/split url #"/")))
-              content)
-   (clj-http/post url
-                  {:body content
-                   :content-type content-type})))
+              (:body req))
+   (let [req (merge {:content-type :auto} req)]
+     (clj-http/post url req respond raise))))
 
 (defmethod client :default
   [http-method & _]
@@ -45,12 +42,47 @@
       (:body)
       (json/parse-string true)))
 
-(defn request
-  "Send the request to the http `path` with optional `content`."
+(defmulti request
+  "Send the request to the HTTP `path` with optional `content`. The request may
+   be sent either synchronously or asynchronously, depending on the value of the
+   `:async` key of the passed bot instance. In the latter case, this fn returns
+   a one-off channel with an invocation result which is either:
+   - the response body in case the Telegram Bot API request was successful, or
+   - a map composed of the response body and an `:error true` entry otherwise."
+  (fn [this & _]
+    (true? (:async this))))
+
+(defmethod request true
   ([this path]
    (request this path nil))
 
   ([this path content]
    (let [url (gen-url this path)
-         resp (client :post url (json/generate-string content) :json)]
+         req {:body (json/generate-string content)
+              :content-type :json
+              :async? true}
+         resp-channel (a/chan)
+         on-success (fn [resp]
+                      (let [body (parse-resp resp)]
+                        (if (true? (:ok body))
+                          (a/put! resp-channel body)
+                          (a/put! resp-channel (assoc body :error true))))
+                      (a/close! resp-channel))
+         on-failure (fn [e]
+                      (log/debug e "Unsuccessful Telegram Bot API request")
+                      (let [body (parse-resp (ex-data e))]
+                        (a/put! resp-channel (assoc body :error true)))
+                      (a/close! resp-channel))]
+     (client :post url req on-success on-failure)
+     resp-channel)))
+
+(defmethod request false
+  ([this path]
+   (request this path nil))
+
+  ([this path content]
+   (let [url (gen-url this path)
+         req {:body (json/generate-string content)
+              :content-type :json}
+         resp (client :post url req)]
      (parse-resp resp))))

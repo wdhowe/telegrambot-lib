@@ -8,6 +8,7 @@
                  [com.taoensso/timbre "5.1.2"]
                  [environ "1.2.0"]
                  [org.clojure/clojure "1.10.3"]
+                 [org.clojure/core.async "1.3.618"]
                  [potemkin "0.4.5"]]
   :repl-options {:init-ns telegrambot-lib.core}
   :profiles {:dev [:project/dev :profiles/dev]
