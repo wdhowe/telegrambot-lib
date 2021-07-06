@@ -48,7 +48,7 @@
    `:async` key of the passed bot instance. In the latter case, this fn returns
    a one-off channel with an invocation result which is either:
    - the response body in case the Telegram Bot API request was successful, or
-   - a map composed of the response body and an `:error true` entry otherwise."
+   - a map composed of the response body and an `[:error ex]` entry otherwise."
   (fn [this & _]
     (true? (:async this))))
 
@@ -64,14 +64,11 @@
          resp-channel (a/chan)
          on-success (fn [resp]
                       (let [body (parse-resp resp)]
-                        (if (true? (:ok body))
-                          (a/put! resp-channel body)
-                          (a/put! resp-channel (assoc body :error true))))
+                        (a/put! resp-channel body))
                       (a/close! resp-channel))
-         on-failure (fn [e]
-                      (log/debug e "Unsuccessful Telegram Bot API request")
-                      (let [body (parse-resp (ex-data e))]
-                        (a/put! resp-channel (assoc body :error true)))
+         on-failure (fn [ex]
+                      (let [body (parse-resp (ex-data ex))]
+                        (a/put! resp-channel (assoc body :error ex)))
                       (a/close! resp-channel))]
      (client :post url req on-success on-failure)
      resp-channel)))
