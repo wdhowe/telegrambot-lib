@@ -43,10 +43,10 @@
       (json/parse-string true)))
 
 (defmulti request
-  "Send the request to the HTTP `path` with optional `content`. The request may
-   be sent either synchronously or asynchronously, depending on the value of the
-   `:async` key of the passed bot instance. In the latter case, this fn returns
-   a one-off channel with an invocation result which is either:
+  "Send the request to the Telegram Bot API `path` with an optional `content`,
+   either sync- or asynchronously, depending on the value of the `:async` key
+   of `this` (the passed bot instance).
+   Returns a one-off channel with an invocation result, which is either:
    - the response body in case the Telegram Bot API request was successful, or
    - a map composed of the response body and an `[:error ex]` entry otherwise."
   (fn [this & _]
@@ -80,6 +80,13 @@
   ([this path content]
    (let [url (gen-url this path)
          req {:body (json/generate-string content)
-              :content-type :json}
-         resp (client :post url req)]
-     (parse-resp resp))))
+              :content-type :json}]
+     (try
+       (let [resp (client :post url req)]
+         (parse-resp resp))
+       (catch Throwable ex
+         (if-let [body (parse-resp (ex-data ex))]
+           ;; matches the async version behavior
+           (assoc body :error ex)
+           ;; rethrows the client code caused ex
+           (throw ex)))))))
