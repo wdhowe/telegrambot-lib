@@ -36,19 +36,35 @@
   (str bot-api (:bot-token this) "/" path))
 
 (defn parse-resp
-  "Parse the json response body into a keywordized map."
+  "Parse the JSON response body into a keywordized map."
   [resp]
-  (-> resp
-      (:body)
-      (json/parse-string true)))
+  (try
+    (-> resp :body (json/parse-string true))
+    (catch Exception parsing-ex
+      {:error parsing-ex})))
+
+(defn ex->parsed-resp
+  "Uniformly transform an `Exception` into a map to return."
+  [ex]
+  (let [body (parse-resp (ex-data ex))]
+    ;; NB: This may overwrite the parsing exception, if any,
+    ;;     but it's totally fine, since the original `ex` is
+    ;;     more important.
+    (assoc body :error ex)))
 
 (defmulti request
   "Send the request to the Telegram Bot API `path` with an optional `content`,
    either sync- or asynchronously, depending on the value of the `:async` key
-   of `this` (the passed bot instance).
-   Returns a one-off channel with an invocation result, which is either:
+   of `this` (the passed bot instance). A sync version returns an \"invocation
+   result\", while an async one returns a one-off channel with an \"invocation
+   result\" which is then closed.
+
+   The \"invocation result\" is either:
    - the response body in case the Telegram Bot API request was successful, or
-   - a map composed of the response body and an `[:error ex]` entry otherwise."
+   - a map composed of the response body and the `[:error ex]` entry when the
+     request was unsuccessful (in terms of the Telegram Bot API), or
+   - just an `{:error ex}` map in any other exceptional situation when we are
+     unable to retrieve the response body."
   (fn [this & _]
     (true? (:async this))))
 
@@ -63,12 +79,12 @@
               :async? true}
          resp-channel (a/chan)
          on-success (fn [resp]
-                      (let [body (parse-resp resp)]
-                        (a/put! resp-channel body))
+                      (let [parsed-resp (parse-resp resp)]
+                        (a/put! resp-channel parsed-resp))
                       (a/close! resp-channel))
          on-failure (fn [ex]
-                      (let [body (parse-resp (ex-data ex))]
-                        (a/put! resp-channel (assoc body :error ex)))
+                      (let [parsed-resp (ex->parsed-resp ex)]
+                        (a/put! resp-channel parsed-resp))
                       (a/close! resp-channel))]
      (client :post url req on-success on-failure)
      resp-channel)))
@@ -85,8 +101,4 @@
        (let [resp (client :post url req)]
          (parse-resp resp))
        (catch Throwable ex
-         (if-let [body (parse-resp (ex-data ex))]
-           ;; matches the async version behavior
-           (assoc body :error ex)
-           ;; rethrows the client code caused ex
-           (throw ex)))))))
+         (ex->parsed-resp ex))))))
