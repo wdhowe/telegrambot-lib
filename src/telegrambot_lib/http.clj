@@ -7,8 +7,9 @@
             [clojure.string :as string]
             [clojure.tools.logging :as log]))
 
-(defn- http-method-str [http-method]
-  (string/upper-case (name http-method)))
+(defn- upper-case-name [x]
+  "Transform the passed in value to an all upper cased name."
+  (string/upper-case (name x)))
 
 (defmulti client
   "Send HTTP requests to the URL. Methods supported:
@@ -21,7 +22,7 @@
 
   ([http-method url req & [respond raise]]
    (log/debugf "HTTP %s /%s %s"
-               (http-method-str http-method)
+               (upper-case-name http-method)
                (last (string/split url #"/"))
                (:body req))
    (let [req (merge {:content-type :auto} req)]
@@ -30,7 +31,7 @@
 (defmethod client :default
   [http-method & _]
   (log/errorf "HTTP method '%s' not supported"
-              (http-method-str http-method)))
+              (upper-case-name http-method)))
 
 (def bot-api "Telegram Bot API URL." "https://api.telegram.org/bot")
 
