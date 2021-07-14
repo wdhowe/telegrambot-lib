@@ -5,11 +5,14 @@
             [cheshire.core :as json]
             [clj-http.client :as clj-http]
             [clojure.string :as string]
-            [taoensso.timbre :as log]))
+            [clojure.tools.logging :as log]))
+
+(defn- http-method-str [http-method]
+  (string/upper-case (name http-method)))
 
 (defmulti client
-  "Send http requests to the url. Methods supported:
-   - post"
+  "Send HTTP requests to the URL. Methods supported:
+   - POST"
   (fn [http-method & _] http-method))
 
 (defmethod client :post
@@ -17,16 +20,17 @@
    (client http-method url nil))
 
   ([http-method url req & [respond raise]]
-   (log/debug "http"
-              (string/upper-case (name http-method))
-              (str "/" (last (string/split url #"/")))
-              (:body req))
+   (log/debugf "HTTP %s /%s %s"
+               (http-method-str http-method)
+               (last (string/split url #"/"))
+               (:body req))
    (let [req (merge {:content-type :auto} req)]
      (clj-http/post url req respond raise))))
 
 (defmethod client :default
   [http-method & _]
-  (log/error http-method "http method not supported"))
+  (log/errorf "HTTP method '%s' not supported"
+              (http-method-str http-method)))
 
 (def bot-api "Telegram Bot API URL." "https://api.telegram.org/bot")
 
