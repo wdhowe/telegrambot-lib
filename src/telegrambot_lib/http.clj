@@ -1,11 +1,11 @@
 (ns telegrambot-lib.http
-  "Formats and sends the http request to the Telegram Bot API."
+  "Formats and sends the HTTP request to the Telegram Bot API."
   (:gen-class)
-  (:require [clojure.core.async :as a]
-            [cheshire.core :as json]
-            [clj-http.client :as clj-http]
+  (:require [clj-http.client :as clj-http]
+            [clojure.core.async :as a]
             [clojure.string :as string]
-            [clojure.tools.logging :as log]))
+            [clojure.tools.logging :as log]
+            [telegrambot-lib.json :as json]))
 
 (defn- upper-case-name
   "Transform the passed in value to an all upper cased name."
@@ -45,7 +45,7 @@
   "Parse the JSON response body into a keywordized map."
   [resp]
   (try
-    (-> resp :body (json/parse-string true))
+    (-> resp :body json/parse-json-str)
     (catch Exception parsing-ex
       {:error parsing-ex})))
 
@@ -80,7 +80,7 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req {:body (json/generate-string content)
+         req {:body (json/generate-json-str content)
               :content-type :json
               :async? true}
          resp-channel (a/chan)
@@ -101,7 +101,7 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req {:body (json/generate-string content)
+         req {:body (json/generate-json-str content)
               :content-type :json}]
      (try
        (let [resp (client :post url req)]

@@ -28,7 +28,13 @@ jobs:
         run: lein version
       - name: Build
         run: lein compile
-      - name: Tests
-        run: lein test
+      - name: Test JSON with 'cheshire'
+        run: lein with-profiles +cheshire test :json
+      - name: Test JSON with 'jsonista'
+        run: lein with-profiles +jsonista test :json
+      - name: Test JSON with 'data.json'
+        run: lein with-profiles +data.json test :json
+      - name: Test everything else
+        run: lein with-profiles +cheshire test
       - name: Package
         run: lein uberjar
