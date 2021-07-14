@@ -7,8 +7,9 @@
             [clojure.string :as string]
             [clojure.tools.logging :as log]))
 
-(defn- upper-case-name [x]
+(defn- upper-case-name
   "Transform the passed in value to an all upper cased name."
+  [x]
   (string/upper-case (name x)))
 
 (defmulti client
