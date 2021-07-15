@@ -1,13 +1,18 @@
 (ns telegrambot-lib.json
   "Internal JSON mapping utilities."
   (:gen-class)
-  (:require [clojure.string :as string]))
+  (:require [clojure.string :as string]
+            [clojure.tools.logging :as log]))
 
 (defn- resolve-fn-var
   "Returns the var to which a `var-name` will be resolved in the `ns` namespace
-   (unless found in the environment), else `nil`."
+   (unless found in the environment), else `nil`. Also checks that the returned
+   var dereferences to a function."
   [ns var-name]
-  (ns-resolve ns (symbol var-name)))
+  (let [resolved-var (ns-resolve ns (symbol var-name))]
+    (if (and (some? resolved-var) (not (fn? @resolved-var)))
+      (log/warnf "The resolved var '%s/%s' do not reference a function" ns var-name)
+      resolved-var)))
 
 (def supported-mapping-libs
   "The JSON mapping libraries supported in the current implementation."
