@@ -3,10 +3,14 @@
   (:gen-class)
   (:require [clojure.string :as string]))
 
-(defn- resolve-fn-var [ns var-name]
+(defn- resolve-fn-var
+  "Returns the var to which a `var-name` will be resolved in the `ns` namespace
+   (unless found in the environment), else `nil`."
+  [ns var-name]
   (ns-resolve ns (symbol var-name)))
 
-(def supported-json-mapping-libs
+(def supported-mapping-libs
+  "The JSON mapping libraries supported in the current implementation."
   [{:core-lib-ns 'cheshire.core
     :group-id+name "cheshire"
     :parser-fn-name "parse-string"
@@ -31,48 +35,59 @@
                       #(parser-fn % :key-fn keyword))
     :generator-fn-name "write-str"}])
 
-(defn- is-lib-present? [core-lib-ns]
+(defn- is-lib-present?
+  "A fn to check for an optional dependency presence in classpath by resolving
+   its core ns."
+  [core-lib-ns]
   (try
     (require core-lib-ns)
     true
     (catch Throwable _ false)))
 
-(def ^:private present-json-mapping-libs
+(def ^:private present-mapping-libs
+  "A subset of the supported JSON mapping libraries that are currently present
+   in classpath."
   (filter #(is-lib-present? (:core-lib-ns %))
-          supported-json-mapping-libs))
+          supported-mapping-libs))
 
-(when-not (seq present-json-mapping-libs)
+(when-not (seq present-mapping-libs)
   (throw (IllegalStateException.
            (format "No supported JSON mapper library supplied. Consider adding one of the %s to the project deps."
-                   (->> supported-json-mapping-libs
+                   (->> supported-mapping-libs
                         (map #(str "[\"" (:group-id+name %) "\"]"))
                         (string/join ", "))))))
 
-(defn- build-json-str-parser [lib]
+(defn- build-json-str-parser
+  "Builds a JSON string parser fn — the one that takes a JSON-encoded string
+   and parses a Clojure object out of it."
+  [lib]
   (let [parser-fn (resolve-fn-var (:core-lib-ns lib)
                                   (:parser-fn-name lib))]
     ((:parser-builder lib) parser-fn)))
 
-(def ^:private json-str-parser-fn
-  (->> present-json-mapping-libs
+(def ^:private json-str-parser
+  (->> present-mapping-libs
        first
        build-json-str-parser))
 
-(defn parse-json-str
+(defn parse-str
   "Parses (reads) a given JSON-encoded string into a Clojure object."
   [json-str]
-  (json-str-parser-fn json-str))
+  (json-str-parser json-str))
 
-(defn- build-json-str-generator [lib]
+(defn- build-json-str-generator
+  "Builds a JSON string generator fn — the one that takes a Clojure object
+   and generates its JSON-encoded string representation."
+  [lib]
   (resolve-fn-var (:core-lib-ns lib)
                   (:generator-fn-name lib)))
 
-(def ^:private json-str-generator-fn
-  (->> present-json-mapping-libs
+(def ^:private json-str-generator
+  (->> present-mapping-libs
        first
        build-json-str-generator))
 
-(defn generate-json-str
+(defn generate-str
   "Generates (writes) a JSON-encoded string for a given Clojure object."
   [clj-obj]
-  (json-str-generator-fn clj-obj))
+  (json-str-generator clj-obj))

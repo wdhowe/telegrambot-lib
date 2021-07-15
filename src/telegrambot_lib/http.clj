@@ -45,7 +45,7 @@
   "Parse the JSON response body into a keywordized map."
   [resp]
   (try
-    (-> resp :body json/parse-json-str)
+    (-> resp :body json/parse-str)
     (catch Exception parsing-ex
       {:error parsing-ex})))
 
@@ -80,7 +80,7 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req {:body (json/generate-json-str content)
+         req {:body (json/generate-str content)
               :content-type :json
               :async? true}
          resp-channel (a/chan)
@@ -101,7 +101,7 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req {:body (json/generate-json-str content)
+         req {:body (json/generate-str content)
               :content-type :json}]
      (try
        (let [resp (client :post url req)]
