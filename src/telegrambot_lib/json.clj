@@ -40,14 +40,16 @@
                       #(parser-fn % :key-fn keyword))
     :generator-fn-name "write-str"}])
 
-(defn- is-lib-present?
-  "A fn to check for an optional dependency presence in classpath by resolving
-   its core ns."
-  [core-lib-ns]
-  (try
-    (require core-lib-ns)
-    true
-    (catch Throwable _ false)))
+(let [lock (Object.)]
+  (defn- is-lib-present?
+    "Checks for an optional dependency presence in classpath by resolving
+     its core ns."
+    [core-lib-ns]
+    (locking lock
+      (try
+        (require core-lib-ns)
+        true
+        (catch Throwable _ false)))))
 
 (def ^:private present-mapping-libs
   "A subset of the supported JSON mapping libraries that are currently present
