@@ -11,8 +11,8 @@
 
 (deftest parse-json-str
   (testing "JSON decoding"
-    (is (= json-obj (json/parse-json-str json-str)))))
+    (is (= json-obj (json/parse-str json-str)))))
 
 (deftest generate-json-str
   (testing "JSON encoding"
-    (is (= json-str (json/generate-json-str json-obj)))))
+    (is (= json-str (json/generate-str json-obj)))))
