@@ -272,6 +272,14 @@ In either case you'll get a similar response — a `core.async` channel to take 
 #object[clojure.core.async.impl.channels.ManyToManyChannel 0x3d059861 "clojure.core.async.impl.channels.ManyToManyChannel@3d059861"]
 ```
 
+## Miscellaneous
+
+### Logging
+
+This library uses the `org.clojure/tools.logging`, a standard facade library, for logging purposes.
+Thus, any logger implementation you pick for your project is supported, and all the logs from the `telegrambot-lib`
+will be redirected to it.
+
 ## License
 
 Copyright © 2020-2021 Bill Howe and contributors
