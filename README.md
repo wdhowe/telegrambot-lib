@@ -15,12 +15,27 @@ Each API call is a Clojure function, with docstrings outlining required and opti
 
 Get started using the `telegrambot-lib`.
 
-### Add as Dependency
+### Adding Dependencies
 
-See the [telegrambot-lib Clojars page][clojars] for details on adding this library to projects for Leiningen, Boot, 
+See the `telegrambot-lib` [Clojars page][clojars] for details on adding this library to projects for Leiningen, Boot, 
 and CLI/deps.edn.
 
-### Require the Library
+You will also need to provide your favorite JSON mapper library as an explicit project dependency or just make sure
+you already have one in the classpath of your project (which is usually the case when you are building a web app).
+
+The following JSON mappers are currently supported:
+- `["cheshire"]`
+- `["metosin/jsonista"]`
+- `["org.clojure/data.json"]`
+
+So, with Leiningen you'll end up with these two entries in the project dependencies:
+
+```clojure
+[telegrambot-lib "1.0.0"]
+[cheshire "5.10.1"]
+```
+
+### Requiring the Library
 
 In the REPL:
 
@@ -35,7 +50,7 @@ In your application codebase:
   (:require [telegrambot-lib.core :as tbot]))
 ```
 
-### Use the Library
+### Using the Library
 
 Pre-Reqs:
 
