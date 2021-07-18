@@ -276,7 +276,7 @@ In either case you'll get a similar response — a `core.async` channel to take 
 
 ### Logging
 
-This library uses the `org.clojure/tools.logging`, a standard facade library, for logging purposes.
+This library uses the [org.clojure/tools.logging](https://github.com/clojure/tools.logging), a standard facade library, for logging purposes.
 Thus, any logger implementation you pick for your project is supported, and all the logs from the `telegrambot-lib`
 will be redirected to it.
 
