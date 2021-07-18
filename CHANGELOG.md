@@ -6,6 +6,18 @@ All notable changes to this project will be documented in this file. This change
 
 - None yet.
 
+## [1.0.0] - 2021-07-18
+
+### 1.0.0 Added
+
+- Ability to send requests asynchronously.
+
+### 1.0.0 Changed
+
+- Exceptions are returned as an :error keyword in the response map instead of being thrown.
+- Logging now uses [org.clojure/tools.logging](https://github.com/clojure/tools.logging).
+- The JSON library dependency must now be provided by the implementing application.
+
 ## [0.3.5] - 2021-07-04
 
 ### 0.3.5 Fixed
@@ -84,7 +96,8 @@ All notable changes to this project will be documented in this file. This change
 - Initial release of project.
 - Basic library functionality, tests, documentation, github pipeline.
 
-[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.5...HEAD
+[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.5...1.0.0
 [0.3.5]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.4...0.3.5
 [0.3.4]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.3...0.3.4
 [0.3.3]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.2...0.3.3
