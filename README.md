@@ -92,7 +92,7 @@ Bot API method call, which is now as simple as calling the `get-me` function.
 
 ## Available Functions
 
-All of the Telegram Bot API functions in this library are available from the `telegrambot-lib.core` namespace.
+All of the Telegram Bot API methods are represented by functions of the `telegrambot-lib.core` namespace.
 
 Find the list of the available functions with their parameters in the 
 [namespace documentation](https://cljdoc.org/d/telegrambot-lib/telegrambot-lib/CURRENT/api/telegrambot-lib.core).
@@ -184,8 +184,8 @@ For instance, this is what the `get-updates` function can return when called wit
                      :text "Hello Bot World!"}}]}
 ```
 
-In this case, since we are in a private chat with the bot, the sender (the `message` > `from` > `id`) is the same
-as the chat (the `message` > `chat` > `id`).
+In this case, since we are in a private chat with the bot, the sender (the `message` > `from` > `id`) 
+is either the bot itself or the same as the message chat (the `message` > `chat` > `id`).
 
 ### Sending a Message into a Chat
 
