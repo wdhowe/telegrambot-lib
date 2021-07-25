@@ -17,13 +17,14 @@ Get started using the `telegrambot-lib`.
 
 ### Adding Dependencies
 
-See the `telegrambot-lib` [Clojars page][clojars] for details on adding this library to projects for Leiningen, Boot, 
+See the `telegrambot-lib` [Clojars page][clojars] for details on adding this library to projects for Leiningen, Boot,
 and CLI/deps.edn.
 
 You will also need to provide your favorite JSON mapper library as an explicit project dependency or just make sure
 you already have one in the classpath of your project (which is usually the case when you are building a web app).
 
 The following JSON mappers are currently supported:
+
 - `["cheshire"]`
 - `["metosin/jsonista"]`
 - `["org.clojure/data.json"]`
@@ -34,6 +35,8 @@ So, with Leiningen you'll end up with these two entries in the project dependenc
 [telegrambot-lib "1.0.0"]
 [cheshire "5.10.1"]
 ```
+
+- **Note**: The above version numbers are an example and may not be the latest. See each project's github or clojars page.
 
 ### Requiring the Library
 
@@ -60,16 +63,18 @@ Pre-Reqs:
 
 The Bot API auth token can be passed to the bot instance by either:
 
-- **Environment variable** — 
+- **Environment variable** —
   the lib will look for `bot-token` or `BOT_TOKEN` vars in the environment.
+
   ```clojure
   (def mybot (tbot/create))
   ```
 
 or
 
-- **Function argument** — 
+- **Function argument** —
   for the `create` function which has a dedicated optional second parameter.
+
   ```clojure
   (def mybot (tbot/create my-token))
   ```
@@ -94,7 +99,7 @@ Bot API method call, which is now as simple as calling the `get-me` function.
 
 All of the Telegram Bot API methods are represented by functions of the `telegrambot-lib.core` namespace.
 
-Find the list of the available functions with their parameters in the 
+Find the list of the available functions with their parameters in the
 [namespace documentation](https://cljdoc.org/d/telegrambot-lib/telegrambot-lib/CURRENT/api/telegrambot-lib.core).
 
 ### Functions Contract
@@ -106,6 +111,7 @@ Some functions, such as `get-me`, only take this single argument.
 Most functions are multi-arity with the following options:
 
 - Send all parameters in a `content` map.
+
   ```clojure
   (let [content {:chat_id -560000000
                  :text "Greetings!"
@@ -114,6 +120,7 @@ Most functions are multi-arity with the following options:
   ```
 
 - Send only the required parameters as simple values.
+
   ```clojure
   (let [chat-id -560000000
         text "Greetings!"]
@@ -121,6 +128,7 @@ Most functions are multi-arity with the following options:
   ```
 
 - Send the required parameters as simple values and then `optional` parameters map.
+
   ```clojure
   (let [chat-id -560000000
         text "Greetings!"
@@ -135,7 +143,7 @@ for the exact names and a complete list of valid `optional` parameters.
 ### Generic Function Call
 
 Additionally, there is a generic `call` function that may be used to send a request to any Bot API endpoint.
-This will come in handy in the rare case when the Telegram Bot API already provides some method that this library 
+This will come in handy in the rare case when the Telegram Bot API already provides some method that this library
 does not yet cover with a function.
 
 ```clojure
@@ -146,14 +154,16 @@ does not yet cover with a function.
 (tbot/call mybot "sendMessage" {:chat_id 280000000 :text "Hello Bot World!"})
 ```
 
-## How-To's
+## How-Tos
 
 In the Telegram client:
+
 - Add your bot to a group chat/channel or message it directly, in a private chat.
-- When testing plain messages in a group chat, make sure to disable the 
+- When testing plain messages in a group chat, make sure to disable the
   [privacy mode](https://core.telegram.org/bots#privacy-mode) or make the bot an "admin" first.
 
 On the side of your bot:
+
 - Setup it to [receive updates](https://core.telegram.org/bots/api/#getting-updates)
   (either by long-polling or via a webhook).
 
@@ -184,7 +194,7 @@ For instance, this is what the `get-updates` function can return when called wit
                      :text "Hello Bot World!"}}]}
 ```
 
-In this case, since we are in a private chat with the bot, the sender (the `message` > `from` > `id`) 
+In this case, since we are in a private chat with the bot, the sender (the `message` > `from` > `id`)
 is either the bot itself or the same as the message chat (the `message` > `chat` > `id`).
 
 ### Sending a Message into a Chat
@@ -203,6 +213,7 @@ Send your message to the target `chat_id` in any of the ways [described above](#
 ```
 
 In all three cases you'll get a similar response parsed into a Clojure map:
+
 ```clojure
 =>
 {:ok true
@@ -232,6 +243,7 @@ The library signals unsuccessful Bot API requests and other arbitrary errors dur
 ```
 
 Upon any exception, it is passed either:
+
 - along with the Bot API response (in a form of Clojure map) in case the request was unsuccessful
 [in terms of the Bot API](https://core.telegram.org/bots/api/#making-requests), or
 - just as `{:error ex}` map in all other situations when we're unable to retrieve a response body.
@@ -239,12 +251,13 @@ Upon any exception, it is passed either:
 It's up to you to decide on how to react to an error in each particular case.
 
 The usual choices are:
+
 - to just log (w/ `:error_code` and `:description`), or
 - to retry (if the `:parameters` as present), or
 - to rethrow the `:error` object.
 
 > **NOTE:** In asynchronous code, where callbacks can be/are processed on a different thread
-> there is no sense in rethrowing exceptions. See the next section for details on how to make
+> there is no sense in re-throwing exceptions. See the next section for details on how to make
 > an async Telegram Bot API request with the `telegrambot-lib`.
 
 ### Making Asynchronous Calls
@@ -267,6 +280,7 @@ Here's how such a call may look like:
 ```
 
 In either case you'll get a similar response — a `core.async` channel to take from later on:
+
 ```clojure
 =>
 #object[clojure.core.async.impl.channels.ManyToManyChannel 0x3d059861 "clojure.core.async.impl.channels.ManyToManyChannel@3d059861"]

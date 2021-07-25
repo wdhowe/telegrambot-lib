@@ -29,7 +29,7 @@ All notable changes to this project will be documented in this file. This change
 
 ### 0.3.4 Added
 
-- New optional parameters and updates in support of the [Telegram Bot API 5.3 release](https://core.telegram.org/bots/api-changelog#june-25-2021).
+- New optional parameters and updates in support of [Telegram Bot API 5.3](https://core.telegram.org/bots/api-changelog#june-25-2021).
 
 ### 0.3.4 Changed
 
@@ -43,7 +43,7 @@ All notable changes to this project will be documented in this file. This change
 
 ### 0.3.3 Added
 
-- New optional parameters and updates in support of the [Telegram Bot API 5.2 release](https://core.telegram.org/bots/api-changelog#april-26-2021).
+- New optional parameters and updates in support of [Telegram Bot API 5.2](https://core.telegram.org/bots/api-changelog#april-26-2021).
 
 ### 0.3.3 Changed
 
@@ -53,7 +53,7 @@ All notable changes to this project will be documented in this file. This change
 
 ### 0.3.2 Added
 
-- New methods and optional params in support of the [Telegram Bot API 5.1 release](https://core.telegram.org/bots/api-changelog#march-9-2021).
+- New methods and optional params in support of [Telegram Bot API 5.1](https://core.telegram.org/bots/api-changelog#march-9-2021).
 
 ### 0.3.2 Changed
 
@@ -74,7 +74,7 @@ All notable changes to this project will be documented in this file. This change
 
 ### 0.3.0 Added
 
-- New methods and optional params in support of the [Telegram Bot API 5.0 release](https://core.telegram.org/bots/api-changelog#november-4-2020).
+- New methods and optional params in support of [Telegram Bot API 5.0](https://core.telegram.org/bots/api-changelog#november-4-2020).
 
 ## [0.2.0] - 2020-10-25
 
@@ -93,7 +93,7 @@ All notable changes to this project will be documented in this file. This change
 
 ### 0.1.0 Added
 
-- Initial release of project.
+- Initial release of project, supporting [Telegram Bot API 4.9](https://core.telegram.org/bots/api-changelog#june-4-2020).
 - Basic library functionality, tests, documentation, github pipeline.
 
 [Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/1.0.0...HEAD
