@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [Unreleased]
 
-- None yet.
+- Minor documentation updates.
 
 ## [1.0.0] - 2021-07-18
 
