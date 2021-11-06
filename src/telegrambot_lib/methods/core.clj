@@ -740,7 +740,7 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - action ; type of action to broadcast (typing, upload_photo, record_video, upload_video,
-              record_voice, upload_voice, upload_document, find_location,
+              record_voice, upload_voice, upload_document, choose_sticker, find_location,
               record_video_note, upload_video_note)"
   ([this content]
    (http/request this "sendChatAction" content))
@@ -1038,8 +1038,10 @@
    - chat_id ; target chat or username (@user)
 
    Optional
+   - name ; invite name link
    - expire_date ; unix timestamp when the link will expire
-   - member_limit ; max num users that can be members simulatneously (1-99999)"
+   - member_limit ; max num users that can be members simulatneously (1-99999)
+   - creates_join_request ; true if users joining need to be approved"
   content-map?)
 
 (defmethod create-chat-invite-link true
@@ -1067,8 +1069,10 @@
    - invite_link ; invite link to edit
 
    Optional
+   - name ; invite name link
    - expire_date ; unix timestamp when the link will expire
-   - member_limit ; max num users that can be members simulatneously (1-99999)"
+   - member_limit ; max num users that can be members simulatneously (1-99999)
+   - creates_join_request ; true if users joining need to be approved"
   ([this content]
    (http/request this "editChatInviteLink" content))
 
@@ -1099,6 +1103,42 @@
   ([this chat_id invite_link]
    (let [content {:chat_id chat_id
                   :invite_link invite_link}]
+     (revoke-chat-invite-link this content))))
+
+(defn approve-chat-join-request
+  "Use this method to approve a chat join request.
+   The bot must be an administrator in the chat for this to work and
+   must have the can_invite_users administrator right.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user"
+  ([this content]
+   (http/request this "approveChatJoinRequest" content))
+
+  ([this chat_id user_id]
+   (let [content {:chat_id chat_id
+                  :user_id user_id}]
+     (revoke-chat-invite-link this content))))
+
+(defn decline-chat-join-request
+  "Use this method to decline a chat join request.
+   The bot must be an administrator in the chat for this to work and
+   must have the can_invite_users administrator right.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user"
+  ([this content]
+   (http/request this "declineChatJoinRequest" content))
+
+  ([this chat_id user_id]
+   (let [content {:chat_id chat_id
+                  :user_id user_id}]
      (revoke-chat-invite-link this content))))
 
 (defn set-chat-photo
@@ -1543,6 +1583,8 @@
    :create-chat-invite-link create-chat-invite-link
    :edit-chat-invite-link edit-chat-invite-link
    :revoke-chat-invite-link revoke-chat-invite-link
+   :approve-chat-join-request approve-chat-join-request
+   :decline-chat-join-request decline-chat-join-request
    :set-chat-photo set-chat-photo
    :delete-chat-photo delete-chat-photo
    :set-chat-title set-chat-title
