@@ -102,6 +102,8 @@
   create-chat-invite-link
   edit-chat-invite-link
   revoke-chat-invite-link
+  approve-chat-join-request
+  decline-chat-join-request
   set-chat-photo
   delete-chat-photo
   set-chat-title
