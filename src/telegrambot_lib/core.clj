@@ -97,6 +97,8 @@
   restrict-chat-member
   promote-chat-member
   set-chat-administrator-custom-title
+  ban-chat-sender-chat
+  unban-chat-sender-chat
   set-chat-permissions
   export-chat-invite-link
   create-chat-invite-link

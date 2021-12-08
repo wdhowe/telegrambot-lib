@@ -989,6 +989,53 @@
                   :custom_title custom_title}]
      (set-chat-administrator-custom-title this content))))
 
+(defn ban-chat-sender-chat
+  "Use this method to ban a channel chat in a supergroup or a channel.
+   The owner of the chat will not be able to send messages and join live streams on
+   behalf of the chat, unless it is unbanned first. The bot must be an administrator
+   in the supergroup or channel for this to work and must have the appropriate administrator rights.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - sender_chat_id ; target sender chat
+
+   Optional
+   - until_date ; date in unix time when the sender chat will be unbanned"
+  {:added "1.2.0"}
+  ([this content]
+   (http/request this "banChatSenderChat" content))
+
+  ([this chat_id sender_chat_id]
+   (let [content {:chat_id chat_id
+                  :sender_chat_id sender_chat_id}]
+     (ban-chat-sender-chat this content)))
+
+  ([this chat_id sender_chat_id & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :sender_chat_id sender_chat_id})]
+     (ban-chat-sender-chat this content))))
+
+(defn unban-chat-sender-chat
+  "Use this method to unban a previously banned channel chat in a supergroup or channel.
+   The bot must be an administrator for this to work and must have the appropriate administrator rights.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - sender_chat_id ; target sender chat"
+  {:added "1.2.0"}
+  ([this content]
+   (http/request this "unbanChatSenderChat" content))
+
+  ([this chat_id sender_chat_id]
+   (let [content {:chat_id chat_id
+                  :sender_chat_id sender_chat_id}]
+     (unban-chat-sender-chat this content))))
+
 (defn set-chat-permissions
   "Use this method to set default chat permissions for all members.
    The bot must be an administrator in the group or a supergroup for this to work
@@ -1578,6 +1625,8 @@
    :restrict-chat-member restrict-chat-member
    :promote-chat-member promote-chat-member
    :set-chat-administrator-custom-title set-chat-administrator-custom-title
+   :ban-chat-sender-chat ban-chat-sender-chat
+   :unban-chat-sender-chat unban-chat-sender-chat
    :set-chat-permissions set-chat-permissions
    :export-chat-invite-link export-chat-invite-link
    :create-chat-invite-link create-chat-invite-link
