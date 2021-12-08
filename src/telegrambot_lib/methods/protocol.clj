@@ -237,6 +237,21 @@
      promoted by the bot.
      Returns True on success.")
 
+  (ban-chat-sender-chat [this content]
+    [this chat_id sender_chat_id]
+    [this chat_id sender_chat_id & optional]
+    "Use this method to ban a channel chat in a supergroup or a channel.
+    The owner of the chat will not be able to send messages and join live streams on
+    behalf of the chat, unless it is unbanned first. The bot must be an administrator
+    in the supergroup or channel for this to work and must have the appropriate administrator rights.
+    Returns True on success.")
+
+  (unban-chat-sender-chat [this content]
+    [this chat_id sender_chat_id]
+    "Use this method to unban a previously banned channel chat in a supergroup or channel.
+    The bot must be an administrator for this to work and must have the appropriate administrator rights.
+    Returns True on success.")
+
   (set-chat-permissions [this content]
     [this chat_id permissions]
     "Use this method to set default chat permissions for all members.
