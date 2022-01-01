@@ -77,6 +77,7 @@
    - entities ; list of MessageEntity - can use instead of parse_mode
    - disable_web_page_preview ; disable link previews
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -105,7 +106,8 @@
    - message_id ; message id in chat specified in 'from_chat_id'
 
    Optional
-   - disable_notification ; send silently"
+   - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving"
   ([this content]
    (http/request this "forwardMessage" content))
 
@@ -135,7 +137,14 @@
    - message_id ; message id in chat specified in 'from_chat_id'
 
    Optional
-   - disable_notification ; send silently"
+   - caption ; new caption for media
+   - parse_mode ; entity parsing
+   - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
+   - reply_to_message_id ; id of the original message
+   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_markup ; additional interface options"
   ([this content]
    (http/request this "copyMessage" content))
 
@@ -166,6 +175,7 @@
    - parse_mode ; entity parsing in photo caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -203,6 +213,7 @@
    - title ; audio track title
    - thumb ; thumbnail of the file sent
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -236,6 +247,7 @@
    - thumb ; thumbnail of the file sent
    - disable_content_type_detection ; disable auto content type detection for files uploaded
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -273,6 +285,7 @@
    - thumb ; thumbnail of file sent
    - supports_streaming ; true if uploaded video is ok for streaming
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -309,6 +322,7 @@
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - thumb ; thumbnail of file sent
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -344,6 +358,7 @@
    - parse_mode ; entity parsing in voice message caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -375,6 +390,7 @@
    - length ; video width and height
    - thumb ; thumbnail of the file sent
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -403,6 +419,7 @@
 
    Optional
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found"
   ([this content]
@@ -435,6 +452,7 @@
    - heading ; 1-360 degrees direction user is moving
    - proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -594,6 +612,7 @@
    - google_place_id ; Google Places id of venue
    - google_place_type ; Google Places type of venue
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -631,6 +650,7 @@
    - last_name
    - vcard ; 'vCard' formatted additional data
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -680,6 +700,7 @@
    - close_date ; unix timestamp when poll will be auto closed (5-600 secs in future)
    - is_closed ; true if poll needs to be immediately closed
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
@@ -699,7 +720,6 @@
                          :options options})]
      (send-poll this content))))
 
-
 (defmulti send-dice
   "Use this method to send an animated emoji that will display a random value.
    On success, the sent Message is returned.
@@ -711,6 +731,7 @@
    Optional
    - emoji ; image for dice animation (default: dice)
    - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"

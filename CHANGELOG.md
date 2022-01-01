@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file. This change
 
 - None yet.
 
+## [1.3.0] - 2022-01-01
+
+### 1.3.0 Added
+
+- Updates in support of [Telegram Bot API 5.6](https://core.telegram.org/bots/api#december-30-2021).
+- Dependency version bumps.
+
 ## [1.2.0] - 2021-12-07
 
 ### 1.2.0 Added
@@ -111,7 +118,8 @@ All notable changes to this project will be documented in this file. This change
 - Initial release of project, supporting [Telegram Bot API 4.9](https://core.telegram.org/bots/api-changelog#june-4-2020).
 - Basic library functionality, tests, documentation, github pipeline.
 
-[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/wdhowe/telegrambot-lib/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/wdhowe/telegrambot-lib/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/wdhowe/telegrambot-lib/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/wdhowe/telegrambot-lib/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/wdhowe/telegrambot-lib/compare/0.3.5...1.0.0
