@@ -20,6 +20,7 @@
 
    Optional
    - disable_notification ; send message silently
+   - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; inline keyboard markup"
