@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [Unreleased]
 
-- None yet.
+- README contents moved into the [wiki](https://github.com/wdhowe/telegrambot-lib/wiki).
 
 ## [1.3.0] - 2022-01-01
 
