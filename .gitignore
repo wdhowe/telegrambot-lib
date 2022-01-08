@@ -9,7 +9,6 @@
 /.lein-*
 .lsp/
 /.nrepl-port
-pom.xml
 pom.xml.asc
 profiles.clj
 /target
