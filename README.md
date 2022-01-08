@@ -9,7 +9,7 @@ without adding extra bot logic.
 
 Each API call is a Clojure function, with docstrings outlining required and optional parameters.
 
-> **For more information on updates to the Telegram Bot API version, see the [CHANGELOG](CHANGELOG.md).**
+> **For more information on updates to the Telegram Bot API version, see the [Releases](https://github.com/wdhowe/telegrambot-lib/releases).**
 
 ## Usage
 
