@@ -94,6 +94,7 @@
    Optional
    - png_sticker ; PNG image with the sticker
    - tgs_sticker ; TGS animation with the sticker
+   - webm_sticker ; WEBM video with the sticker, uploaded using multipart/form-data
    - contains_masks ; true to create a set of mask stickers
    - mask_position ; json object for where the mask should be placed on faces"
   ([this content]
@@ -131,6 +132,7 @@
    Optional
    - png_sticker ; PNG image with the sticker
    - tgs_sticker ; TGS animation with the sticker
+   - webm_sticker ; WEBM video with the sticker, uploaded using multipart/form-data
    - mask_position ; json object for where the mask should be placed on faces"
   ([this content]
    (http/request this "addStickerToSet" content))
