@@ -1,4 +1,4 @@
-(defproject telegrambot-lib "1.3.0"
+(defproject telegrambot-lib "1.4.0"
   :description "A library for interacting with the Telegram Bot API."
   :url "https://github.com/wdhowe/telegrambot-lib"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
@@ -7,7 +7,7 @@
                  [environ "1.2.0"]
                  [org.clojure/clojure "1.10.3"]
                  [org.clojure/core.async "1.5.648"]
-                 [org.clojure/tools.logging "1.2.3"]
+                 [org.clojure/tools.logging "1.2.4"]
                  [potemkin "0.4.5"]]
   :repl-options {:init-ns telegrambot-lib.core}
   :profiles {:dev [:project/dev :profiles/dev]
@@ -21,7 +21,7 @@
                            :resource-paths ["env/dev/resources"]}
              :project/test {:plugins [[lein-environ "1.1.0"]]
                             :resource-paths ["env/test/resources"]}
-             :cheshire [:test {:dependencies [[cheshire "5.10.1"]]}]
+             :cheshire [:test {:dependencies [[cheshire "5.10.2"]]}]
              :jsonista [:test {:dependencies [[metosin/jsonista "0.3.5"]]}]
              :data.json [:test {:dependencies [[org.clojure/data.json "2.4.0"]]}]}
   :test-selectors {:default (complement :json)
