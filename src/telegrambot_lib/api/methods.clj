@@ -1,4 +1,4 @@
-(ns telegrambot-lib.methods.core
+(ns telegrambot-lib.api.methods
   "Telegram Bot API Methods - function implementations.
    - <https://core.telegram.org/bots/api#available-methods>
 
@@ -1680,71 +1680,3 @@
 
   ([this content]
    (http/request this "getMyDefaultAdministratorRights" content)))
-
-(def behavior
-  "Map for extending the core TBot record with functions."
-  {:call call
-   :get-me get-me
-   :log-out log-out
-   :close close
-   :send-message send-message
-   :forward-message forward-message
-   :copy-message copy-message
-   :send-photo send-photo
-   :send-audio send-audio
-   :send-document send-document
-   :send-video send-video
-   :send-animation send-animation
-   :send-voice send-voice
-   :send-video-note send-video-note
-   :send-media-group send-media-group
-   :send-location send-location
-   :edit-message-live-location edit-message-live-location
-   :edit-message-live-location-inline edit-message-live-location-inline
-   :stop-message-live-location stop-message-live-location
-   :stop-message-live-location-inline stop-message-live-location-inline
-   :send-venue send-venue
-   :send-contact send-contact
-   :send-poll send-poll
-   :send-dice send-dice
-   :send-chat-action send-chat-action
-   :get-user-profile-photos get-user-profile-photos
-   :get-file get-file
-   :kick-chat-member kick-chat-member
-   :ban-chat-member ban-chat-member
-   :unban-chat-member unban-chat-member
-   :restrict-chat-member restrict-chat-member
-   :promote-chat-member promote-chat-member
-   :set-chat-administrator-custom-title set-chat-administrator-custom-title
-   :ban-chat-sender-chat ban-chat-sender-chat
-   :unban-chat-sender-chat unban-chat-sender-chat
-   :set-chat-permissions set-chat-permissions
-   :export-chat-invite-link export-chat-invite-link
-   :create-chat-invite-link create-chat-invite-link
-   :edit-chat-invite-link edit-chat-invite-link
-   :revoke-chat-invite-link revoke-chat-invite-link
-   :approve-chat-join-request approve-chat-join-request
-   :decline-chat-join-request decline-chat-join-request
-   :set-chat-photo set-chat-photo
-   :delete-chat-photo delete-chat-photo
-   :set-chat-title set-chat-title
-   :set-chat-description set-chat-description
-   :pin-chat-message pin-chat-message
-   :unpin-chat-message unpin-chat-message
-   :unpin-all-chat-messages unpin-all-chat-messages
-   :leave-chat leave-chat
-   :get-chat get-chat
-   :get-chat-administrators get-chat-administrators
-   :get-chat-members-count get-chat-members-count
-   :get-chat-member-count get-chat-member-count
-   :get-chat-member get-chat-member
-   :set-chat-sticker-set set-chat-sticker-set
-   :delete-chat-sticker-set delete-chat-sticker-set
-   :answer-callback-query answer-callback-query
-   :set-my-commands set-my-commands
-   :delete-my-commands delete-my-commands
-   :get-my-commands get-my-commands
-   :set-chat-menu-button set-chat-menu-button
-   :get-chat-menu-button get-chat-menu-button
-   :set-my-default-administrator-rights set-my-default-administrator-rights
-   :get-my-default-administrator-rights get-my-default-administrator-rights})

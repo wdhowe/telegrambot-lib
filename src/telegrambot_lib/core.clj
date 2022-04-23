@@ -3,35 +3,15 @@
    - [Getting started](https://github.com/wdhowe/telegrambot-lib#usage)"
   (:gen-class)
   (:require [telegrambot-lib.config :as conf]
-            [telegrambot-lib.edit.core :as edit]
-            [telegrambot-lib.edit.protocol :refer [Edit]]
-            [telegrambot-lib.games.core :as games]
-            [telegrambot-lib.games.protocol :refer [Games]]
-            [telegrambot-lib.inline.core :as inline]
-            [telegrambot-lib.inline.protocol :refer [Inline]]
-            [telegrambot-lib.methods.core :as methods]
-            [telegrambot-lib.methods.protocol :refer [Methods]]
-            [telegrambot-lib.passport.core :as passport]
-            [telegrambot-lib.passport.protocol :refer [Passport]]
-            [telegrambot-lib.payments.core :as payments]
-            [telegrambot-lib.payments.protocol :refer [Payments]]
-            [telegrambot-lib.stickers.core :as stickers]
-            [telegrambot-lib.stickers.protocol :refer [Stickers]]
-            [telegrambot-lib.updates.core :as updates]
-            [telegrambot-lib.updates.protocol :refer [Updates]]
+            [telegrambot-lib.api.edit :as edit]
+            [telegrambot-lib.api.games :as games]
+            [telegrambot-lib.api.inline :as inline]
+            [telegrambot-lib.api.methods :as methods]
+            [telegrambot-lib.api.passport :as passport]
+            [telegrambot-lib.api.payments :as payments]
+            [telegrambot-lib.api.stickers :as stickers]
+            [telegrambot-lib.api.updates :as updates]
             [potemkin :refer [import-vars]]))
-
-(defrecord TBot [bot-token])
-
-;; Add each part of the Telegram API to the TBot type.
-(extend TBot Edit edit/behavior)
-(extend TBot Games games/behavior)
-(extend TBot Inline inline/behavior)
-(extend TBot Methods methods/behavior)
-(extend TBot Passport passport/behavior)
-(extend TBot Payments payments/behavior)
-(extend TBot Stickers stickers/behavior)
-(extend TBot Updates updates/behavior)
 
 (defn create
   "Create a new Telegram Bot API instance.
@@ -40,7 +20,7 @@
   ([]
    (create (conf/get-token)))
   ([bot-token]
-   (map->TBot {:bot-token bot-token})))
+   {:bot-token bot-token}))
 
 ;; Make all Telegram functions available directly in this namespace.
 (import-vars

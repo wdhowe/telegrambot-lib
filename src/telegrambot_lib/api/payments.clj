@@ -1,4 +1,4 @@
-(ns telegrambot-lib.payments.core
+(ns telegrambot-lib.api.payments
   "Telegram Payments - function implementations.
    - <https://core.telegram.org/bots/api#payments>
 
@@ -163,11 +163,3 @@
                   :ok false
                   :error_message error_message}]
      (answer-precheckout-query-error this content))))
-
-(def behavior
-  "Map for extending the core TBot record with functions."
-  {:send-invoice send-invoice
-   :answer-shipping-query-ok answer-shipping-query-ok
-   :answer-shipping-query-error answer-shipping-query-error
-   :answer-precheckout-query-ok answer-precheckout-query-ok
-   :answer-precheckout-query-error answer-precheckout-query-error})

@@ -1,4 +1,4 @@
-(ns telegrambot-lib.stickers.core
+(ns telegrambot-lib.api.stickers
   "Telegram Stickers - function implementations.
    - <https://core.telegram.org/bots/api#stickers>
 
@@ -206,14 +206,3 @@
                         {:name name
                          :user_id user_id})]
      (set-sticker-set-thumb this content))))
-
-(def behavior
-  "Map for extending the core TBot record with functions."
-  {:send-sticker send-sticker
-   :get-sticker-set get-sticker-set
-   :upload-sticker-file upload-sticker-file
-   :create-new-sticker-set create-new-sticker-set
-   :add-sticker-to-set add-sticker-to-set
-   :set-sticker-position-in-set set-sticker-position-in-set
-   :delete-sticker-from-set delete-sticker-from-set
-   :set-sticker-set-thumb set-sticker-set-thumb})

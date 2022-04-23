@@ -1,4 +1,4 @@
-(ns telegrambot-lib.inline.core
+(ns telegrambot-lib.api.inline
   "Telegram Bot API Inline Mode - function implementations.
    - <https://core.telegram.org/bots/api#inline-mode>
 
@@ -57,8 +57,3 @@
    (let [content {:web_app_query_id web_app_query_id
                   :result result}]
      (answer-inline-query this content))))
-
-(def behavior
-  "Map for extending the core TBot record with functions."
-  {:answer-inline-query answer-inline-query
-   :answer-web-app-query answer-web-app-query})

@@ -1,4 +1,4 @@
-(ns telegrambot-lib.edit.core
+(ns telegrambot-lib.api.edit
   "Telegram Bot API Updating/Modifying Messages - function implementations.
    - <https://core.telegram.org/bots/api#updating-messages>
 
@@ -266,16 +266,3 @@
    (let [content {:chat_id chat_id
                   :message_id message_id}]
      (delete-message this content))))
-
-(def behavior
-  "Map for extending the core TBot record with functions."
-  {:edit-message-text edit-message-text
-   :edit-message-text-inline edit-message-text-inline
-   :edit-message-caption edit-message-caption
-   :edit-message-caption-inline edit-message-caption-inline
-   :edit-message-media edit-message-media
-   :edit-message-media-inline edit-message-media-inline
-   :edit-message-reply-markup edit-message-reply-markup
-   :edit-message-reply-markup-inline edit-message-reply-markup-inline
-   :stop-poll stop-poll
-   :delete-message delete-message})
