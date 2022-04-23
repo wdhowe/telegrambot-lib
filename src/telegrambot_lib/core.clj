@@ -44,7 +44,7 @@
 
 ;; Make all Telegram functions available directly in this namespace.
 (import-vars
- [telegrambot-lib.edit.core
+ [edit
   edit-message-text
   edit-message-text-inline
   edit-message-caption
@@ -55,15 +55,16 @@
   edit-message-reply-markup-inline
   stop-poll
   delete-message]
- [telegrambot-lib.games.core
+ [games
   send-game
   set-game-score
   set-game-score-inline
   get-game-high-scores
   get-game-high-scores-inline]
- [telegrambot-lib.inline.core
-  answer-inline-query]
- [telegrambot-lib.methods.core
+ [inline
+  answer-inline-query
+  answer-web-app-query]
+ [methods
   call
   get-me
   log-out
@@ -124,16 +125,20 @@
   answer-callback-query
   set-my-commands
   delete-my-commands
-  get-my-commands]
- [telegrambot-lib.passport.core
+  get-my-commands
+  set-chat-menu-button
+  get-chat-menu-button
+  set-my-default-administrator-rights
+  get-my-default-administrator-rights]
+ [passport
   set-passport-data-errors]
- [telegrambot-lib.payments.core
+ [payments
   send-invoice
   answer-shipping-query-ok
   answer-shipping-query-error
   answer-precheckout-query-ok
   answer-precheckout-query-error]
- [telegrambot-lib.stickers.core
+ [stickers
   send-sticker
   get-sticker-set
   upload-sticker-file
@@ -142,7 +147,7 @@
   set-sticker-position-in-set
   delete-sticker-from-set
   set-sticker-set-thumb]
- [telegrambot-lib.updates.core
+ [updates
   get-updates
   set-webhook
   delete-webhook

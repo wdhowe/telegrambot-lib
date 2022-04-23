@@ -974,7 +974,7 @@
    - can_delete_messages ; true if admin can delete messages of other users
    - can_invite_users ; true if admin can invite new users to chat
    - can_restrict_members ; true if admin can restrict, ban, unban members
-   - can_manage_voice_chats ; true if admin can manage voice chats, supergroups only
+   - can_manage_video_chats ; true if admin can manage video chats, supergroups only
    - can_pin_messages ; true if admin can pin messages
    - can_promote_members ; true if admin can add new admins"
   ([this content]
@@ -1611,6 +1611,80 @@
   ([this content]
    (http/request this "getMyCommands" content)))
 
+(defn set-chat-menu-button
+  "Use this method to change the bot's menu button in a private chat, or the default menu button.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - chat_id ; target chat or username (@user)
+   - menu_button ; A JSON-serialized object for the new bot's menu button. Defaults to MenuButtonDefault."
+  {:added "1.5.0"}
+  ([this]
+   (http/request this "setChatMenuButton"))
+
+  ([this content]
+   (http/request this "setChatMenuButton" content)))
+
+(defn get-chat-menu-button
+  "Use this method to get the current value of the bot's menu button in a private chat, or the
+   default menu button.
+   Returns MenuButton on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - chat_id ; target chat or username (@user)"
+  {:added "1.5.0"}
+  ([this]
+   (http/request this "getChatMenuButton"))
+
+  ([this content]
+   (http/request this "getChatMenuButton" content)))
+
+(defn set-my-default-administrator-rights
+  "Use this method to change the default administrator rights requested by the bot when it's added
+   as an administrator to groups or channels.
+   These rights will be suggested to users, but they are are free to modify the list before adding the bot.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - rights ; A JSON-serialized object describing new default administrator rights.
+              If not specified, the default administrator rights will be cleared.
+   - for_channels ; Pass True to change the default administrator rights of the bot in channels.
+                    Otherwise, the default administrator rights of the bot for groups and
+                    supergroups will be changed."
+  {:added "1.5.0"}
+  ([this]
+   (http/request this "setMyDefaultAdministratorRights"))
+
+  ([this content]
+   (http/request this "setMyDefaultAdministratorRights" content)))
+
+(defn get-my-default-administrator-rights
+  "Use this method to get the current default administrator rights of the bot.
+   Returns ChatAdministratorRights on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - for_channels ; Pass True to get default administrator rights of the bot in channels.
+                    Otherwise, default administrator rights of the bot for groups and
+                    supergroups will be returned."
+  {:added "1.5.0"}
+  ([this]
+   (http/request this "getMyDefaultAdministratorRights"))
+
+  ([this content]
+   (http/request this "getMyDefaultAdministratorRights" content)))
+
 (def behavior
   "Map for extending the core TBot record with functions."
   {:call call
@@ -1673,4 +1747,8 @@
    :answer-callback-query answer-callback-query
    :set-my-commands set-my-commands
    :delete-my-commands delete-my-commands
-   :get-my-commands get-my-commands})
+   :get-my-commands get-my-commands
+   :set-chat-menu-button set-chat-menu-button
+   :get-chat-menu-button get-chat-menu-button
+   :set-my-default-administrator-rights set-my-default-administrator-rights
+   :get-my-default-administrator-rights get-my-default-administrator-rights})
