@@ -4,9 +4,9 @@ What changes in the [Telegram Bot API](https://core.telegram.org/bots/api) requi
 
 Changes required (methods/parameters)
 
-- New method: updates in the category's protocol, core, behavior (bottom of category core), and import-vars in main project core.
-- New/changed required parameters for a method: updates in the category's protocol, core, core docstring.
-- New/changed optional parameter for a method: docstring updates in the category's core only.
+- New method: updates in the category's api/namespace and import-vars in main project core.
+- New/changed required parameters for a method: updates in the category's api/namespace and api/namespace docstring.
+- New/changed optional parameter for a method: updates in the category's api/namespace docstring only.
 
 No changes
 

@@ -1,4 +1,4 @@
-(ns telegrambot-lib.games.core
+(ns telegrambot-lib.api.games
   "Telegram Bot API Games - function implementations.
    - <https://core.telegram.org/bots/api#games>
 
@@ -138,11 +138,3 @@
    (let [content {:inline_message_id inline_message_id
                   :user_id user_id}]
      (get-game-high-scores-inline this content))))
-
-(def behavior
-  "Map for extending the core TBot record with functions."
-  {:send-game send-game
-   :set-game-score set-game-score
-   :set-game-score-inline set-game-score-inline
-   :get-game-high-scores get-game-high-scores
-   :get-game-high-scores-inline get-game-high-scores-inline})

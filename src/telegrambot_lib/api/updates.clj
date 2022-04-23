@@ -1,4 +1,4 @@
-(ns telegrambot-lib.updates.core
+(ns telegrambot-lib.api.updates
   "Getting updates - function implementations.
    - <https://core.telegram.org/bots/api#getupdates>
 
@@ -87,10 +87,3 @@
    - this ; a bot instance"
   [this]
   (http/request this "getWebhookInfo"))
-
-(def behavior
-  "Map for extending the core TBot record with functions."
-  {:get-updates get-updates
-   :set-webhook set-webhook
-   :delete-webhook delete-webhook
-   :get-webhook-info get-webhook-info})

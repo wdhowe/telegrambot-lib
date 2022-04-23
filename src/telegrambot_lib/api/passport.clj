@@ -1,4 +1,4 @@
-(ns telegrambot-lib.passport.core
+(ns telegrambot-lib.api.passport
   "Telegram Passport - function implementations.
    - <https://core.telegram.org/bots/api#telegram-passport>
 
@@ -23,7 +23,3 @@
    (let [content {:user_id user_id
                   :errors errors}]
      (set-passport-data-errors this content))))
-
-(def behavior
-  "Map for extending the core TBot record with functions."
-  {:set-passport-data-errors set-passport-data-errors})
