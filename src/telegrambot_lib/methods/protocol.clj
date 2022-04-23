@@ -421,4 +421,27 @@
   (get-my-commands [this]
     [this content]
     "Use this method to get the current list of the bot's commands.
-     Returns Array of BotCommand on success."))
+     Returns Array of BotCommand on success.")
+
+  (set-chat-menu-button [this]
+    [this content]
+    "Use this method to change the bot's menu button in a private chat, or the default menu button.
+     Returns True on success.")
+
+  (get-chat-menu-button [this]
+    [this content]
+    "Use this method to get the current value of the bot's menu button in a private chat, or the
+     default menu button.
+     Returns MenuButton on success.")
+
+  (set-my-default-administrator-rights [this]
+    [this content]
+    "Use this method to change the default administrator rights requested by the bot when it's added
+     as an administrator to groups or channels.
+     These rights will be suggested to users, but they are are free to modify the list before adding the bot.
+     Returns True on success.")
+
+  (get-my-default-administrator-rights [this]
+    [this content]
+    "Use this method to get the current default administrator rights of the bot.
+     Returns ChatAdministratorRights on success."))

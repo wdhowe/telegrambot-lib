@@ -39,6 +39,26 @@
                          :results results})]
      (answer-inline-query this content))))
 
+(defn answer-web-app-query
+  "Use this method to set the result of an interaction with a Web App and
+   send a corresponding message on behalf of the user to the chat from
+   which the query originated.
+   On success, a SentWebAppMessage object is returned.
+
+   Required
+   - this ; a bot instance
+   - web_app_query_id ; id for the answered query
+   - result ; json object describing message to be sent"
+  {:added "1.5.0"}
+  ([this content]
+   (http/request this "answerWebAppQuery" content))
+
+  ([this web_app_query_id result]
+   (let [content {:web_app_query_id web_app_query_id
+                  :result result}]
+     (answer-inline-query this content))))
+
 (def behavior
   "Map for extending the core TBot record with functions."
-  {:answer-inline-query answer-inline-query})
+  {:answer-inline-query answer-inline-query
+   :answer-web-app-query answer-web-app-query})
