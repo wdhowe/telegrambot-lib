@@ -7,12 +7,8 @@
    - Send only the required parameters as simple values.
    - Send the required paraemters as simple values and then 'optional' parameters in a map."
   (:gen-class)
-  (:require [telegrambot-lib.http :as http]))
-
-(defn content-map?
-  "Used throughout the multi-methods in order to check if content is a map or not."
-  [_ content & _]
-  (map? content))
+  (:require [telegrambot-lib.http :as http]
+            [telegrambot-lib.predicates :refer [content-map?]]))
 
 (defn send-sticker
   "Use this method to send static .WEBP or animated .TGS stickers.
