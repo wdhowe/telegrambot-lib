@@ -1,4 +1,4 @@
-(defproject telegrambot-lib "1.5.0"
+(defproject telegrambot-lib "2.0.0"
   :description "A library for interacting with the Telegram Bot API."
   :url "https://github.com/wdhowe/telegrambot-lib"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
