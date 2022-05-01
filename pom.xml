@@ -18,7 +18,7 @@
     <url>https://github.com/wdhowe/telegrambot-lib</url>
     <connection>scm:git:git://github.com/wdhowe/telegrambot-lib.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wdhowe/telegrambot-lib.git</developerConnection>
-    <tag>950fa201680749de4384752b88f95f598d05019f</tag>
+    <tag>bc83183fca6fd85661271fc7da920e6e88351521</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -31,9 +31,6 @@
     <testResources>
       <testResource>
         <directory>env/test/resources</directory>
-      </testResource>
-      <testResource>
-        <directory>env/dev/resources</directory>
       </testResource>
       <testResource>
         <directory>resources</directory>
@@ -98,11 +95,6 @@
       <groupId>potemkin</groupId>
       <artifactId>potemkin</artifactId>
       <version>0.4.5</version>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.11</version>
     </dependency>
   </dependencies>
 </project>
