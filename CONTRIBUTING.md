@@ -1,5 +1,7 @@
 # Development
 
+## API Changes
+
 What changes in the [Telegram Bot API](https://core.telegram.org/bots/api) require changes in this library?
 
 Changes required (methods/parameters)
@@ -12,3 +14,12 @@ No changes
 
 - Changes to classes.
 - Changes to fields in a class.
+
+## Artifacts
+
+The dev profile should be excluded when creating pom and clojar artifacts.
+
+```bash
+lein with-profile -dev pom
+lein with-profile -dev deploy clojars
+```
