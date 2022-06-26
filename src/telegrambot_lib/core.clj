@@ -114,6 +114,7 @@
   set-passport-data-errors]
  [payments
   send-invoice
+  create-invoice-link
   answer-shipping-query-ok
   answer-shipping-query-error
   answer-precheckout-query-ok

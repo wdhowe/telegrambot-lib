@@ -44,7 +44,9 @@
    - ip_address ; use this IP instead of resolving URL in DNS
    - max_connections ; max allowed simultaneous https connections for updates. (1-100) default: 40
    - allowed_updates ; json array of update types bot will receive
-   - drop_pending_updates ; Pass True to drop all pending updates"
+   - drop_pending_updates ; Pass True to drop all pending updates
+   - secret_token ; 1-256 chars. Sent in header (X-Telegram-Bot-Api-Secret-Token)
+                    to ensure request comes from your webhook."
   content-map?)
 
 (defmethod set-webhook true

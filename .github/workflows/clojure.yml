@@ -22,19 +22,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Dependencies
-        run: lein deps
-      - name: Version
-        run: lein version
-      - name: Build
-        run: lein compile
-      - name: Test JSON with 'cheshire'
-        run: lein with-profiles +cheshire test :json
-      - name: Test JSON with 'jsonista'
-        run: lein with-profiles +jsonista test :json
-      - name: Test JSON with 'data.json'
-        run: lein with-profiles +data.json test :json
-      - name: Test everything else
-        run: lein with-profiles +cheshire test
+      - name: Prep
+        run: |
+          apt update
+          apt install -y make
+      - name: Info
+        run: make debug
+      - name: Tests
+        run: make test
       - name: Package
-        run: lein uberjar
+        run: make package
