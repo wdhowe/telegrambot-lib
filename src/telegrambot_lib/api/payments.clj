@@ -31,9 +31,9 @@
    - start_parameter ; 'deep-linking' start param
    - provider_data ; json data about invoice, payment provider specific
    - photo_url ; product photo for the invoice
-   - photo_size
-   - photo_width
-   - photo_height
+   - photo_size ; size in bytes
+   - photo_width ; width
+   - photo_height ; height
    - need_name ; true if the user's full name is required for order
    - need_phone_number ; true if the user's phone number is required for order
    - need_email ; true if the user's email is required for order
@@ -71,6 +71,56 @@
                          :currency currency
                          :prices prices})]
      (send-invoice this content))))
+
+(defn create-invoice-link
+  "Use this method to create a link for an invoice.
+   Returns the created invoice link as String on success.
+
+   Required
+   - title ; product name
+   - description ; product description
+   - payload ; internal bot defined invoice payload
+   - provider_token ; payments provider token
+   - currency ; three letter ISO 4217 currency code
+   - prices ; 'LabeledPrice' array breakdown (price, tax, discount, delivery, etc)
+
+   Optional
+   - max_tip_amount ; integer of max tip accepted. US $1.45 = 145.
+   - suggested_tip_amounts ; json serialized array of integer tip amounts, 4 max suggested tips,
+     positive numbers, increasing order, and must not exceed max_tip_amount.
+   - provider_data ; json data about invoice, payment provider specific
+   - photo_url ; product photo for the invoice
+   - photo_size ; size in bytes
+   - photo_width ; width
+   - photo_height ; height
+   - need_name ; true if the user's full name is required for order
+   - need_phone_number ; true if the user's phone number is required for order
+   - need_email ; true if the user's email is required for order
+   - need_shipping_address ; true if the user's address is required for order
+   - send_phone_number_to_provider ; true to send phone number to provider
+   - send_email_to_provider ; true to send email to provider
+   - is_flexible ; true if final price depends on shipping method"
+  ([this content]
+   (http/request this "createInvoiceLink" content))
+
+  ([this title description payload provider_token currency prices]
+   (let [content {:title title
+                  :description description
+                  :payload payload
+                  :provider_token provider_token
+                  :currency currency
+                  :prices prices}]
+     (create-invoice-link this content)))
+
+  ([this title description payload provider_token currency prices & optional]
+   (let [content (merge (first optional)
+                        {:title title
+                         :description description
+                         :payload payload
+                         :provider_token provider_token
+                         :currency currency
+                         :prices prices})]
+     (create-invoice-link this content))))
 
 (defn answer-shipping-query-ok
   "If you sent an invoice requesting a shipping address
