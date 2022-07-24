@@ -39,7 +39,7 @@
 (defn gen-url
   "Generate the url to use for the http call, given the method `path`."
   [this path]
-  (str bot-api (:bot-token this) "/" path))
+  (format "%s%s/%s" bot-api (:bot-token this) path))
 
 (defn parse-resp
   "Parse the JSON response body into a keywordized map."
