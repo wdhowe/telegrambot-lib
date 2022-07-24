@@ -15,7 +15,8 @@
              ;; only edit :profiles/* in profiles.clj
              :profiles/dev {}
              :profiles/test {}
-             :project/dev {:dependencies [[ch.qos.logback/logback-classic "1.2.11"]]
+             :project/dev {:dependencies [[ch.qos.logback/logback-classic "1.2.11"]
+                                          [clj-http-fake "1.0.3"]]
                            :plugins [[lein-environ "1.1.0"]]
                            :source-paths ["env/dev/clj"]
                            :resource-paths ["env/dev/resources"]}
