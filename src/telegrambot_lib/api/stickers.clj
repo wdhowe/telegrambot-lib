@@ -57,6 +57,24 @@
   (let [content {:name name}]
     (get-sticker-set this content)))
 
+(defmulti get-custom-emoji-stickers
+  "Use this method to get information about custom emoji stickers by their identifiers.
+   Returns an Array of Sticker objects.
+
+   Required
+   - this ; a bot instance
+   - custom_emoji_ids ; a list of emoji identifiers"
+  content-map?)
+
+(defmethod get-custom-emoji-stickers true
+  [this content]
+  (http/request this "getCustomEmojiStickers" content))
+
+(defmethod get-custom-emoji-stickers false
+  [this custom_emoji_ids]
+  (let [content {:custom_emoji_ids custom_emoji_ids}]
+    (get-custom-emoji-stickers this content)))
+
 (defn upload-sticker-file
   "Use this method to upload a .PNG file with a sticker for later use
    in createNewStickerSet and addStickerToSet methods (can be used multiple times).
@@ -91,7 +109,7 @@
    - png_sticker ; PNG image with the sticker
    - tgs_sticker ; TGS animation with the sticker
    - webm_sticker ; WEBM video with the sticker, uploaded using multipart/form-data
-   - contains_masks ; true to create a set of mask stickers
+   - sticker_type ; regular(default) or mask
    - mask_position ; json object for where the mask should be placed on faces"
   ([this content]
    (http/request this "createNewStickerSet" content))

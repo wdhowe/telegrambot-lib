@@ -122,6 +122,7 @@
  [stickers
   send-sticker
   get-sticker-set
+  get-custom-emoji-stickers
   upload-sticker-file
   create-new-sticker-set
   add-sticker-to-set
