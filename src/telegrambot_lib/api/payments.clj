@@ -25,6 +25,7 @@
    - prices ; 'LabeledPrice' array breakdown (price, tax, discount, delivery, etc)
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - max_tip_amount ; integer of max tip accepted. US $1.45 = 145.
    - suggested_tip_amounts ; json serialized array of integer tip amounts, 4 max suggested tips,
      positive numbers, increasing order, and must not exceed max_tip_amount.

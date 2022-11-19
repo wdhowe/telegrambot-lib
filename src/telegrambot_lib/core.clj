@@ -102,6 +102,13 @@
   get-chat-member
   set-chat-sticker-set
   delete-chat-sticker-set
+  get-forum-topic-icon-stickers
+  create-forum-topic
+  edit-forum-topic
+  close-forum-topic
+  reopen-forum-topic
+  delete-forum-topic
+  unpin-all-forum-topic-messages
   answer-callback-query
   set-my-commands
   delete-my-commands

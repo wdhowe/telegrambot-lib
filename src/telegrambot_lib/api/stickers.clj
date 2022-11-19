@@ -20,6 +20,7 @@
    - sticker ; sticker to send, file_id for existing on Telegram servers
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; true to send message silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of original message if reply

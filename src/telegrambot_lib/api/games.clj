@@ -19,6 +19,7 @@
    - game_short_name ; serves as unique id for the game
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send message silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of original message
