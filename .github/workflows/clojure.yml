@@ -28,7 +28,7 @@ jobs:
           apt install -y make
       - name: Info
         run: make debug
-      - name: Tests
-        run: make test
       - name: Package
         run: make package
+      - name: Tests
+        run: make test
