@@ -69,6 +69,7 @@
    - text ; message to send
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - parse_mode ; entity parsing in message
    - entities ; list of MessageEntity - can use instead of parse_mode
    - disable_web_page_preview ; disable link previews
@@ -102,6 +103,7 @@
    - message_id ; message id in chat specified in 'from_chat_id'
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving"
   ([this content]
@@ -133,6 +135,7 @@
    - message_id ; message id in chat specified in 'from_chat_id'
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - caption ; new caption for media
    - parse_mode ; entity parsing
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
@@ -167,6 +170,7 @@
    - photo ; 'file_id' of photo to send that exists on Telegram servers or url
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - caption ; photo caption
    - parse_mode ; entity parsing in photo caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
@@ -201,6 +205,7 @@
    - audio ; 'file_id' of audio to send that exists on Telegram servers or url
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - caption ; audio caption
    - parse_mode ; entity parsing in audio caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
@@ -237,6 +242,7 @@
    - document ; 'file_id' of document to send that exists on Telegram servers or url
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - caption ; document caption
    - parse_mode ; entity parsing in document caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
@@ -272,6 +278,7 @@
    - video ; 'file_id' of video to send that exists on Telegram servers or url
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of video in seconds
    - width
    - height
@@ -310,6 +317,7 @@
    - animation ; 'file_id' of animation to send that exists on Telegram servers or url
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of animation in seconds
    - width
    - height
@@ -349,6 +357,7 @@
    - voice ; 'file_id' of audio file that exists on Telegram servers or url
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of voice message in seconds
    - caption ; voice message caption
    - parse_mode ; entity parsing in voice message caption
@@ -382,6 +391,7 @@
    - video_note ; 'file_id' of video note that exists on Telegram servers or url
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of video in seconds
    - length ; video width and height
    - thumb ; thumbnail of the file sent
@@ -414,6 +424,7 @@
    - media ; json array describing photos/videos to be sent
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
@@ -443,6 +454,7 @@
    - longitude ; long of location
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - horizontal_accuracy ; 1-1500 meters radius of uncertainty
    - live_period ; seconds for which location will be updated (60-86400)
    - heading ; 1-360 degrees direction user is moving
@@ -603,6 +615,7 @@
    - address ; address of venue
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - foursquare_id ; foursquare id of venue
    - foursquare_type ; foursquare type of venue
    - google_place_id ; Google Places id of venue
@@ -643,6 +656,7 @@
    - first_name
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - last_name
    - vcard ; 'vCard' formatted additional data
    - disable_notification ; send silently
@@ -685,6 +699,7 @@
    - options ; array/list of answer options
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - is_anonymous ; true if poll is anonymous
    - type ; 'quiz' or 'regular' (default: regular)
    - allows_multiple_answers ; true poll allows multiple answers
@@ -725,6 +740,7 @@
    - chat_id ; target chat or username (@user)
 
    Optional
+   - message_thread_id ; id of the target thread of the forum.
    - emoji ; image for dice animation (default: dice)
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
@@ -972,7 +988,8 @@
    - can_restrict_members ; true if admin can restrict, ban, unban members
    - can_manage_video_chats ; true if admin can manage video chats, supergroups only
    - can_pin_messages ; true if admin can pin messages
-   - can_promote_members ; true if admin can add new admins"
+   - can_promote_members ; true if admin can add new admins
+   - can_manage_topics ; true if user is allowed to create,rename,close,reopen forum topics."
   ([this content]
    (http/request this "promoteChatMember" content))
 
@@ -1514,6 +1531,144 @@
   [this chat_id]
   (let [content {:chat_id chat_id}]
     (delete-chat-sticker-set this content)))
+
+(defn get-forum-topic-icon-stickers
+  "Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.
+   Requires no parameters.
+   Returns an Array of Sticker objects.
+
+   Required
+   - this ; a bot instance"
+  [this]
+  (http/request this "getForumTopicIconStickers"))
+
+(defn create-forum-topic
+  "Use this method to create a topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and
+   must have the can_manage_topics administrator rights.
+   Returns information about the created topic as a ForumTopic object.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - name ; the topic name.
+
+   Optional
+   - icon_color ; integer color of the topic icon in RGB format.
+   - icon_custom_emoji_id ; string id of custom emoji shown as topic icon."
+
+  ([this content]
+   (http/request this "createForumTopic" content))
+
+  ([this chat_id name]
+   (let [content {:chat_id chat_id
+                  :name name}]
+     (create-forum-topic this content)))
+
+  ([this chat_id name & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :name name})]
+     (create-forum-topic this content))))
+
+(defn edit-forum-topic
+  "Use this method to edit name and icon of a topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and must have
+   can_manage_topics administrator rights, unless it is the creator of the topic.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_thread_id ; id of the target thread of the forum.
+   - name ; the topic name.
+   - icon_custom_emoji_id ; string id of custom emoji shown as topic icon."
+
+  ([this content]
+   (http/request this "editForumTopic" content))
+
+  ([this chat_id message_thread_id name icon_custom_emoji_id]
+   (let [content {:chat_id chat_id
+                  :message_thread_id message_thread_id
+                  :name name
+                  :icon_custom_emoji_id icon_custom_emoji_id}]
+     (edit-forum-topic this content))))
+
+(defn close-forum-topic
+  "Use this method to close an open topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and
+   must have the can_manage_topics administrator rights, unless it is the creator of the topic.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_thread_id ; id of the target thread of the forum."
+
+  ([this content]
+   (http/request this "closeForumTopic" content))
+
+  ([this chat_id message_thread_id]
+   (let [content {:chat_id chat_id
+                  :message_thread_id message_thread_id}]
+     (close-forum-topic this content))))
+
+(defn reopen-forum-topic
+  "Use this method to reopen a closed topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and
+   must have the can_manage_topics administrator rights, unless it is the creator of the topic.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_thread_id ; id of the target thread of the forum."
+
+  ([this content]
+   (http/request this "reopenForumTopic" content))
+
+  ([this chat_id message_thread_id]
+   (let [content {:chat_id chat_id
+                  :message_thread_id message_thread_id}]
+     (reopen-forum-topic this content))))
+
+(defn delete-forum-topic
+  "Use this method to delete a forum topic along with all its messages in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and
+   must have the can_delete_messages administrator rights.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_thread_id ; id of the target thread of the forum."
+
+  ([this content]
+   (http/request this "deleteForumTopic" content))
+
+  ([this chat_id message_thread_id]
+   (let [content {:chat_id chat_id
+                  :message_thread_id message_thread_id}]
+     (delete-forum-topic this content))))
+
+(defn unpin-all-forum-topic-messages
+  "Use this method to clear the list of pinned messages in a forum topic.
+   The bot must be an administrator in the chat for this to work and
+   must have the can_pin_messages administrator right in the supergroup.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_thread_id ; id of the target thread of the forum."
+
+  ([this content]
+   (http/request this "unpinAllForumTopicMessages" content))
+
+  ([this chat_id message_thread_id]
+   (let [content {:chat_id chat_id
+                  :message_thread_id message_thread_id}]
+     (unpin-all-forum-topic-messages this content))))
 
 (defmulti answer-callback-query
   "Use this method to send answers to callback queries sent from inline keyboards.

@@ -1,4 +1,4 @@
-(defproject telegrambot-lib "2.2.0"
+(defproject telegrambot-lib "2.3.0"
   :description "A library for interacting with the Telegram Bot API."
   :url "https://github.com/wdhowe/telegrambot-lib"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
@@ -6,16 +6,16 @@
   :dependencies [[clj-http "3.12.3"]
                  [environ "1.2.0"]
                  [org.clojure/clojure "1.11.1"]
-                 [org.clojure/core.async "1.5.648"]
+                 [org.clojure/core.async "1.6.673"]
                  [org.clojure/tools.logging "1.2.4"]
-                 [potemkin "0.4.5"]]
+                 [potemkin "0.4.6"]]
   :repl-options {:init-ns telegrambot-lib.core}
   :profiles {:dev [:project/dev :profiles/dev]
              :test [:project/test :profiles/test]
              ;; only edit :profiles/* in profiles.clj
              :profiles/dev {}
              :profiles/test {}
-             :project/dev {:dependencies [[ch.qos.logback/logback-classic "1.2.11"]
+             :project/dev {:dependencies [[ch.qos.logback/logback-classic "1.4.5"]
                                           [clj-http-fake "1.0.3"]]
                            :plugins [[lein-environ "1.1.0"]]
                            :source-paths ["env/dev/clj"]
