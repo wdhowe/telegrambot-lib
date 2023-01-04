@@ -17,7 +17,7 @@ fresh-check:
 	lein ancient :check-clojure
 
 fresh:
-	lein ancient upgrade :no-tests :check-clojure
+	lein ancient upgrade :no-tests :check-clojure :exclude logback
 
 pom:
 	lein with-profile -dev pom

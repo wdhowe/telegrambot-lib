@@ -174,6 +174,7 @@
    - caption ; photo caption
    - parse_mode ; entity parsing in photo caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - has_spoiler ; true if photo needs to be covered with spoiler animation.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
@@ -285,6 +286,7 @@
    - caption ; video caption
    - parse_mode ; entity parsing in video caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - has_spoiler ; true if video needs to be covered with spoiler animation.
    - thumb ; thumbnail of file sent
    - supports_streaming ; true if uploaded video is ok for streaming
    - disable_notification ; send silently
@@ -324,6 +326,7 @@
    - caption ; animation caption
    - parse_mode ; entity parsing in animation caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - has_spoiler ; true if animation needs to be covered with spoiler animation.
    - thumb ; thumbnail of file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
@@ -774,7 +777,10 @@
    - chat_id ; target chat or username (@user)
    - action ; type of action to broadcast (typing, upload_photo, record_video, upload_video,
               record_voice, upload_voice, upload_document, choose_sticker, find_location,
-              record_video_note, upload_video_note)"
+              record_video_note, upload_video_note)
+
+   Optional
+   - message_thread_id ; unique id for target message thread."
   ([this content]
    (http/request this "sendChatAction" content))
 
@@ -1581,17 +1587,24 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - message_thread_id ; id of the target thread of the forum.
+
+   Optional
    - name ; the topic name.
    - icon_custom_emoji_id ; string id of custom emoji shown as topic icon."
+  {:changed "2.4.0"}
 
   ([this content]
    (http/request this "editForumTopic" content))
 
-  ([this chat_id message_thread_id name icon_custom_emoji_id]
+  ([this chat_id message_thread_id]
    (let [content {:chat_id chat_id
-                  :message_thread_id message_thread_id
-                  :name name
-                  :icon_custom_emoji_id icon_custom_emoji_id}]
+                  :message_thread_id message_thread_id}]
+     (edit-forum-topic this content)))
+
+  ([this chat_id message_thread_id & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :message_thread_id message_thread_id})]
      (edit-forum-topic this content))))
 
 (defn close-forum-topic
