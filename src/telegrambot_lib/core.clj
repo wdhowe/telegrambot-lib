@@ -109,6 +109,11 @@
   reopen-forum-topic
   delete-forum-topic
   unpin-all-forum-topic-messages
+  edit-general-forum-topic
+  close-general-forum-topic
+  reopen-general-forum-topic
+  hide-general-forum-topic
+  unhide-general-forum-topic
   answer-callback-query
   set-my-commands
   delete-my-commands

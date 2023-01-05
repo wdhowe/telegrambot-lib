@@ -1683,6 +1683,110 @@
                   :message_thread_id message_thread_id}]
      (unpin-all-forum-topic-messages this content))))
 
+(defn edit-general-forum-topic
+  "Use this method to edit the name of the 'General' topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and must have
+   can_manage_topics administrator rights.
+   Returns True on success.
+
+   Required
+   - this ; A bot instance.
+   - chat_id ; Target chat or username of supergroup (@user).
+   - name ; The topic name."
+  {:added "2.4.0"}
+
+  ([this content]
+   (http/request this "editGeneralForumTopic" content))
+
+  ([this chat_id name]
+   (let [content {:chat_id chat_id
+                  :name name}]
+     (edit-general-forum-topic this content))))
+
+(defmulti close-general-forum-topic
+  "Use this method to close an open 'General' topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and must have
+   the can_manage_topics administrator rights.
+   Returns True on success.
+
+   Required
+   - this ; A bot instance.
+   - chat_id ; Target chat or username of supergroup (@user)."
+  {:added "2.4.0"}
+  content-map?)
+
+(defmethod close-general-forum-topic true
+  [this content]
+  (http/request this "closeGeneralForumTopic" content))
+
+(defmethod close-general-forum-topic false
+  [this chat_id]
+  (let [content {:chat_id chat_id}]
+    (close-general-forum-topic this content)))
+
+(defmulti reopen-general-forum-topic
+  "Use this method to reopen a closed 'General' topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and must have
+   the can_manage_topics administrator rights.
+   Returns True on success.
+
+   Required
+   - this ; A bot instance.
+   - chat_id ; Target chat or username of supergroup (@user)."
+  {:added "2.4.0"}
+  content-map?)
+
+(defmethod reopen-general-forum-topic true
+  [this content]
+  (http/request this "reopenGeneralForumTopic" content))
+
+(defmethod reopen-general-forum-topic false
+  [this chat_id]
+  (let [content {:chat_id chat_id}]
+    (reopen-general-forum-topic this content)))
+
+(defmulti hide-general-forum-topic
+  "Use this method to hide the 'General' topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and must have
+   the can_manage_topics administrator rights.
+   Returns True on success.
+
+   Required
+   - this ; A bot instance.
+   - chat_id ; Target chat or username of supergroup (@user)."
+  {:added "2.4.0"}
+  content-map?)
+
+(defmethod hide-general-forum-topic true
+  [this content]
+  (http/request this "hideGeneralForumTopic" content))
+
+(defmethod hide-general-forum-topic false
+  [this chat_id]
+  (let [content {:chat_id chat_id}]
+    (hide-general-forum-topic this content)))
+
+(defmulti unhide-general-forum-topic
+  "Use this method to unhide the 'General' topic in a forum supergroup chat.
+   The bot must be an administrator in the chat for this to work and must have
+   the can_manage_topics administrator rights.
+   Returns True on success.
+
+   Required
+   - this ; A bot instance.
+   - chat_id ; Target chat or username of supergroup (@user)."
+  {:added "2.4.0"}
+  content-map?)
+
+(defmethod unhide-general-forum-topic true
+  [this content]
+  (http/request this "unhideGeneralForumTopic" content))
+
+(defmethod unhide-general-forum-topic false
+  [this chat_id]
+  (let [content {:chat_id chat_id}]
+    (unhide-general-forum-topic this content)))
+
 (defmulti answer-callback-query
   "Use this method to send answers to callback queries sent from inline keyboards.
    The answer will be displayed to the user as a notification at the top of the
