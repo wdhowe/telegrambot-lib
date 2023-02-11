@@ -953,6 +953,8 @@
    - permissions ; json object 'ChatPermissions' for new user permissions
 
    Optional
+   - use_independent_chat_permissions ; True if chat permissions are set independently.
+                                        Otherwise, some permissions imply others.
    - until_date ; unix time when user is unbanned. 30 seconds - 366 days.
                   if less or more, user is banned forever."
   ([this content]
@@ -1085,13 +1087,23 @@
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
-   - permissions ; new default chat permissions"
+   - permissions ; new default chat permissions
+
+   Optional
+   - use_independent_chat_permissions ; True if chat permissions are set independently.
+                                        Otherwise, some permissions imply others."
   ([this content]
    (http/request this "setChatPermissions" content))
 
   ([this chat_id permissions]
    (let [content {:chat_id chat_id
                   :permissions permissions}]
+     (set-chat-permissions this content)))
+
+  ([this chat_id permissions & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :permissions permissions})]
      (set-chat-permissions this content))))
 
 (defmulti export-chat-invite-link
