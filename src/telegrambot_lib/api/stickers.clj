@@ -200,6 +200,98 @@
   (let [content {:sticker sticker}]
     (delete-sticker-from-set this content)))
 
+(defn set-sticker-emoji-list
+  "Use this method to change the list of emoji assigned to a regular or custom emoji sticker.
+   The sticker must belong to a sticker set created by the bot.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - sticker ; File id of the sticker.
+   - emoji_list ; A JSON-serialized list of 1-20 emoji associated with the sticker."
+  {:added "2.6.0"}
+  ([this content]
+   (http/request this "setStickerEmojiList" content))
+
+  ([this sticker emoji_list]
+   (let [content {:sticker sticker
+                  :emoji_list emoji_list}]
+     (set-sticker-emoji-list this content))))
+
+(defmulti set-sticker-keywords
+  "Use this method to change search keywords assigned to a regular or custom emoji sticker.
+   The sticker must belong to a sticker set created by the bot.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - sticker ; File id of the sticker.
+
+   Optional
+   - keywords ; A JSON-serialized list of 0-20 search keywords for the sticker."
+  {:added "2.6.0"}
+  content-map?)
+
+(defmethod set-sticker-keywords true
+  [this content]
+  (http/request this "setStickerKeywords" content))
+
+(defmethod set-sticker-keywords false
+  ([this sticker]
+   (let [content {:sticker sticker}]
+     (set-sticker-keywords this content)))
+
+  ([this sticker & optional]
+   (let [content (merge (first optional)
+                        {:sticker sticker})]
+     (set-sticker-keywords this content))))
+
+(defmulti set-sticker-mask-position
+  "Use this method to change the mask position of a mask sticker.
+   The sticker must belong to a sticker set that was created by the bot.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - sticker ; File id of the sticker.
+
+   Optional
+   - mask_position ; A JSON-serialized object with the position where the mask should be placed on faces.
+                     Omit the parameter to remove the mask position."
+  {:added "2.6.0"}
+  content-map?)
+
+(defmethod set-sticker-mask-position true
+  [this content]
+  (http/request this "setStickerMaskPosition" content))
+
+(defmethod set-sticker-mask-position false
+  ([this sticker]
+   (let [content {:sticker sticker}]
+     (set-sticker-mask-position this content)))
+
+  ([this sticker & optional]
+   (let [content (merge (first optional)
+                        {:sticker sticker})]
+     (set-sticker-mask-position this content))))
+
+(defn set-sticker-set-title
+  "Use this method to set the title of a created sticker set.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - name ; Sticker set name.
+   - title ; Sticker set title."
+  {:added "2.6.0"}
+  ([this content]
+   (http/request this "setStickerSetTitle" content))
+
+  ([this name title]
+   (let [content {:name name
+                  :title title}]
+     (set-sticker-set-title this content))))
+
 (defn set-sticker-set-thumb
   "Use this method to set the thumbnail of a sticker set.
    Animated thumbnails can be set for animated sticker sets only.
@@ -225,3 +317,50 @@
                         {:name name
                          :user_id user_id})]
      (set-sticker-set-thumb this content))))
+
+(defmulti set-custom-emoji-sticker-set-thumbnail
+  "Use this method to set the thumbnail of a custom emoji sticker set.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - name ; Sticker set name.
+
+   Optional
+   - custom_emoji_id ; Emoji ID of a sticker from the sticker set. Empty string to drop the thumbnail
+                       and use the first sticker as the thumbnail."
+  {:added "2.6.0"}
+  content-map?)
+
+(defmethod set-custom-emoji-sticker-set-thumbnail true
+  [this content]
+  (http/request this "setCustomEmojiStickerSetThumbnail" content))
+
+(defmethod set-custom-emoji-sticker-set-thumbnail false
+  ([this name]
+   (let [content {:name name}]
+     (set-custom-emoji-sticker-set-thumbnail this content)))
+
+  ([this name & optional]
+   (let [content (merge (first optional)
+                        {:name name})]
+     (set-custom-emoji-sticker-set-thumbnail this content))))
+
+(defmulti delete-sticker-set
+  "Use this method to delete a sticker set that was created by the bot.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - name ; Sticker set name."
+  {:added "2.6.0"}
+  content-map?)
+
+(defmethod delete-sticker-set true
+  [this content]
+  (http/request this "deleteStickerSet" content))
+
+(defmethod delete-sticker-set false
+  [this name]
+  (let [content {:name name}]
+    (delete-sticker-set this content)))
