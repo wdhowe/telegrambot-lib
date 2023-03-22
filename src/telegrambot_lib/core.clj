@@ -118,6 +118,10 @@
   set-my-commands
   delete-my-commands
   get-my-commands
+  set-my-description
+  get-my-description
+  set-my-short-description
+  get-my-short-description
   set-chat-menu-button
   get-chat-menu-button
   set-my-default-administrator-rights
@@ -140,7 +144,13 @@
   add-sticker-to-set
   set-sticker-position-in-set
   delete-sticker-from-set
-  set-sticker-set-thumb]
+  set-sticker-emoji-list
+  set-sticker-keywords
+  set-sticker-mask-position
+  set-sticker-set-title
+  set-sticker-set-thumb
+  set-custom-emoji-sticker-set-thumbnail
+  delete-sticker-set]
  [updates
   get-updates
   set-webhook

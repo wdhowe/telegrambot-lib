@@ -1891,6 +1891,75 @@
   ([this content]
    (http/request this "getMyCommands" content)))
 
+(defn set-my-description
+  "Use this method to change the bot's description,
+   which is shown in the chat with the bot if the chat is empty.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - description ; New bot description. Pass empty string to remove description.
+   - language_code ; Two-letter ISO 639-1 lang code. If empty, description applied to all users."
+  {:added "2.6.0"}
+  ([this]
+   (http/request this "setMyDescription"))
+
+  ([this content]
+   (http/request this "setMyDescription" content)))
+
+(defn get-my-description
+  "Use this method to get the current bot description for the given user language.
+   Returns BotDescription on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - language_code ; Two-letter ISO 639-1 lang code or an empty string."
+  {:added "2.6.0"}
+  ([this]
+   (http/request this "getMyDescription"))
+
+  ([this content]
+   (http/request this "getMyDescription" content)))
+
+(defn set-my-short-description
+  "Use this method to change the bot's short description,
+   which is shown on the bot's profile page and is sent together
+   with the link when users share the bot.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - short_description ; New bot short description. Pass empty string to remove description.
+   - language_code ; Two-letter ISO 639-1 lang code. If empty, description applied to all users."
+  {:added "2.6.0"}
+  ([this]
+   (http/request this "setMyShortDescription"))
+
+  ([this content]
+   (http/request this "setMyShortDescription" content)))
+
+(defn get-my-short-description
+  "Use this method to get the current bot short description for the given user language.
+   Returns BotShortDescription on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - language_code ; Two-letter ISO 639-1 lang code or an empty string."
+  {:added "2.6.0"}
+  ([this]
+   (http/request this "getMyShortDescription"))
+
+  ([this content]
+   (http/request this "getMyShortDescription" content)))
+
 (defn set-chat-menu-button
   "Use this method to change the bot's menu button in a private chat, or the default menu button.
    Returns True on success.
