@@ -21,6 +21,7 @@
 
    Optional
    - message_thread_id ; id of the target thread of the forum.
+   - emoji ; Emoji associated with the recently uploaded sticker.
    - disable_notification ; true to send message silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of original message if reply
