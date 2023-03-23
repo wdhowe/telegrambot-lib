@@ -213,7 +213,7 @@
    - duration ; duration of audio in seconds
    - performer ; audio performer
    - title ; audio track title
-   - thumb ; thumbnail of the file sent
+   - thumbnail ; thumbnail of the file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
@@ -247,7 +247,7 @@
    - caption ; document caption
    - parse_mode ; entity parsing in document caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
-   - thumb ; thumbnail of the file sent
+   - thumbnail ; thumbnail of the file sent
    - disable_content_type_detection ; disable auto content type detection for files uploaded
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
@@ -287,7 +287,7 @@
    - parse_mode ; entity parsing in video caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - has_spoiler ; true if video needs to be covered with spoiler animation.
-   - thumb ; thumbnail of file sent
+   - thumbnail ; thumbnail of file sent
    - supports_streaming ; true if uploaded video is ok for streaming
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
@@ -327,7 +327,7 @@
    - parse_mode ; entity parsing in animation caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - has_spoiler ; true if animation needs to be covered with spoiler animation.
-   - thumb ; thumbnail of file sent
+   - thumbnail ; thumbnail of file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
@@ -397,7 +397,7 @@
    - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of video in seconds
    - length ; video width and height
-   - thumb ; thumbnail of the file sent
+   - thumbnail ; thumbnail of the file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
