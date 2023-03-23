@@ -149,6 +149,7 @@
   set-sticker-mask-position
   set-sticker-set-title
   set-sticker-set-thumb
+  set-sticker-set-thumbnail
   set-custom-emoji-sticker-set-thumbnail
   delete-sticker-set]
  [updates

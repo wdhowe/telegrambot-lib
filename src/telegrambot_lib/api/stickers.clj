@@ -79,25 +79,27 @@
 
 (defn upload-sticker-file
   "Use this method to upload a .PNG file with a sticker for later use
-   in createNewStickerSet and addStickerToSet methods (can be used multiple times).
+   in create-new-sticker-set and add-sticker-to-set methods (can be used multiple times).
    Returns the uploaded File on success.
 
    Required
    - this ; a bot instance
    - user_id ; id of sticker file owner
-   - png_sticker ; PNG image with the sticker"
+   - sticker ; A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format.
+               See https://core.telegram.org/stickers for technical requirements.
+   - sticker_format ; Format of sticker, 'static', 'animated', or 'video'."
   ([this content]
    (http/request this "uploadStickerFile" content))
 
-  ([this user_id png_sticker]
+  ([this user_id sticker sticker_format]
    (let [content {:user_id user_id
-                  :png_sticker png_sticker}]
+                  :sticker sticker
+                  :sticker_format sticker_format}]
      (upload-sticker-file this content))))
 
 (defn create-new-sticker-set
   "Use this method to create a new sticker set owned by a user. The bot will
    be able to edit the sticker set thus created.
-   You must use exactly one of the fields png_sticker or tgs_sticker.
    Returns True on success.
 
    Required
@@ -105,37 +107,38 @@
    - user_id ; id of created sticker set owner
    - name ; short name of sticker set for use in URLs
    - title ; sticker set title
-   - emojis ; one or more emoji corresponding to the sticker
+   - stickers ; A JSON-serialized list of 1-50 stickers to be added to the set.
+   - sticker_format ; Format of stickers, 'static', 'animated', or 'video'.
 
    Optional
-   - png_sticker ; PNG image with the sticker
-   - tgs_sticker ; TGS animation with the sticker
-   - webm_sticker ; WEBM video with the sticker, uploaded using multipart/form-data
-   - sticker_type ; regular(default) or mask
-   - mask_position ; json object for where the mask should be placed on faces"
+   - sticker_type ; Type of stickers, 'regular' (default), 'mask', 'custom_emoji'.
+   - needs_repainting ; True if stickers must be repainted to color of text in messages. (custom emoji sets only)"
+  {:changed "2.6.0"}
   ([this content]
    (http/request this "createNewStickerSet" content))
 
-  ([this user_id name title emojis]
+  ([this user_id name title stickers sticker_format]
    (let [content {:user_id user_id
                   :name name
                   :title title
-                  :emojis emojis}]
+                  :stickers stickers
+                  :sticker_format sticker_format}]
      (create-new-sticker-set this content)))
 
-  ([this user_id name title emojis & optional]
+  ([this user_id name title stickers sticker_format & optional]
    (let [content (merge (first optional)
                         {:user_id user_id
                          :name name
                          :title title
-                         :emojis emojis})]
+                         :stickers stickers
+                         :sticker_format sticker_format})]
      (create-new-sticker-set this content))))
 
 (defn add-sticker-to-set
   "Use this method to add a new sticker to a set created by the bot.
-   You must use exactly one of the fields png_sticker or tgs_sticker.
-   Animated stickers can be added to animated sticker sets and only to them.
-   Animated sticker sets can have up to 50 stickers.
+   The format of the added sticker must match the format of the other stickers in the set.
+   Emoji sticker sets can have up to 200 stickers.
+   Animated and video sticker sets can have up to 50 stickers.
    Static sticker sets can have up to 120 stickers.
    Returns True on success.
 
@@ -143,27 +146,15 @@
    - this ; a bot instance
    - user_id ; id of sticker set owner
    - name ; sticker set name
-   - emojis ; one or more emoji corresponding to the sticker
-
-   Optional
-   - png_sticker ; PNG image with the sticker
-   - tgs_sticker ; TGS animation with the sticker
-   - webm_sticker ; WEBM video with the sticker, uploaded using multipart/form-data
-   - mask_position ; json object for where the mask should be placed on faces"
+   - sticker ; A JSON-serialized object(InputSticker) with info about the added sticker."
+  {:changed "2.6.0"}
   ([this content]
    (http/request this "addStickerToSet" content))
 
-  ([this user_id name emojis]
+  ([this user_id name sticker]
    (let [content {:user_id user_id
                   :name name
-                  :emojis emojis}]
-     (add-sticker-to-set this content)))
-
-  ([this user_id name emojis & optional]
-   (let [content (merge (first optional)
-                        {:user_id user_id
-                         :name name
-                         :emojis emojis})]
+                  :sticker sticker}]
      (add-sticker-to-set this content))))
 
 (defn set-sticker-position-in-set
@@ -294,8 +285,8 @@
      (set-sticker-set-title this content))))
 
 (defn set-sticker-set-thumb
-  "Use this method to set the thumbnail of a sticker set.
-   Animated thumbnails can be set for animated sticker sets only.
+  "DEPRECATED: Use this method to set the thumbnail of a regular or mask sticker set.
+   The format of the thumbnail file must match the format of the stickers in the set.
    Returns True on success.
 
    Required
@@ -304,9 +295,12 @@
    - user_id ; id of the sticker set owner
 
    Optional
-   - thumb ; PNG image with the thumbnail"
+   - thumbnail ; A .WEBP or .PNG image with the thumbnail, or .TGS animation, or WEBM video.
+                 More information: https://core.telegram.org/bots/api#sending-files"
+  {:deprecated "2.6.0"
+   :use-instead (symbol 'set-sticker-set-thumbnail)}
   ([this content]
-   (http/request this "setStickerSetThumb" content))
+   (http/request this "setStickerSetThumbnail" content))
 
   ([this name user_id]
    (let [content {:name name
@@ -318,6 +312,34 @@
                         {:name name
                          :user_id user_id})]
      (set-sticker-set-thumb this content))))
+
+(defn set-sticker-set-thumbnail
+  "Use this method to set the thumbnail of a regular or mask sticker set.
+   The format of the thumbnail file must match the format of the stickers in the set.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - name ; sticker set name
+   - user_id ; id of the sticker set owner
+
+   Optional
+   - thumbnail ; A .WEBP or .PNG image with the thumbnail, or .TGS animation, or WEBM video.
+                 More information: https://core.telegram.org/bots/api#sending-files"
+  {:added "2.6.0"}
+  ([this content]
+   (http/request this "setStickerSetThumbnail" content))
+
+  ([this name user_id]
+   (let [content {:name name
+                  :user_id user_id}]
+     (set-sticker-set-thumbnail this content)))
+
+  ([this name user_id & optional]
+   (let [content (merge (first optional)
+                        {:name name
+                         :user_id user_id})]
+     (set-sticker-set-thumbnail this content))))
 
 (defmulti set-custom-emoji-sticker-set-thumbnail
   "Use this method to set the thumbnail of a custom emoji sticker set.
