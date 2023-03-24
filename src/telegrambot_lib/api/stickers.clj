@@ -88,6 +88,7 @@
    - sticker ; A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format.
                See https://core.telegram.org/stickers for technical requirements.
    - sticker_format ; Format of sticker, 'static', 'animated', or 'video'."
+  {:changed "2.6.0"}
   ([this content]
    (http/request this "uploadStickerFile" content))
 
