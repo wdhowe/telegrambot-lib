@@ -1891,6 +1891,39 @@
   ([this content]
    (http/request this "getMyCommands" content)))
 
+(defn set-my-name
+  "Use this method to change the bot's name.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - name ; New bot name. Pass an empty string to remove the name.
+   - language_code ; Two-letter ISO 639-1 lang code. If empty, name applied to all users."
+  {:added "2.7.0"}
+  ([this]
+   (http/request this "setMyName"))
+
+  ([this content]
+   (http/request this "setMyName" content)))
+
+(defn get-my-name
+  "Use this method to get the current bot name for the given user language.
+   Returns BotName on success.
+
+   Required
+   - this ; a bot instance
+
+   Optional
+   - language_code ; Two-letter ISO 639-1 lang code."
+  {:added "2.7.0"}
+  ([this]
+   (http/request this "getMyName"))
+
+  ([this content]
+   (http/request this "getMyName" content)))
+
 (defn set-my-description
   "Use this method to change the bot's description,
    which is shown in the chat with the bot if the chat is empty.

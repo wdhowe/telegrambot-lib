@@ -1,4 +1,4 @@
-(defproject telegrambot-lib "2.6.0"
+(defproject telegrambot-lib "2.7.0"
   :description "A library for interacting with the Telegram Bot API."
   :url "https://github.com/wdhowe/telegrambot-lib"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
@@ -18,7 +18,7 @@
              :project/dev {:dependencies [;; logback-classic must be 1.3.x due to jdk8 support.
                                           ;; See: https://github.com/wdhowe/telegrambot-lib/pull/120/commits/015d31621a3fd5a7f69dcf7c230d76d55f7a47c1
                                           [ch.qos.logback/logback-classic "1.3.5" :upgrade :logback]
-                                          [clj-http-fake "1.0.3"]]
+                                          [clj-http-fake "1.0.4"]]
                            :plugins [[lein-environ "1.2.0"]]
                            :source-paths ["env/dev/clj"]
                            :resource-paths ["env/dev/resources"]}
