@@ -118,6 +118,8 @@
   set-my-commands
   delete-my-commands
   get-my-commands
+  set-my-name
+  get-my-name
   set-my-description
   get-my-description
   set-my-short-description

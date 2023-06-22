@@ -36,7 +36,7 @@
 (deftest request-ok-test
   (testing "HTTP request to a valid endpoint with an ok response."
     (fake/with-fake-routes {"https://api.telegram.org/bot1234/getMe"
-                            (fn [request] ok-resp)}
+                            (fn [_] ok-resp)}
       (let [resp (http/request {:bot-token "1234"} "getMe")]
 
         (is (= resp {:ok true,
@@ -77,7 +77,7 @@
 (deftest request-not-found-test
   (testing "HTTP request to an invalid endpoint."
     (fake/with-fake-routes {"https://api.telegram.org/bot1234/doesNotExist"
-                            (fn [request] not-found-resp)}
+                            (fn [_] not-found-resp)}
       (let [resp (http/request {:bot-token "1234"} "doesNotExist")]
 
         (is (= (:ok resp) false))
