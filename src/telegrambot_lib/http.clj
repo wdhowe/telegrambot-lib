@@ -25,9 +25,8 @@
    (log/debugf "HTTP %s /%s %s"
                (upper-case-name http-method)
                (last (string/split url #"/"))
-               (:body req))
-   (let [req (merge {:content-type :auto} req)]
-     (clj-http/post url req respond raise))))
+               req)
+   (clj-http/post url req respond raise)))
 
 (defmethod client :default
   [http-method & _]
@@ -58,6 +57,15 @@
     ;;     more important.
     (assoc body :error ex)))
 
+(defn map->multipart
+  "Transform a map's key/value pairs into a multipart map,
+   with a list of maps with new keys.
+   Eg: {:multipart [{:name key, :content value}] }"
+  [m]
+   (when (some? m)
+     {:multipart (mapv #(assoc {} :name (name (first %)) :content (second %))
+                       m)}))
+
 (defmulti request
   "Send the request to the Telegram Bot API `path` with an optional `content`,
    either sync- or asynchronously, depending on the value of the `:async` key
@@ -80,9 +88,8 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req {:body (json/generate-str content)
-              :content-type :json
-              :async? true}
+         req (merge (map->multipart content)
+                    {:async? true})
          resp-channel (a/chan)
          on-success (fn [resp]
                       (let [parsed-resp (parse-resp resp)]
@@ -101,8 +108,7 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req {:body (json/generate-str content)
-              :content-type :json}]
+         req (map->multipart content)]
      (try
        (let [resp (client :post url req)]
          (parse-resp resp))

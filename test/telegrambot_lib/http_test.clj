@@ -8,6 +8,16 @@
     (is (= "https://api.telegram.org/bot1234/myTest"
            (http/gen-url {:bot-token "1234"} "myTest")))))
 
+(deftest map->multipart-test
+  (testing "Request content map transformation test."
+    (is (= (http/map->multipart {:url "https://mybotwebhook.me"
+                                 :certificate "/home/bot/certs/mybot.pem"})
+           {:multipart
+            [{:name "url", :content "https://mybotwebhook.me"}
+             {:name "certificate", :content "/home/bot/certs/mybot.pem"}]}))
+    (is (= (http/map->multipart nil)
+           nil))))
+
 (def ok-resp
   {:cached nil
    :request-time 545
