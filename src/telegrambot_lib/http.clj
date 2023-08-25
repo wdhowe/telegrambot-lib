@@ -33,12 +33,10 @@
   (log/errorf "HTTP method '%s' not supported"
               (upper-case-name http-method)))
 
-(def bot-api "Telegram Bot API URL." "https://api.telegram.org/bot")
-
 (defn gen-url
   "Generate the url to use for the http call, given the method `path`."
   [this path]
-  (format "%s%s/%s" bot-api (:bot-token this) path))
+  (format "%s%s/%s" (:bot-api this) (:bot-token this) path))
 
 (defn parse-resp
   "Parse the JSON response body into a keywordized map."
