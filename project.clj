@@ -22,7 +22,8 @@
                            :plugins [[lein-environ "1.2.0"]]
                            :source-paths ["env/dev/clj"]
                            :resource-paths ["env/dev/resources"]}
-             :project/test {:plugins [[lein-environ "1.2.0"]]
+             :project/test {:dependencies [[clj-http-fake "1.0.4"]]
+                            :plugins [[lein-environ "1.2.0"]]
                             :resource-paths ["env/test/resources"]}
              :cheshire [:test {:dependencies [[cheshire "5.11.0"]]}]
              :jsonista [:test {:dependencies [[metosin/jsonista "0.3.7"]]}]

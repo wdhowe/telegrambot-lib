@@ -1,9 +1,7 @@
 (ns telegrambot-lib.http-test
   (:require [clojure.test :refer [deftest is testing]]
             [clj-http.fake :as fake]
-            [telegrambot-lib.http :as http])
-  ;(:use [clj-http.fake])
-  )
+            [telegrambot-lib.http :as http]))
 
 (deftest gen-url-test
   (testing "Verify URL generation."
