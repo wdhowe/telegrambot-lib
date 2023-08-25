@@ -1,4 +1,4 @@
-(defproject telegrambot-lib "2.8.0"
+(defproject telegrambot-lib "2.9.0"
   :description "A library for interacting with the Telegram Bot API."
   :url "https://github.com/wdhowe/telegrambot-lib"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
@@ -6,7 +6,7 @@
   :dependencies [[clj-http "3.12.3"]
                  [environ "1.2.0"]
                  [org.clojure/clojure "1.11.1"]
-                 [org.clojure/core.async "1.6.673"]
+                 [org.clojure/core.async "1.6.681"]
                  [org.clojure/tools.logging "1.2.4"]
                  [potemkin "0.4.6"]]
   :repl-options {:init-ns telegrambot-lib.core}
