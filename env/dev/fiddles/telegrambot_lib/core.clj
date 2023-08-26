@@ -2,8 +2,8 @@
   "Calva Fiddle File - core functionality
    This fiddle file was made to work with Calva, a vscode extension.
    It assumes a \"profiles.clj\" exists in the project root (git ignored) with:
-   {:dev {:env {:bot-token \"MY-BOT-TOKEN-HERE\"
-                :chat-id \"MY-CHAT-ID-HERE\"}}}"
+   {:local {:env {:bot-token \"MY-BOT-TOKEN-HERE\"
+                  :chat-id \"MY-CHAT-ID-HERE\"}}}"
   {:clj-kondo/config
    '{:linters {:unresolved-symbol {:level :off}}}}
   (:require [environ.core :as environ]
