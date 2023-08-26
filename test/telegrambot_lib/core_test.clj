@@ -2,9 +2,23 @@
   (:require [clojure.test :refer [deftest is testing]]
             [telegrambot-lib.core :as lib-core]))
 
-(deftest create-test-1
-  (testing "Test bot instance creation - token specified."
+(deftest create-test-noparams
+  (testing "Test bot creation - no params specified.")
+  (let [mybot (lib-core/create)]
+    (is (= nil (:bot-token mybot)))
+    (is (= false (:async mybot)))
+    (is (= "https://api.telegram.org/bot" (:bot-api mybot)))))
+
+(deftest create-test-token
+  (testing "Test bot creation - token specified."
     (let [mybot (lib-core/create "123456")]
+      (is (= "123456" (:bot-token mybot)))
+      (is (= false (:async mybot)))
+      (is (= "https://api.telegram.org/bot" (:bot-api mybot))))))
+
+(deftest create-test-parammap
+  (testing "Test bot creation - param map specified."
+    (let [mybot (lib-core/create {:bot-token "123456"})]
       (is (= "123456" (:bot-token mybot)))
       (is (= false (:async mybot)))
       (is (= "https://api.telegram.org/bot" (:bot-api mybot))))))
