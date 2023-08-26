@@ -21,10 +21,15 @@
                    :plugins [[lein-environ "1.2.0"]]
                    :resource-paths ["env/dev/resources"]}
              
+             ;; Makes the 'local' profile available during REPL jack-in.
+             ;; Loads from profiles.clj (git ignored).
+             :local {}
+             
              :test {:dependencies [[clj-http-fake/clj-http-fake "1.0.4"]]
                     :plugins [[lein-environ "1.2.0"]]
                     :resource-paths ["env/test/resources"]}
              
+             ;; Select one of these json profiles during REPL jack-in.
              :cheshire {:dependencies [[cheshire "5.11.0"]]}
              
              :jsonista {:dependencies [[metosin/jsonista "0.3.7"]]}
