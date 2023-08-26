@@ -3,7 +3,9 @@
   (:gen-class)
   (:require [environ.core :as environ]))
 
-(defn get-token
-  "Attempt to load the bot API token (BOT_TOKEN) from the environment."
+(defn cfg
+  "The default configuration data structure for a bot."
   []
-  (:bot-token environ/env))
+  {:bot-token (:bot-token environ/env)
+   :async     false
+   :bot-api   (or (:bot-api environ/env) "https://api.telegram.org/bot")})

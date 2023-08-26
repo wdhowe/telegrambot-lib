@@ -13,16 +13,38 @@
             [telegrambot-lib.api.updates :as updates]
             [potemkin :refer [import-vars]]))
 
-(defn create
-  "Create a new Telegram Bot API instance.
-   - No argument attempts to load the `bot-token` from the environment.
-   - 1 argument will use the passed in `bot-token`."
-  ([]
-   (create (conf/get-token)))
-  ([bot-token]
-   {:bot-token bot-token}))
+(defmulti create
+  "Create a new Telegram Bot data structure.
+   - No parameters attempts to load the `bot-token` from the environment.
+     Example: (create)
+   - 1 parameter will use the passed in `bot-token`.
+     Example: (create 12345)
+   - Alternatively, parameters can be passed as a map instead.
+     Example: (create {:bot-token 12345})
+   
+   Optional Parameters
+   - bot-token ; The token id of your bot. (default: load from environment)
+   - async ; Send API requests async or not. (default: false)
+   - bot-api ; The Telegram Bot API URL. (default: official hosted API)
+   
+   Returns: A map data structure of a bot config."
+  (fn
+    ([] false)
+    ([m] (map? m))))
 
-;; Make all Telegram functions available directly in this namespace.
+(defmethod create true
+  [m]
+   (merge (conf/cfg) m))
+
+(defmethod create false
+  ([]
+   (conf/cfg))
+  
+  ([bot-token]
+   (merge (conf/cfg)
+          {:bot-token bot-token})))
+
+;; Make all API functions available directly in this namespace.
 (import-vars
  [edit
   edit-message-text

@@ -33,3 +33,7 @@ package:
 	lein compile
 	@echo "Create uberjar."
 	lein uberjar
+
+clean:
+	@echo "Cleaning up built targets."
+	lein clean

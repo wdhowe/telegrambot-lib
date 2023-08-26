@@ -3,10 +3,17 @@
             [clj-http.fake :as fake]
             [telegrambot-lib.http :as http]))
 
+(def test-bot
+  "A bot data structure for running tests."
+  {:bot-api "https://api.telegram.org/bot"
+   :bot-token "1234"
+   :async false})
+
 (deftest gen-url-test
   (testing "Verify URL generation."
-    (is (= "https://api.telegram.org/bot1234/myTest"
-           (http/gen-url {:bot-token "1234"} "myTest")))))
+    (is (= "https://api.telegram.org/bot1234/myPath"
+           (http/gen-url test-bot
+                         "myPath")))))
 
 (deftest map->multipart-test
   (testing "Request content map transformation test."
@@ -47,7 +54,7 @@
   (testing "HTTP request to a valid endpoint with an ok response."
     (fake/with-fake-routes {"https://api.telegram.org/bot1234/getMe"
                             (fn [_] ok-resp)}
-      (let [resp (http/request {:bot-token "1234"} "getMe")]
+      (let [resp (http/request test-bot "getMe")]
 
         (is (= resp {:ok true,
                      :result
@@ -88,7 +95,7 @@
   (testing "HTTP request to an invalid endpoint."
     (fake/with-fake-routes {"https://api.telegram.org/bot1234/doesNotExist"
                             (fn [_] not-found-resp)}
-      (let [resp (http/request {:bot-token "1234"} "doesNotExist")]
+      (let [resp (http/request test-bot "doesNotExist")]
 
         (is (= (:ok resp) false))
         (is (= (:error_code resp) 404))
