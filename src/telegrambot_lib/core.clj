@@ -16,14 +16,15 @@
 (defn create
   "Create a new Telegram Bot API instance.
    - No argument attempts to load the `bot-token` from the environment.
-   - 1 argument will use the passed in `bot-token`."
+   - 1 argument will use the passed in `bot-token`.
+   Returns: A map data structure of a bot config."
   ([]
    (conf/cfg))
   ([bot-token]
    (merge (conf/cfg)
           {:bot-token bot-token})))
 
-;; Make all Telegram functions available directly in this namespace.
+;; Make all API functions available directly in this namespace.
 (import-vars
  [edit
   edit-message-text
