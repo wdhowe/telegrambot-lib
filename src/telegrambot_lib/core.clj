@@ -136,6 +136,7 @@
   reopen-general-forum-topic
   hide-general-forum-topic
   unhide-general-forum-topic
+  unpin-all-general-forum-topic-messages
   answer-callback-query
   set-my-commands
   delete-my-commands
