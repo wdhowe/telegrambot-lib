@@ -1813,7 +1813,7 @@
 
 (defmethod unpin-all-general-forum-topic-messages true
   [this content]
-  (http/request this "unpinallgeneralforumtopicmessages" content))
+  (http/request this "unpinAllGeneralForumTopicMessages" content))
 
 (defmethod unpin-all-general-forum-topic-messages false
   [this chat_id]
