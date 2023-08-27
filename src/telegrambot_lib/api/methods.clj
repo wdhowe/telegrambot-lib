@@ -1799,6 +1799,27 @@
   (let [content {:chat_id chat_id}]
     (unhide-general-forum-topic this content)))
 
+(defmulti unpin-all-general-forum-topic-messages
+  "Use this method to clear the list of pinned messages in a General forum topic.
+   The bot must be an administrator in the chat for this to work and
+   must have the can_pin_messages administrator right in the supergroup.
+   Returns True on success.
+
+   Required
+   - this ; A bot instance.
+   - chat_id ; Target chat or username of supergroup (@user)."
+  {:added "2.9.0"}
+  content-map?)
+
+(defmethod unpin-all-general-forum-topic-messages true
+  [this content]
+  (http/request this "unpinAllGeneralForumTopicMessages" content))
+
+(defmethod unpin-all-general-forum-topic-messages false
+  [this chat_id]
+  (let [content {:chat_id chat_id}]
+    (unpin-all-general-forum-topic-messages this content)))
+
 (defmulti answer-callback-query
   "Use this method to send answers to callback queries sent from inline keyboards.
    The answer will be displayed to the user as a notification at the top of the

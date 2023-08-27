@@ -18,7 +18,7 @@
     <url>https://github.com/wdhowe/telegrambot-lib</url>
     <connection>scm:git:git://github.com/wdhowe/telegrambot-lib.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wdhowe/telegrambot-lib.git</developerConnection>
-    <tag>905f7d0d9053512f836515dd229a54641a5cfdeb</tag>
+    <tag>ae81e5bc1ba607e30153b3ba8e7470885400a741</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
