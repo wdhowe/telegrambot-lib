@@ -28,7 +28,7 @@
    - bot-api ; The Telegram Bot API URL. (default: official hosted API)
    
    Returns: A map data structure of a bot config."
-  {:changed "2.9.0"}
+  {:changed "2.10.0"}
   (fn
     ([] false)
     ([m] (map? m))))
