@@ -21,6 +21,8 @@
 
    Optional
    - content ; parameters for the api method"
+  {:added "0.1.0"}
+
   ([this endpoint]
    (call this endpoint nil))
 
@@ -33,6 +35,7 @@
 
    Required
    - this ; a bot instance"
+  {:added "0.1.0"}
   [this]
   (http/request this "getMe"))
 
@@ -44,6 +47,7 @@
 
    Required
    - this ; a bot instance"
+  {:added "0.3.0"}
   [this]
   (http/request this "logOut"))
 
@@ -56,6 +60,7 @@
 
    Required
    - this ; a bot instance"
+  {:added "0.3.0"}
   [this]
   (http/request this "close"))
 
@@ -78,6 +83,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendMessage" content))
 
@@ -106,6 +113,8 @@
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "forwardMessage" content))
 
@@ -144,6 +153,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:added "0.3.0"}
+
   ([this content]
    (http/request this "copyMessage" content))
 
@@ -180,6 +191,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendPhoto" content))
 
@@ -219,6 +232,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendAudio" content))
 
@@ -254,6 +269,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendDocument" content))
 
@@ -294,6 +311,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendVideo" content))
 
@@ -333,6 +352,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendAnimation" content))
 
@@ -370,6 +391,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendVoice" content))
 
@@ -403,6 +426,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendVideoNote" content))
 
@@ -432,6 +457,8 @@
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendMediaGroup" content))
 
@@ -467,6 +494,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendLocation" content))
 
@@ -502,6 +531,8 @@
    - heading ; 1-360 degrees direction user is moving
    - proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "editMessageLiveLocation" content))
 
@@ -535,6 +566,8 @@
 
    Optional
    - reply_markup ; additional interface options"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "editMessageLiveLocation" content))
 
@@ -563,6 +596,8 @@
 
    Optional
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "stopMessageLiveLocation" content))
 
@@ -589,6 +624,7 @@
 
    Optional
    - reply_markup ; additional interface options"
+  {:added "0.2.0"}
   content-map?)
 
 (defmethod stop-message-live-location-inline true
@@ -628,6 +664,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendVenue" content))
 
@@ -667,6 +705,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendContact" content))
 
@@ -718,6 +758,8 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendPoll" content))
 
@@ -750,6 +792,7 @@
    - reply_to_message_id ; id of the original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod send-dice true
@@ -781,6 +824,8 @@
 
    Optional
    - message_thread_id ; unique id for target message thread."
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendChatAction" content))
 
@@ -806,6 +851,7 @@
    Optional
    - offset ; number of first photo returned
    - limit ; limit number of photos retrieved (1-100, default: 100)"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod get-user-profile-photos true
@@ -834,6 +880,7 @@
    Required
    - this ; a bot instance
    - file_id ; file id to get info about"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod get-file true
@@ -865,6 +912,7 @@
                        always true for supergroups and channels."
   {:deprecated "0.3.4"
    :use-instead (symbol 'ban-chat-member)}
+
   ([this content]
    (http/request this "kickChatMember" content))
 
@@ -898,6 +946,7 @@
    - revoke_messages ; true to delete all messages from chat for user being removed.
                        always true for supergroups and channels."
   {:added "0.3.4"}
+
   ([this content]
    (http/request this "banChatMember" content))
 
@@ -925,6 +974,8 @@
 
    Optional
    - only_if_banned ; Do nothing if the user is not banned"
+  {:changed "0.3.0"}
+
   ([this content]
    (http/request this "unbanChatMember" content))
 
@@ -957,6 +1008,8 @@
                                         Otherwise, some permissions imply others.
    - until_date ; unix time when user is unbanned. 30 seconds - 366 days.
                   if less or more, user is banned forever."
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "restrictChatMember" content))
 
@@ -998,6 +1051,8 @@
    - can_pin_messages ; true if admin can pin messages
    - can_promote_members ; true if admin can add new admins
    - can_manage_topics ; true if user is allowed to create,rename,close,reopen forum topics."
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "promoteChatMember" content))
 
@@ -1022,6 +1077,8 @@
    - chat_id ; target chat or username (@user)
    - user_id ; id of target user
    - custom_title ; new custom title for the admin"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "setChatAdministratorCustomTitle" content))
 
@@ -1046,6 +1103,7 @@
    Optional
    - until_date ; date in unix time when the sender chat will be unbanned"
   {:added "1.2.0"}
+
   ([this content]
    (http/request this "banChatSenderChat" content))
 
@@ -1070,6 +1128,7 @@
    - chat_id ; target chat or username (@user)
    - sender_chat_id ; target sender chat"
   {:added "1.2.0"}
+
   ([this content]
    (http/request this "unbanChatSenderChat" content))
 
@@ -1092,6 +1151,8 @@
    Optional
    - use_independent_chat_permissions ; True if chat permissions are set independently.
                                         Otherwise, some permissions imply others."
+  {:changed "2.5.0"}
+
   ([this content]
    (http/request this "setChatPermissions" content))
 
@@ -1115,6 +1176,7 @@
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod export-chat-invite-link true
@@ -1141,6 +1203,7 @@
    - expire_date ; unix timestamp when the link will expire
    - member_limit ; max num users that can be members simulatneously (1-99999)
    - creates_join_request ; true if users joining need to be approved"
+  {:added "0.3.2"}
   content-map?)
 
 (defmethod create-chat-invite-link true
@@ -1172,6 +1235,8 @@
    - expire_date ; unix timestamp when the link will expire
    - member_limit ; max num users that can be members simulatneously (1-99999)
    - creates_join_request ; true if users joining need to be approved"
+  {:added "0.3.2"}
+
   ([this content]
    (http/request this "editChatInviteLink" content))
 
@@ -1196,6 +1261,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - invite_link ; invite link to revoke"
+  {:added "0.3.2"}
+
   ([this content]
    (http/request this "revokeChatInviteLink" content))
 
@@ -1214,6 +1281,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - user_id ; id of target user"
+  {:added "1.1.0"}
+
   ([this content]
    (http/request this "approveChatJoinRequest" content))
 
@@ -1232,6 +1301,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - user_id ; id of target user"
+  {:added "1.1.0"}
+
   ([this content]
    (http/request this "declineChatJoinRequest" content))
 
@@ -1251,6 +1322,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - photo ; new chat photo"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "setChatPhoto" content))
 
@@ -1268,6 +1341,7 @@
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod delete-chat-photo true
@@ -1290,6 +1364,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - title ; new chat title"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "setChatTitle" content))
 
@@ -1308,6 +1384,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - description ; new chat description"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "setChatDescription" content))
 
@@ -1330,6 +1408,8 @@
 
    Optional
    - disable_notification ; true to pin silently. default true in channels."
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "pinChatMessage" content))
 
@@ -1357,6 +1437,7 @@
 
    Optional
    - message_id ; id of message to unpin (unpins most recent if not specified)"
+  {:changed "0.3.0"}
   content-map?)
 
 (defmethod unpin-chat-message true
@@ -1383,6 +1464,7 @@
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
+  {:added "0.3.0"}
   content-map?)
 
 (defmethod unpin-all-chat-messages true
@@ -1401,6 +1483,7 @@
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod leave-chat true
@@ -1421,6 +1504,7 @@
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod get-chat true
@@ -1442,6 +1526,7 @@
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod get-chat-administrators true
@@ -1500,6 +1585,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - user_id ; id of target user"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "getChatMember" content))
 
@@ -1520,6 +1607,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - sticker_set_name ; name of sticker set"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "setChatStickerSet" content))
 
@@ -1539,6 +1628,7 @@
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod delete-chat-sticker-set true
@@ -1557,6 +1647,7 @@
 
    Required
    - this ; a bot instance"
+  {:added "2.3.0"}
   [this]
   (http/request this "getForumTopicIconStickers"))
 
@@ -1574,6 +1665,7 @@
    Optional
    - icon_color ; integer color of the topic icon in RGB format.
    - icon_custom_emoji_id ; string id of custom emoji shown as topic icon."
+  {:added "2.3.0"}
 
   ([this content]
    (http/request this "createForumTopic" content))
@@ -1629,6 +1721,7 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - message_thread_id ; id of the target thread of the forum."
+  {:added "2.3.0"}
 
   ([this content]
    (http/request this "closeForumTopic" content))
@@ -1648,6 +1741,7 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - message_thread_id ; id of the target thread of the forum."
+  {:added "2.3.0"}
 
   ([this content]
    (http/request this "reopenForumTopic" content))
@@ -1667,6 +1761,7 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - message_thread_id ; id of the target thread of the forum."
+  {:added "2.3.0"}
 
   ([this content]
    (http/request this "deleteForumTopic" content))
@@ -1686,6 +1781,7 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - message_thread_id ; id of the target thread of the forum."
+  {:added "2.3.0"}
 
   ([this content]
    (http/request this "unpinAllForumTopicMessages" content))
@@ -1835,6 +1931,7 @@
    - show_alert ; if true, show alert instead of a notification
    - url ; url that will be opened by the user's client.
    - cache_time ; max time in seconds for caching callback query. (default: 0)"
+  {:changed "0.3.5"}
   content-map?)
 
 (defmethod answer-callback-query true
@@ -1862,6 +1959,7 @@
    Optional
    - scope ; JSON object, scope of users that commands are relevant for. (default: BotCommandScopeDefault)
    - language_code ; Two-letter ISO 639-1 lang code. If empty, commands applied to all users from given scope."
+  {:changed "0.3.4"}
   content-map?)
 
 (defmethod set-my-commands true
@@ -1890,6 +1988,7 @@
    - scope ; JSON object, scope of users that commands are relevant for. (default: BotCommandScopeDefault)
    - language_code ; Two-letter ISO 639-1 lang code. If empty, commands applied to all users from given scope."
   {:added "0.3.4"}
+
   ([this]
    (http/request this "deleteMyCommands"))
 
@@ -1906,6 +2005,8 @@
    Optional
    - scope ; JSON object, scope of users that commands are relevant for. (default: BotCommandScopeDefault)
    - language_code ; Two-letter ISO 639-1 lang code. If empty, commands applied to all users from given scope."
+  {:changed "0.3.4"}
+
   ([this]
    (http/request this "getMyCommands"))
 
@@ -1923,6 +2024,7 @@
    - name ; New bot name. Pass an empty string to remove the name.
    - language_code ; Two-letter ISO 639-1 lang code. If empty, name applied to all users."
   {:added "2.7.0"}
+
   ([this]
    (http/request this "setMyName"))
 
@@ -1939,6 +2041,7 @@
    Optional
    - language_code ; Two-letter ISO 639-1 lang code."
   {:added "2.7.0"}
+
   ([this]
    (http/request this "getMyName"))
 
@@ -1957,6 +2060,7 @@
    - description ; New bot description. Pass empty string to remove description.
    - language_code ; Two-letter ISO 639-1 lang code. If empty, description applied to all users."
   {:added "2.6.0"}
+
   ([this]
    (http/request this "setMyDescription"))
 
@@ -1973,6 +2077,7 @@
    Optional
    - language_code ; Two-letter ISO 639-1 lang code or an empty string."
   {:added "2.6.0"}
+
   ([this]
    (http/request this "getMyDescription"))
 
@@ -1992,6 +2097,7 @@
    - short_description ; New bot short description. Pass empty string to remove description.
    - language_code ; Two-letter ISO 639-1 lang code. If empty, description applied to all users."
   {:added "2.6.0"}
+
   ([this]
    (http/request this "setMyShortDescription"))
 
@@ -2008,6 +2114,7 @@
    Optional
    - language_code ; Two-letter ISO 639-1 lang code or an empty string."
   {:added "2.6.0"}
+
   ([this]
    (http/request this "getMyShortDescription"))
 
@@ -2025,6 +2132,7 @@
    - chat_id ; target chat or username (@user)
    - menu_button ; A JSON-serialized object for the new bot's menu button. Defaults to MenuButtonDefault."
   {:added "1.5.0"}
+
   ([this]
    (http/request this "setChatMenuButton"))
 
@@ -2042,6 +2150,7 @@
    Optional
    - chat_id ; target chat or username (@user)"
   {:added "1.5.0"}
+
   ([this]
    (http/request this "getChatMenuButton"))
 
@@ -2064,6 +2173,7 @@
                     Otherwise, the default administrator rights of the bot for groups and
                     supergroups will be changed."
   {:added "1.5.0"}
+
   ([this]
    (http/request this "setMyDefaultAdministratorRights"))
 
@@ -2082,6 +2192,7 @@
                     Otherwise, default administrator rights of the bot for groups and
                     supergroups will be returned."
   {:added "1.5.0"}
+
   ([this]
    (http/request this "getMyDefaultAdministratorRights"))
 
