@@ -16,6 +16,8 @@
    - this ; a bot instance
    - user_id ; user identifier
    - errors ; json array of 'PassportElementError' describing the errors"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "setPassportDataErrors" content))
 
