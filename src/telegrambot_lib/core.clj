@@ -16,11 +16,11 @@
 (defmulti create
   "Create a new Telegram Bot data structure.
    - No parameters attempts to load the `bot-token` from the environment.
-     Example: (create)
+     - Example: `(create)`
    - 1 parameter will use the passed in `bot-token`.
-     Example: (create 12345)
+     - Example: `(create \"12345\")`
    - Alternatively, parameters can be passed as a map instead.
-     Example: (create {:bot-token 12345})
+     - Example: `(create {:bot-token \"12345\"})`
    
    Optional Parameters
    - bot-token ; The token id of your bot. (default: load from environment)
@@ -28,6 +28,7 @@
    - bot-api ; The Telegram Bot API URL. (default: official hosted API)
    
    Returns: A map data structure of a bot config."
+  {:changed "2.9.0"}
   (fn
     ([] false)
     ([m] (map? m))))
@@ -38,11 +39,10 @@
 
 (defmethod create false
   ([]
-   (conf/cfg))
+   (create {}))
   
   ([bot-token]
-   (merge (conf/cfg)
-          {:bot-token bot-token})))
+   (create {:bot-token bot-token})))
 
 ;; Make all API functions available directly in this namespace.
 (import-vars
