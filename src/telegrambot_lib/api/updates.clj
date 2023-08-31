@@ -22,8 +22,11 @@
    - limit ; num of updates to retrieve (1-100). default: 100
    - timeout ; timeout in seconds. default: 0 (short poll)
    - allowed_updates ; json array of update types bot will receive"
+  {:added "0.1.0"}
+
   ([this]
    (get-updates this nil))
+
   ([this content]
    (http/request this "getUpdates" content)))
 
@@ -47,6 +50,7 @@
    - drop_pending_updates ; Pass True to drop all pending updates
    - secret_token ; 1-256 chars. Sent in header (X-Telegram-Bot-Api-Secret-Token)
                     to ensure request comes from your webhook."
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod set-webhook true
@@ -73,6 +77,8 @@
 
    Optional
    - drop_pending_updates ; Pass True to drop all pending updates"
+  {:changed "0.3.0"}
+
   ([this]
    (delete-webhook this nil))
 
@@ -87,5 +93,6 @@
 
    Required
    - this ; a bot instance"
+  {:changed "0.3.5"}
   [this]
   (http/request this "getWebhookInfo"))
