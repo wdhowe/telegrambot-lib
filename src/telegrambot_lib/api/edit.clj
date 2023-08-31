@@ -25,6 +25,8 @@
    - entities ; list of MessageEntity - can use instead of parse_mode
    - disable_web_page_preview ; disable link previews
    - reply_markup ; inline keyboard markup"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "editMessageText" content))
 
@@ -55,6 +57,8 @@
    - parse_mode ; entity parsing in message
    - disable_web_page_preview ; disable link previews
    - reply_markup ; inline keyboard markup"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "editMessageText" content))
 
@@ -84,6 +88,8 @@
    - parse_mode ; entity parsing in message
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - reply_markup ; inline keyboard markup"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "editMessageCaption" content))
 
@@ -113,6 +119,8 @@
    Optional
    - parse_mode ; entity parsing in message
    - reply_markup ; inline keyboard markup"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "editMessageCaption" content))
 
@@ -144,6 +152,8 @@
 
    Optional
    - reply_markup ; inline keyboard markup"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "editMessageMedia" content))
 
@@ -176,6 +186,8 @@
 
    Optional
    - reply_markup ; inline keyboard markup"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "editMessageMedia" content))
 
@@ -200,6 +212,8 @@
    - chat_id ; target chat or username (@user)
    - message_id ; id of message to edit
    - reply_markup ; inline keyboard markup"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "editMessageReplyMarkup" content))
 
@@ -218,6 +232,8 @@
    - this ; a bot instance
    - inline_message_id ; id of the inline message
    - reply_markup ; inline keyboard markup"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "editMessageReplyMarkup" content))
 
@@ -237,6 +253,8 @@
 
    Optional
    - reply_markup ; inline keyboard markup"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "stopPoll" content))
 
@@ -259,6 +277,8 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - message_id ; id of message to delete"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "deleteMessage" content))
 
