@@ -8,6 +8,7 @@
   "Returns the var to which a `var-name` will be resolved in the `ns` namespace
    (unless found in the environment), else `nil`. Also checks that the returned
    var dereferences to a function."
+  {:added "1.0.0"}
   [ns var-name]
   (let [resolved-var (ns-resolve ns (symbol var-name))]
     (if (and (some? resolved-var) (not (fn? @resolved-var)))
@@ -67,6 +68,7 @@
 (defn- build-json-str-parser
   "Builds a JSON string parser fn — the one that takes a JSON-encoded string
    and parses a Clojure object out of it."
+  {:added "1.0.0"}
   [lib]
   (let [parser-fn (resolve-fn-var (:core-lib-ns lib)
                                   (:parser-fn-name lib))]
@@ -79,12 +81,14 @@
 
 (defn parse-str
   "Parses (reads) a given JSON-encoded string into a Clojure object."
+  {:added "1.0.0"}
   [json-str]
   (json-str-parser json-str))
 
 (defn- build-json-str-generator
   "Builds a JSON string generator fn — the one that takes a Clojure object
    and generates its JSON-encoded string representation."
+  {:added "1.0.0"}
   [lib]
   (resolve-fn-var (:core-lib-ns lib)
                   (:generator-fn-name lib)))
@@ -96,5 +100,6 @@
 
 (defn generate-str
   "Generates (writes) a JSON-encoded string for a given Clojure object."
+  {:added "1.0.0"}
   [clj-obj]
   (json-str-generator clj-obj))
