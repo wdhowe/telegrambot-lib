@@ -25,6 +25,7 @@
    - next_offset ; Pagination offset a client should use for more results
    - button ; A JSON-serialized object describing a button to be shown above inline query results."
   {:changed "2.7.0"}
+
   ([this content]
    (http/request this "answerInlineQuery" content))
 
@@ -50,6 +51,7 @@
    - web_app_query_id ; id for the answered query
    - result ; json object describing message to be sent"
   {:added "1.5.0"}
+
   ([this content]
    (http/request this "answerWebAppQuery" content))
 

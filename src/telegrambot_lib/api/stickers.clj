@@ -27,6 +27,8 @@
    - reply_to_message_id ; id of original message if reply
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; additional interface options"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendSticker" content))
 
@@ -48,6 +50,7 @@
    Required
    - this ; a bot instance
    - name ; name of the sticker set"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod get-sticker-set true
@@ -66,6 +69,7 @@
    Required
    - this ; a bot instance
    - custom_emoji_ids ; a list of emoji identifiers"
+  {:added "2.2.0"}
   content-map?)
 
 (defmethod get-custom-emoji-stickers true
@@ -89,6 +93,7 @@
                See https://core.telegram.org/stickers for technical requirements.
    - sticker_format ; Format of sticker, 'static', 'animated', or 'video'."
   {:changed "2.6.0"}
+
   ([this content]
    (http/request this "uploadStickerFile" content))
 
@@ -115,6 +120,7 @@
    - sticker_type ; Type of stickers, 'regular' (default), 'mask', 'custom_emoji'.
    - needs_repainting ; True if stickers must be repainted to color of text in messages. (custom emoji sets only)"
   {:changed "2.6.0"}
+
   ([this content]
    (http/request this "createNewStickerSet" content))
 
@@ -149,6 +155,7 @@
    - name ; sticker set name
    - sticker ; A JSON-serialized object(InputSticker) with info about the added sticker."
   {:changed "2.6.0"}
+
   ([this content]
    (http/request this "addStickerToSet" content))
 
@@ -167,6 +174,8 @@
    - this ; a bot instance
    - sticker ; file id of the sticker
    - position ; new sticker position in the set"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "setStickerPositionInSet" content))
 
@@ -182,6 +191,7 @@
    Required
    - this ; a bot instance
    - sticker ; file id of the sticker"
+  {:changed "0.2.0"}
   content-map?)
 
 (defmethod delete-sticker-from-set true
@@ -203,6 +213,7 @@
    - sticker ; File id of the sticker.
    - emoji_list ; A JSON-serialized list of 1-20 emoji associated with the sticker."
   {:added "2.6.0"}
+
   ([this content]
    (http/request this "setStickerEmojiList" content))
 
@@ -277,6 +288,7 @@
    - name ; Sticker set name.
    - title ; Sticker set title."
   {:added "2.6.0"}
+
   ([this content]
    (http/request this "setStickerSetTitle" content))
 
@@ -300,6 +312,7 @@
                  More information: https://core.telegram.org/bots/api#sending-files"
   {:deprecated "2.6.0"
    :use-instead (symbol 'set-sticker-set-thumbnail)}
+
   ([this content]
    (http/request this "setStickerSetThumbnail" content))
 
@@ -328,6 +341,7 @@
    - thumbnail ; A .WEBP or .PNG image with the thumbnail, or .TGS animation, or WEBM video.
                  More information: https://core.telegram.org/bots/api#sending-files"
   {:added "2.6.0"}
+
   ([this content]
    (http/request this "setStickerSetThumbnail" content))
 

@@ -47,6 +47,8 @@
    - reply_to_message_id ; id of original message if a reply
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; inline keyboard markup"
+  {:changed "0.3.3"}
+
   ([this content]
    (http/request this "sendInvoice" content))
 
@@ -101,6 +103,8 @@
    - send_phone_number_to_provider ; true to send phone number to provider
    - send_email_to_provider ; true to send email to provider
    - is_flexible ; true if final price depends on shipping method"
+  {:added "2.1.0"}
+
   ([this content]
    (http/request this "createInvoiceLink" content))
 
@@ -136,6 +140,8 @@
    - shipping_query_id ; id of query to be answered
    - ok ; true if delivery to address is possible (auto set by this function)
    - shipping_options ; Required if 'ok' is true, array of shipping options"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "answerShippingQuery" content))
 
@@ -158,6 +164,8 @@
    - shipping_query_id ; id of query to be answered
    - ok ; true if delivery to address is possible (auto set by this function)
    - error_message ; Required if 'ok' is false, message why order cannot complete"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "answerShippingQuery" content))
 
@@ -180,6 +188,7 @@
    - pre_checkout_query_id ; id of query to be answered
    - ok ; true if all is good (in stock, etc) and bot is ready to proceed with order
           (auto set by this function)"
+  {:added "0.2.0"}
   content-map?)
 
 (defmethod answer-precheckout-query-ok true
@@ -206,6 +215,8 @@
    - ok ; true if all is good (in stock, etc) and bot is ready to proceed with order
           (auto set by this function)
    - error_message ; Required if 'ok' is false, message why checkout cannot proceed"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "answerPreCheckoutQuery" content))
 

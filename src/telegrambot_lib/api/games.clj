@@ -25,6 +25,8 @@
    - reply_to_message_id ; id of original message
    - allow_sending_without_reply ; true to send message even if replied-to message is not found
    - reply_markup ; inline keyboard markup"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "sendGame" content))
 
@@ -55,6 +57,8 @@
    Optional
    - force ; true if high score is allowed to decrease
    - disable_edit_message ; true if game msg should not be auto edited to include the scoreboard"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "setGameScore" content))
 
@@ -88,6 +92,8 @@
    Optional
    - force ; true if high score is allowed to decrease
    - disable_edit_message ; true if game msg should not be auto edited to include the scoreboard"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "setGameScore" content))
 
@@ -114,6 +120,8 @@
    - chat_id ; id of the target chat
    - message_id ; id of the sent message
    - user_id ; target user"
+  {:changed "0.2.0"}
+
   ([this content]
    (http/request this "getGameHighScores" content))
 
@@ -132,6 +140,8 @@
    - this ; a bot instance
    - inline_message_id ; id of the sent message
    - user_id ; target user"
+  {:added "0.2.0"}
+
   ([this content]
    (http/request this "getGameHighScores" content))
 

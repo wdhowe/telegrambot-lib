@@ -9,12 +9,14 @@
 
 (defn- upper-case-name
   "Transform the passed in value to an all upper cased name."
+  {:added "1.0.0"}
   [x]
   (string/upper-case (name x)))
 
 (defmulti client
   "Send HTTP requests to the URL. Methods supported:
    - POST"
+  {:changed "2.8.0"}
   (fn [http-method & _] http-method))
 
 (defmethod client :post
@@ -35,11 +37,13 @@
 
 (defn gen-url
   "Generate the url to use for the http call, given the method `path`."
+  {:changed "2.9.0"}
   [this path]
   (format "%s%s/%s" (:bot-api this) (:bot-token this) path))
 
 (defn parse-resp
   "Parse the JSON response body into a keywordized map."
+  {:changed "1.0.0"}
   [resp]
   (try
     (-> resp :body json/parse-str)
@@ -48,6 +52,7 @@
 
 (defn ex->parsed-resp
   "Uniformly transform an `Exception` into a map to return."
+  {:added "1.0.0"}
   [ex]
   (let [body (parse-resp (ex-data ex))]
     ;; NB: This may overwrite the parsing exception, if any,
@@ -59,6 +64,7 @@
   "Transform a map's key/value pairs into a multipart map,
    with a list of maps with new keys.
    Eg: {:multipart [{:name key, :content value}] }"
+  {:added "2.8.0"}
   [m]
    (when (some? m)
      {:multipart (mapv #(assoc {} :name (name (first %)) :content (second %))
@@ -77,6 +83,7 @@
      request was unsuccessful (in terms of the Telegram Bot API), or
    - just an `{:error ex}` map in any other exceptional situation when we are
      unable to retrieve the response body."
+  {:changed "2.8.0"}
   (fn [this & _]
     (true? (:async this))))
 
