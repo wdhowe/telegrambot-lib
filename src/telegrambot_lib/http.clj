@@ -70,6 +70,21 @@
      {:multipart (mapv #(assoc {} :name (name (first %)) :content (second %))
                        m)}))
 
+(defmulti format-content
+  "Format the passed in content map as specified in the :content-type's value
+   or use a default format of json."
+  {:added "2.10.0"}
+  :content-type)
+
+(defmethod format-content :multipart
+ [content]
+  (map->multipart (dissoc content :content-type)))
+
+(defmethod format-content :default
+ [content]
+  {:body (json/generate-str (dissoc content :content-type))
+   :content-type :json})
+
 (defmulti request
   "Send the request to the Telegram Bot API `path` with an optional `content`,
    either sync- or asynchronously, depending on the value of the `:async` key
@@ -93,7 +108,7 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req (merge (map->multipart content)
+         req (merge (format-content content)
                     {:async? true})
          resp-channel (a/chan)
          on-success (fn [resp]
@@ -113,7 +128,7 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req (map->multipart content)]
+         req (format-content content)]
      (try
        (let [resp (client :post url req)]
          (parse-resp resp))

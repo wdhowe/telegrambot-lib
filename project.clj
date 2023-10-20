@@ -1,4 +1,4 @@
-(defproject telegrambot-lib "2.9.0"
+(defproject telegrambot-lib "2.10.0"
   
   ;;; Project Metadata
   :description "A library for interacting with the Telegram Bot API."
@@ -30,9 +30,9 @@
                     :resource-paths ["env/test/resources"]}
              
              ;; Select one of these json profiles during REPL jack-in.
-             :cheshire {:dependencies [[cheshire "5.11.0"]]}
+             :cheshire {:dependencies [[cheshire "5.12.0"]]}
              
-             :jsonista {:dependencies [[metosin/jsonista "0.3.7"]]}
+             :jsonista {:dependencies [[metosin/jsonista "0.3.8"]]}
              
              :data.json {:dependencies [[org.clojure/data.json "2.4.0"]]}}
   
