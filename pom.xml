@@ -4,7 +4,7 @@
   <groupId>telegrambot-lib</groupId>
   <artifactId>telegrambot-lib</artifactId>
   <packaging>jar</packaging>
-  <version>2.9.0</version>
+  <version>2.10.0</version>
   <name>telegrambot-lib</name>
   <description>A library for interacting with the Telegram Bot API.</description>
   <url>https://github.com/wdhowe/telegrambot-lib</url>
@@ -18,7 +18,7 @@
     <url>https://github.com/wdhowe/telegrambot-lib</url>
     <connection>scm:git:git://github.com/wdhowe/telegrambot-lib.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wdhowe/telegrambot-lib.git</developerConnection>
-    <tag>ae81e5bc1ba607e30153b3ba8e7470885400a741</tag>
+    <tag>1d906f8a2ec904d4ab6a4ea3b358077609b61674</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -95,6 +95,12 @@
       <groupId>potemkin</groupId>
       <artifactId>potemkin</artifactId>
       <version>0.4.6</version>
+    </dependency>
+    <dependency>
+      <groupId>clj-http-fake</groupId>
+      <artifactId>clj-http-fake</artifactId>
+      <version>1.0.4</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
