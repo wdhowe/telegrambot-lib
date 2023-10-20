@@ -38,7 +38,8 @@
 (println "\n---------- Call function: set-webhook ----------")
 (clojure.pprint/pprint
  (set-webhook bot {:url (:cert-url environ/env)
-                   :certificate (clojure.java.io/file (:cert-file environ/env))}))
+                   :certificate (clojure.java.io/file (:cert-file environ/env))
+                   :content-type :multipart}))
 
 (println "\n---------- Call function: get-webhook ----------")
 (clojure.pprint/pprint

@@ -25,6 +25,24 @@
     (is (= (http/map->multipart nil)
            nil))))
 
+(deftest format-content-test
+  (testing "Format content as json and multipart."
+    ;; content-type not specified, use default json
+    (is (= (http/format-content {:url "http://my.url.com", :cert "mycert.pem"})
+           {:body "{\"url\":\"http://my.url.com\",\"cert\":\"mycert.pem\"}"
+            :content-type :json}))
+    
+    ;; content-type specified as json
+    (is (= (http/format-content {:url "http://my.url.com", :cert "mycert.pem", :content-type :json})
+           {:body "{\"url\":\"http://my.url.com\",\"cert\":\"mycert.pem\"}"
+            :content-type :json}))
+    
+    ;; content-type specified as multipart, format as passed.
+    (is (= (http/format-content {:url "http://my.url.com", :cert "mycert.pem", :content-type :multipart})
+           {:multipart
+            [{:name "url", :content "http://my.url.com"}
+             {:name "cert", :content "mycert.pem"}]}))))
+
 (def ok-resp
   {:cached nil
    :request-time 545
