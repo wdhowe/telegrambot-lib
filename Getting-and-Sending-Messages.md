@@ -103,14 +103,14 @@ An example using [Compojure](https://github.com/weavejester/compojure):
              [json :refer [wrap-json-body wrap-json-response]]]
             <other requirements like `config` or `log`>))
 
-...
+;...
 
 ;; NB: The main fn for an incoming `Update` object processing.
 (defn handle [update]
   (log/debug "Received update:" update)
   <handle the update and return some `op-result`>)
 
-...
+;...
 
 (def api-routes
   (cmpj/context "/api" []
@@ -121,7 +121,7 @@ An example using [Compojure](https://github.com/weavejester/compojure):
           <translate the `op-result` to a response map>)
         <return a `404` response map>))))
 
-...
+;...
 
 (cmpj/defroutes
   app-routes
@@ -149,7 +149,7 @@ This is an example of the `get-updates` function return value.
                      :chat {:id 280000000, :first_name "Bill", :last_name "Howe", :username "myusername", :type "private"}
                      :date 1602815917
                      :text "Oh hi bot!"}}
-          .....
+          ;.....
           {:update_id 760000010
            :message {:message_id 1
                      :from {:id 123, :is_bot true, :first_name "mybot", :username "my_roboto"}
