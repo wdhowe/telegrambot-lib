@@ -1,37 +1,100 @@
-## Welcome to GitHub Pages
+## Getting Started
 
-You can use the [editor on GitHub](https://github.com/wdhowe/telegrambot-lib/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Get started using the `telegrambot-lib`.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Adding Dependencies
 
-### Markdown
+See the `telegrambot-lib` [Clojars page][clojars] for details on adding this library to projects for Leiningen, Boot,
+and CLI/deps.edn.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+You will also need to provide your favorite JSON mapper library as an explicit project dependency or just make sure
+you already have one in the classpath of your project (which is usually the case when you are building a web app).
 
-```markdown
-Syntax highlighted code block
+The following JSON mappers are currently supported:
 
-# Header 1
-## Header 2
-### Header 3
+- `["cheshire"]`
+- `["metosin/jsonista"]`
+- `["org.clojure/data.json"]`
 
-- Bulleted
-- List
+So, with Leiningen you'll end up with these two entries in the project dependencies:
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```clojure
+[telegrambot-lib "2.10.0"]
+[cheshire "5.10.1"]
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+- **Note**: The above version numbers are an example and may not be the latest. See each project's github or clojars page.
 
-### Jekyll Themes
+## Requiring the Library
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/wdhowe/telegrambot-lib/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+In the REPL:
 
-### Support or Contact
+```clojure
+(require '[telegrambot-lib.core :as tbot])
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+In your application codebase:
+
+```clojure
+(ns my-app.core
+  (:require [telegrambot-lib.core :as tbot]))
+```
+
+## Using the Library
+
+Pre-Reqs:
+
+- You have [created a Telegram bot](https://core.telegram.org/bots#3-how-do-i-create-a-bot) and received an auth token.
+- The library is added as a project dependency.
+- The library is required as indicated above, with a `tbot` alias for the `core` namespace.
+  - Note: The `tbot` alias is only important for following the example code in the wiki.
+
+The Bot API auth token can be passed to the bot by either:
+
+- **Environment variable** —
+  The lib will look for `BOT_TOKEN` in the environment. \
+  The token could be in project.clj, profiles.clj or an environment variable. \
+  See [environ](https://github.com/weavejester/environ#usage) for more details.
+
+  ```clojure
+  (def mybot (tbot/create))
+  ```
+
+or
+
+- **Function argument - simple value** —
+  The `create` function has an optional parameter to pass an auth token.
+
+  ```clojure
+  (def mybot (tbot/create my-token))
+  ```
+
+or
+
+- **Function argument - map** —
+  The `create` function has an optional parameter to pass a map of config values.
+
+  The advantage of using a map is the ability to change other configuration such as [async](https://github.com/wdhowe/telegrambot-lib/wiki/Advanced#making-asynchronous-calls) or the api endpoint url.
+
+  ```clojure
+  (def mybot (tbot/create {:bot-token my-token}))
+  ```
+
+Verify your bot is working by firing the [`getMe`](https://core.telegram.org/bots/api/#getme)
+Bot API method call, which is now as simple as calling the `get-me` function.
+
+```clojure
+(tbot/get-me mybot)
+=>
+{:ok true,
+ :result {:id 123,
+          :is_bot true,
+          :first_name "mybot",
+          :username "my_roboto",
+          :can_join_groups true,
+          :can_read_all_group_messages false,
+          :supports_inline_queries false}}
+```
+
+<!-- Named page links below: /-->
+[clojars]: https://clojars.org/telegrambot-lib
