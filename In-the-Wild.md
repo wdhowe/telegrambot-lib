@@ -9,7 +9,7 @@
 
 Bots/applications using telegrambot-lib:
 
-* https://github.com/wdhowe/lemme-know-bot
+- <https://github.com/wdhowe/lemme-know-bot>
 
 ***
 

@@ -44,10 +44,10 @@ Here is an example of what a polling function could look like:
 
 When using the poll method of getting updates, you would probably have some sort of application loop.
 
-* poll for updates
-* handle each message
-* track the update-id (in order to not process the same message on the next poll)
-* optionally sleep/wait a bit before polling again
+- poll for updates
+- handle each message
+- track the update-id (in order to not process the same message on the next poll)
+- optionally sleep/wait a bit before polling again
 
 That could look something like this:
 
