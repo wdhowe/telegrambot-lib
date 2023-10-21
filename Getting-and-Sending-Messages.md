@@ -95,6 +95,8 @@ Once setup, your bot will need to listen for updates sending a POST to it.
 
 An example using [Compojure](https://github.com/weavejester/compojure):
 
+{% raw %}
+
 ```clojure
 (ns grossbuchbot.web-handler
   (:require [compojure.core :as cmpj :refer [POST]]
@@ -132,6 +134,8 @@ An example using [Compojure](https://github.com/weavejester/compojure):
 
   <other web app routes>)
 ```
+
+{% endraw %}
 
 ## Determining the Chat and User
 
