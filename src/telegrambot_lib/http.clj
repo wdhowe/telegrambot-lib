@@ -98,7 +98,7 @@
      request was unsuccessful (in terms of the Telegram Bot API), or
    - just an `{:error ex}` map in any other exceptional situation when we are
      unable to retrieve the response body."
-  {:changed "2.8.0"}
+  {:changed "2.10.0"}
   (fn [this & _]
     (true? (:async this))))
 

@@ -1,4 +1,4 @@
-(defproject telegrambot-lib "2.10.0"
+(defproject telegrambot-lib "2.11.0"
   
   ;;; Project Metadata
   :description "A library for interacting with the Telegram Bot API."
