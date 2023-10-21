@@ -1,6 +1,8 @@
 # telegrambot-lib
 
-[![Build Status][gh-actions-badge]][gh-actions] [![Clojars Project][clojars-badge]][clojars] [![Clojure Docs][cljdoc-badge]][cljdoc-link] [![Clojure version][clojure-v]](project.clj)
+[![Build Status][gh-actions-badge]][gh-actions] [![Clojars Project][clojars-badge]][clojars] [![Clojure version][clojure-v]](project.clj)
+
+<!-- Put back in badges after fixing issue-127? [![Clojure Docs][cljdoc-badge]][cljdoc-link] -->
 
 A Clojure library for interacting with the Telegram Bot API.
 
@@ -17,7 +19,7 @@ See the [Wiki for documentation](https://github.com/wdhowe/telegrambot-lib/wiki)
 
 ## License
 
-Copyright © 2020-2022 Bill Howe and contributors
+Copyright © 2020-2023 Bill Howe and contributors
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at

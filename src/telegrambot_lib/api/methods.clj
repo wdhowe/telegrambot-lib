@@ -1041,15 +1041,18 @@
    Optional
    - is_anonymous ; true if admin presence in chat is hidden
    - can_manage_chat ; true if admin can access logs, stats, members, etc.
+   - can_delete_messages ; true if admin can delete messages of other users
+   - can_manage_video_chats ; true if admin can manage video chats, supergroups only
+   - can_restrict_members ; true if admin can restrict, ban, unban members
+   - can_promote_members ; true if admin can add new admins
    - can_change_info ; true if admin can change chat title, photo, other settings
+   - can_invite_users ; true if admin can invite new users to chat
    - can_post_messages ; true if admin can create channel posts
    - can_edit_messages ; true if admin can edit messages of other users, pin messages
-   - can_delete_messages ; true if admin can delete messages of other users
-   - can_invite_users ; true if admin can invite new users to chat
-   - can_restrict_members ; true if admin can restrict, ban, unban members
-   - can_manage_video_chats ; true if admin can manage video chats, supergroups only
    - can_pin_messages ; true if admin can pin messages
-   - can_promote_members ; true if admin can add new admins
+   - can_post_stories ; true if the administrator can post stories in the channel
+   - can_edit_stories ; true if the administrator can edit stories posted by other users
+   - can_delete_stories ; true if the administrator can delete stories posted by other users
    - can_manage_topics ; true if user is allowed to create,rename,close,reopen forum topics."
   {:changed "0.2.0"}
 
