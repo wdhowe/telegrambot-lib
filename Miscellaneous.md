@@ -1,3 +1,12 @@
+# Miscellaneous
+
+- [Home](index.md)
+- [Advanced](Advanced.md)
+- [Available Functions](Available-Functions.md)
+- [Getting and Sending Messages](Getting-and-Sending-Messages.md)
+- [In the Wild](In-the-Wild.md)
+- Miscellaneous
+
 ## Logging
 
 This library uses the [org.clojure/tools.logging](https://github.com/clojure/tools.logging), a standard facade library, for logging purposes.

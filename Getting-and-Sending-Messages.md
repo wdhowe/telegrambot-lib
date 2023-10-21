@@ -1,3 +1,12 @@
+# Getting and Sending Messages
+
+- [Home](index.md)
+- [Advanced](Advanced.md)
+- [Available Functions](Available-Functions.md)
+- Getting and Sending Messages
+- [In the Wild](In-the-Wild.md)
+- [Miscellaneous](Miscellaneous.md)
+
 ## Bot Prep
 
 In the Telegram client:

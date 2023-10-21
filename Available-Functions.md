@@ -1,3 +1,12 @@
+# Available Functions
+
+- [Home](index.md)
+- [Advanced](Advanced.md)
+- Available Functions
+- [Getting and Sending Messages](Getting-and-Sending-Messages.md)
+- [In the Wild](In-the-Wild.md)
+- [Miscellaneous](Miscellaneous.md)
+
 All of the Telegram Bot API methods are represented by functions of the `telegrambot-lib.core` namespace.
 
 Find the list of the available functions [near the bottom of `telegrambot-lib.core`](https://github.com/wdhowe/telegrambot-lib/blob/main/src/telegrambot_lib/core.clj#L48).

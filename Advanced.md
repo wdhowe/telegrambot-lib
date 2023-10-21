@@ -1,3 +1,12 @@
+# Advanced
+
+- [Home](index.md)
+- Advanced
+- [Available Functions](Available-Functions.md)
+- [Getting and Sending Messages](Getting-and-Sending-Messages.md)
+- [In the Wild](In-the-Wild.md)
+- [Miscellaneous](Miscellaneous.md)
+
 ## Error Handling
 
 The library signals unsuccessful Bot API requests and other arbitrary errors during the Bot API calls.

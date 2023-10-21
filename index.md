@@ -1,3 +1,12 @@
+# telegrambot-lib
+
+- Home
+- [Advanced](Advanced.md)
+- [Available Functions](Available-Functions.md)
+- [Getting and Sending Messages](Getting-and-Sending-Messages.md)
+- [In the Wild](In-the-Wild.md)
+- [Miscellaneous](Miscellaneous.md)
+
 ## Getting Started
 
 Get started using the `telegrambot-lib`.
