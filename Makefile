@@ -34,6 +34,17 @@ package:
 	@echo "Create uberjar."
 	lein uberjar
 
+# Pre-req: clojure -Ttools install io.github.cljdoc/cljdoc-analyzer '{:git/tag "RELEASE"}' :as cljdoc
+# Analyze cljdoc api imports locally.
+cljdoc-analyze:
+	@PROJECT_VERSION=$$(awk '/defproject/ {print $$3}' project.clj | tr -d '"') ; \
+	clojure -Tcljdoc analyze \
+	:project '"telegrambot-lib/telegrambot-lib"' \
+	:version '"'$${PROJECT_VERSION}'"' \
+	:jarpath '"'./target/telegrambot-lib-$${PROJECT_VERSION}.jar'"' \
+	:pompath '"./pom.xml"' \
+	:extra-repo '["clojars https://repo.clojars.org/"]'
+
 clean:
 	@echo "Cleaning up built targets."
 	lein clean
