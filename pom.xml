@@ -18,7 +18,7 @@
     <url>https://github.com/wdhowe/telegrambot-lib</url>
     <connection>scm:git:git://github.com/wdhowe/telegrambot-lib.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wdhowe/telegrambot-lib.git</developerConnection>
-    <tag>2906cbea99ebce1a7e8289439dc4d6c468721e69</tag>
+    <tag>2a33b742f8dc22466e4840de8213179b3c6e5432</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -95,6 +95,12 @@
       <groupId>potemkin</groupId>
       <artifactId>potemkin</artifactId>
       <version>0.4.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>data.json</artifactId>
+      <version>2.4.0</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>clj-http-fake</groupId>
