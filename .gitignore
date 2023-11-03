@@ -12,4 +12,5 @@
 pom.xml.asc
 profiles.clj
 /target
+/output-telegrambot-lib
 .vscode/
