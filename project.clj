@@ -12,13 +12,14 @@
                  [org.clojure/clojure "1.11.1"]
                  [org.clojure/core.async "1.6.681"]
                  [org.clojure/tools.logging "1.2.4"]
-                 [potemkin "0.4.6"]
-                 [org.clojure/data.json "2.4.0" :scope "provided"]]
+                 [potemkin "0.4.6"]]
   
   ;;; Profiles
   ;; logback-classic must be 1.3.x due to jdk8 support.
   ;; See: https://github.com/wdhowe/telegrambot-lib/pull/120/commits/015d31621a3fd5a7f69dcf7c230d76d55f7a47c1
-  :profiles {:dev {:dependencies [[ch.qos.logback/logback-classic "1.3.5" :upgrade :logback]]
+  :profiles {;; REPL Jack-in with :dev,:local for development.
+             :dev {:dependencies [[ch.qos.logback/logback-classic "1.3.5" :upgrade :logback]
+                                  [cheshire "5.12.0"]]
                    :plugins [[lein-environ "1.2.0"]]
                    :resource-paths ["env/dev/resources"]}
              
@@ -26,11 +27,12 @@
              ;; Loads from profiles.clj (git ignored).
              :local {}
              
-             :test {:dependencies [[clj-http-fake/clj-http-fake "1.0.4"]]
+             :test {:dependencies [[cheshire "5.12.0"]
+                                   [clj-http-fake/clj-http-fake "1.0.4"]]
                     :plugins [[lein-environ "1.2.0"]]
                     :resource-paths ["env/test/resources"]}
              
-             ;; Select one of these json profiles during REPL jack-in.
+             ;; Profiles for testing json libraries.
              :cheshire {:dependencies [[cheshire "5.12.0"]]}
              
              :jsonista {:dependencies [[metosin/jsonista "0.3.8"]]}

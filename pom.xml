@@ -18,7 +18,7 @@
     <url>https://github.com/wdhowe/telegrambot-lib</url>
     <connection>scm:git:git://github.com/wdhowe/telegrambot-lib.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wdhowe/telegrambot-lib.git</developerConnection>
-    <tag>2a33b742f8dc22466e4840de8213179b3c6e5432</tag>
+    <tag>b73beb09dbdb0be3341b5e7b6c650c304054933f</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -97,10 +97,10 @@
       <version>0.4.6</version>
     </dependency>
     <dependency>
-      <groupId>org.clojure</groupId>
-      <artifactId>data.json</artifactId>
-      <version>2.4.0</version>
-      <scope>provided</scope>
+      <groupId>cheshire</groupId>
+      <artifactId>cheshire</artifactId>
+      <version>5.12.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>clj-http-fake</groupId>

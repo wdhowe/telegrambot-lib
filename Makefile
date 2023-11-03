@@ -2,13 +2,13 @@
 
 test:
 	@echo "JSON with cheshire."
-	lein with-profiles +cheshire test :json
+	lein with-profile cheshire test :json
 	@echo "JSON with jsonista."
-	lein with-profiles +jsonista test :json
+	lein with-profile jsonista test :json
 	@echo "JSON with data.json."
-	lein with-profiles +data.json test :json
+	lein with-profile data.json test :json
 	@echo "All other tests."
-	lein with-profiles +cheshire test
+	lein test
 
 deploy: test
 	lein with-profile -dev deploy clojars
