@@ -82,7 +82,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendMessage" content))
@@ -151,7 +151,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:added "0.3.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "copyMessage" content))
@@ -188,7 +188,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendPhoto" content))
@@ -228,7 +228,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendAudio" content))
@@ -264,7 +264,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendDocument" content))
@@ -305,7 +305,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendVideo" content))
@@ -345,7 +345,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendAnimation" content))
@@ -383,7 +383,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendVoice" content))
@@ -417,7 +417,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendVideoNote" content))
@@ -446,8 +446,8 @@
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_parameters ; Description of the message to reply to
-  {:changed "0.2.0"}
+   - reply_parameters ; Description of the message to reply to"
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendMediaGroup" content))
@@ -483,7 +483,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendLocation" content))
@@ -652,7 +652,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendVenue" content))
@@ -692,7 +692,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendContact" content))
@@ -744,7 +744,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendPoll" content))
@@ -777,7 +777,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
   content-map?)
 
 (defmethod send-dice true

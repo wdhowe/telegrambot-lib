@@ -46,7 +46,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; inline keyboard markup"
-  {:changed "0.3.3"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendInvoice" content))

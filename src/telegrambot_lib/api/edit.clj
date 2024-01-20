@@ -25,7 +25,7 @@
    - entities ; list of MessageEntity - can use instead of parse_mode
    - link_preview_options ; link preview generation options.
    - reply_markup ; inline keyboard markup"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "editMessageText" content))
@@ -57,7 +57,7 @@
    - parse_mode ; entity parsing in message
    - link_preview_options ; link preview generation options.
    - reply_markup ; inline keyboard markup"
-  {:added "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "editMessageText" content))
