@@ -1,4 +1,4 @@
-(defproject telegrambot-lib "2.11.0"
+(defproject telegrambot-lib "2.12.0"
   
   ;;; Project Metadata
   :description "A library for interacting with the Telegram Bot API."
@@ -12,7 +12,7 @@
                  [org.clojure/clojure "1.11.1"]
                  [org.clojure/core.async "1.6.681"]
                  [org.clojure/tools.logging "1.2.4"]
-                 [potemkin "0.4.6"]]
+                 [potemkin "0.4.7"]]
   
   ;;; Profiles
   ;; logback-classic must be 1.3.x due to jdk8 support.
@@ -37,7 +37,7 @@
              
              :jsonista {:dependencies [[metosin/jsonista "0.3.8"]]}
              
-             :data.json {:dependencies [[org.clojure/data.json "2.4.0"]]}}
+             :data.json {:dependencies [[org.clojure/data.json "2.5.0"]]}}
   
   ;;; Testing
   :test-selectors {:default (complement :json)

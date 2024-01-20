@@ -77,7 +77,7 @@
    - message_thread_id ; id of the target thread of the forum.
    - parse_mode ; entity parsing in message
    - entities ; list of MessageEntity - can use instead of parse_mode
-   - disable_web_page_preview ; disable link previews
+   - link_preview_options ; link preview generation options.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_to_message_id ; id of the original message

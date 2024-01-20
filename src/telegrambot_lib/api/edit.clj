@@ -23,7 +23,7 @@
    Optional
    - parse_mode ; entity parsing in message
    - entities ; list of MessageEntity - can use instead of parse_mode
-   - disable_web_page_preview ; disable link previews
+   - link_preview_options ; link preview generation options.
    - reply_markup ; inline keyboard markup"
   {:changed "0.2.0"}
 
@@ -55,7 +55,7 @@
 
    Optional
    - parse_mode ; entity parsing in message
-   - disable_web_page_preview ; disable link previews
+   - link_preview_options ; link preview generation options.
    - reply_markup ; inline keyboard markup"
   {:added "0.2.0"}
 
