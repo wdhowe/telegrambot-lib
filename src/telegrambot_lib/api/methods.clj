@@ -80,8 +80,7 @@
    - link_preview_options ; link preview generation options.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -150,8 +149,7 @@
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:added "0.3.0"}
 
@@ -188,8 +186,7 @@
    - has_spoiler ; true if photo needs to be covered with spoiler animation.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -229,8 +226,7 @@
    - thumbnail ; thumbnail of the file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -266,8 +262,7 @@
    - disable_content_type_detection ; disable auto content type detection for files uploaded
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -308,8 +303,7 @@
    - supports_streaming ; true if uploaded video is ok for streaming
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -349,8 +343,7 @@
    - thumbnail ; thumbnail of file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -388,8 +381,7 @@
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -423,8 +415,7 @@
    - thumbnail ; thumbnail of the file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -455,8 +446,7 @@
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found"
+   - reply_parameters ; Description of the message to reply to
   {:changed "0.2.0"}
 
   ([this content]
@@ -491,8 +481,7 @@
    - proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -661,8 +650,7 @@
    - google_place_type ; Google Places type of venue
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -702,8 +690,7 @@
    - vcard ; 'vCard' formatted additional data
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -755,8 +742,7 @@
    - is_closed ; true if poll needs to be immediately closed
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
@@ -789,8 +775,7 @@
    - emoji ; image for dice animation (default: dice)
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
   content-map?)

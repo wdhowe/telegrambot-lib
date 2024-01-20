@@ -24,8 +24,7 @@
    - emoji ; Emoji associated with the recently uploaded sticker.
    - disable_notification ; true to send message silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of original message if reply
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
   {:changed "0.2.0"}
 
