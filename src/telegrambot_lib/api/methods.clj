@@ -2057,12 +2057,6 @@
   ([this chat_id user_id]
    (let [content {:chat_id chat_id
                   :user_id user_id}]
-     (get-user-chat-boosts this content)))
-
-  ([this chat_id user_id & optional]
-   (let [content (merge (first optional)
-                        {:chat_id chat_id
-                         :user_id user_id})]
      (get-user-chat-boosts this content))))
 
 (defmulti set-my-commands
