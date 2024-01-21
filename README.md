@@ -15,11 +15,14 @@ Each API call is a Clojure function, with docstrings outlining required and opti
 
 ## Usage
 
-See the [Wiki for documentation](https://github.com/wdhowe/telegrambot-lib/wiki).
+Documentation is available on the project wiki and is also published to github pages.
+
+- [Wiki](https://github.com/wdhowe/telegrambot-lib/wiki)
+- [Github pages](https://wdhowe.github.io/telegrambot-lib/)
 
 ## License
 
-Copyright © 2020-2023 Bill Howe and contributors
+Copyright © 2020-2024 Bill Howe and contributors
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at

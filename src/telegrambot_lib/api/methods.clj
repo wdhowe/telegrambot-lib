@@ -77,13 +77,12 @@
    - message_thread_id ; id of the target thread of the forum.
    - parse_mode ; entity parsing in message
    - entities ; list of MessageEntity - can use instead of parse_mode
-   - disable_web_page_preview ; disable link previews
+   - link_preview_options ; link preview generation options.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendMessage" content))
@@ -131,6 +130,41 @@
                          :message_id message_id})]
      (forward-message this content))))
 
+(defn forward-messages
+  "Use this method to forward multiple messages of any kind.
+   If some of the specified messages can't be found or forwarded, they are skipped.
+   Service messages and messages with protected content can't be forwarded.
+   Album grouping is kept for forwarded messages.
+   On success, an array of MessageId of the sent messages is returned.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - from_chat_id ; id of chat from original message
+   - message_ids ; List of IDs, 1-100 messages in the chat from_chat_id to forward.
+
+   Optional
+   - message_thread_id ; id of the target thread of the forum.
+   - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving"
+  {:added "2.12.0"}
+
+  ([this content]
+   (http/request this "forwardMessages" content))
+
+  ([this chat_id from_chat_id message_ids]
+   (let [content {:chat_id chat_id
+                  :from_chat_id from_chat_id
+                  :message_ids message_ids}]
+     (forward-messages this content)))
+
+  ([this chat_id from_chat_id message_ids & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :from_chat_id from_chat_id
+                         :message_ids message_ids})]
+     (forward-messages this content))))
+
 (defn copy-message
   "Use this method to copy messages of any kind.
    The method is analogous to the method forwardMessages, but the copied
@@ -150,10 +184,9 @@
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:added "0.3.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "copyMessage" content))
@@ -170,6 +203,44 @@
                          :from_chat_id from_chat_id
                          :message_id message_id})]
      (copy-message this content))))
+
+(defn copy-messages
+  "Use this method to copy messages of any kind.
+   If some of the specified messages can't be found or copied, they are skipped.
+   Service messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied.
+   A quiz poll can be copied only if the value of the field correct_option_id is known to the bot.
+   The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message.
+   Album grouping is kept for copied messages.
+   On success, an array of MessageId of the sent messages is returned.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - from_chat_id ; id of chat from original message
+   - message_ids ; message id in chat specified in 'from_chat_id'
+
+   Optional
+   - message_thread_id ; id of the target thread of the forum.
+   - disable_notification ; send silently
+   - protect_content ; protect content from forwarding/saving
+   - remove_caption ; True to copy the messages without captions."
+  {:added "2.12.0"}
+
+  ([this content]
+   (http/request this "copyMessages" content))
+
+  ([this chat_id from_chat_id message_ids]
+   (let [content {:chat_id chat_id
+                  :from_chat_id from_chat_id
+                  :message_ids message_ids}]
+     (copy-messages this content)))
+
+  ([this chat_id from_chat_id message_ids & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :from_chat_id from_chat_id
+                         :message_ids message_ids})]
+     (copy-messages this content))))
 
 (defn send-photo
   "Use this method to send photos.
@@ -188,10 +259,9 @@
    - has_spoiler ; true if photo needs to be covered with spoiler animation.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendPhoto" content))
@@ -229,10 +299,9 @@
    - thumbnail ; thumbnail of the file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendAudio" content))
@@ -266,10 +335,9 @@
    - disable_content_type_detection ; disable auto content type detection for files uploaded
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendDocument" content))
@@ -308,10 +376,9 @@
    - supports_streaming ; true if uploaded video is ok for streaming
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendVideo" content))
@@ -349,10 +416,9 @@
    - thumbnail ; thumbnail of file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendAnimation" content))
@@ -388,10 +454,9 @@
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendVoice" content))
@@ -423,10 +488,9 @@
    - thumbnail ; thumbnail of the file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendVideoNote" content))
@@ -455,9 +519,8 @@
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found"
-  {:changed "0.2.0"}
+   - reply_parameters ; Description of the message to reply to"
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendMediaGroup" content))
@@ -491,10 +554,9 @@
    - proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendLocation" content))
@@ -661,10 +723,9 @@
    - google_place_type ; Google Places type of venue
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendVenue" content))
@@ -702,10 +763,9 @@
    - vcard ; 'vCard' formatted additional data
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendContact" content))
@@ -755,10 +815,9 @@
    - is_closed ; true if poll needs to be immediately closed
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendPoll" content))
@@ -789,10 +848,9 @@
    - emoji ; image for dice animation (default: dice)
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of the original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
   content-map?)
 
 (defmethod send-dice true
@@ -839,6 +897,37 @@
                         {:chat_id chat_id
                          :action action})]
      (send-chat-action this content))))
+
+(defn set-message-reaction
+  "Use this method to change the chosen reactions on a message.
+   Service messages can't be reacted to.
+   Automatically forwarded messages from a channel to its discussion group
+   have the same available reactions as messages in the channel.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_id ; ID of the target message.
+
+   Optional
+   - reaction ; List of ReactionType's to set.
+   - is_big ; Pass True to set the reaction with a big animation."
+  {:added "2.12.0"}
+
+  ([this content]
+   (http/request this "setMessageReaction" content))
+
+  ([this chat_id message_id]
+   (let [content {:chat_id chat_id
+                  :message_id message_id}]
+     (set-message-reaction this content)))
+
+  ([this chat_id message_id & optional]
+   (let [content (merge (first optional)
+                        {:chat_id chat_id
+                         :message_id message_id})]
+     (set-message-reaction this content))))
 
 (defmulti get-user-profile-photos
   "Use this method to get a list of profile pictures for a user.
@@ -1950,6 +2039,25 @@
    (let [content (merge (first optional)
                         {:callback_query_id callback_query_id})]
      (answer-callback-query this content))))
+
+(defn get-user-chat-boosts
+  "Use this method to get the list of boosts added to a chat by a user.
+   Requires administrator rights in the chat.
+   Returns a UserChatBoosts object.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - user_id ; id of target user"
+  {:added "2.12.0"}
+
+  ([this content]
+   (http/request this "getUserChatBoosts" content))
+
+  ([this chat_id user_id]
+   (let [content {:chat_id chat_id
+                  :user_id user_id}]
+     (get-user-chat-boosts this content))))
 
 (defmulti set-my-commands
   "Use this method to change the list of the bot's commands.

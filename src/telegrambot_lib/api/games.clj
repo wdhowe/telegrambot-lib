@@ -22,10 +22,9 @@
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send message silently
    - protect_content ; protect content from forwarding/saving
-   - reply_to_message_id ; id of original message
-   - allow_sending_without_reply ; true to send message even if replied-to message is not found
+   - reply_parameters ; Description of the message to reply to
    - reply_markup ; inline keyboard markup"
-  {:changed "0.2.0"}
+  {:changed "2.12.0"}
 
   ([this content]
    (http/request this "sendGame" content))
