@@ -286,3 +286,22 @@
    (let [content {:chat_id chat_id
                   :message_id message_id}]
      (delete-message this content))))
+
+(defn delete-messages
+  "Use this method to delete multiple messages simultaneously.
+   If some of the specified messages can't be found, they are skipped.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - chat_id ; target chat or username (@user)
+   - message_ids ; List of IDs, 1-100 messages to delete."
+  {:added "2.12.0"}
+
+  ([this content]
+   (http/request this "deleteMessages" content))
+
+  ([this chat_id message_ids]
+   (let [content {:chat_id chat_id
+                  :message_ids message_ids}]
+     (delete-messages this content))))

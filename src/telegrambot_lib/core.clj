@@ -56,7 +56,8 @@
   edit-message-reply-markup
   edit-message-reply-markup-inline
   stop-poll
-  delete-message]
+  delete-message
+  delete-messages]
  [games
   send-game
   set-game-score
@@ -73,7 +74,9 @@
   close
   send-message
   forward-message
+  forward-messages
   copy-message
+  copy-messages
   send-photo
   send-audio
   send-document
@@ -92,6 +95,7 @@
   send-poll
   send-dice
   send-chat-action
+  set-message-reaction
   get-user-profile-photos
   get-file
   kick-chat-member
@@ -138,6 +142,7 @@
   unhide-general-forum-topic
   unpin-all-general-forum-topic-messages
   answer-callback-query
+  get-user-chat-boosts
   set-my-commands
   delete-my-commands
   get-my-commands
