@@ -13,10 +13,11 @@ Each API call is a Clojure function, with docstrings outlining required and opti
 
 ## Usage
 
-Documentation is available on the project wiki and is also published to github pages.
+Documentation is available on the project wiki or github pages. The API docs are generated on cljdoc.
 
 - [Wiki](https://github.com/wdhowe/telegrambot-lib/wiki)
 - [Github pages](https://wdhowe.github.io/telegrambot-lib/)
+- [API Docs](https://cljdoc.org/d/telegrambot-lib/telegrambot-lib/CURRENT/api/telegrambot-lib.core)
 
 ## License
 
