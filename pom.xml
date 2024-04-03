@@ -18,7 +18,7 @@
     <url>https://github.com/wdhowe/telegrambot-lib</url>
     <connection>scm:git:git://github.com/wdhowe/telegrambot-lib.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wdhowe/telegrambot-lib.git</developerConnection>
-    <tag>fba36072cbeac666cdefdf4d0726cfc4218864a2</tag>
+    <tag>dbdc77c6aaebd10dc89b0b07c59857d858f36282</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -79,7 +79,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
-      <version>1.11.1</version>
+      <version>1.11.2</version>
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
@@ -89,7 +89,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>tools.logging</artifactId>
-      <version>1.2.4</version>
+      <version>1.3.0</version>
     </dependency>
     <dependency>
       <groupId>potemkin</groupId>
@@ -99,7 +99,7 @@
     <dependency>
       <groupId>cheshire</groupId>
       <artifactId>cheshire</artifactId>
-      <version>5.12.0</version>
+      <version>5.13.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
