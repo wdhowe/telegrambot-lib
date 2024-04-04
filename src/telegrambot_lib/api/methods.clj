@@ -74,6 +74,7 @@
    - text ; message to send
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - parse_mode ; entity parsing in message
    - entities ; list of MessageEntity - can use instead of parse_mode
@@ -82,7 +83,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendMessage" content))
@@ -252,6 +253,7 @@
    - photo ; 'file_id' of photo to send that exists on Telegram servers or url
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - caption ; photo caption
    - parse_mode ; entity parsing in photo caption
@@ -261,7 +263,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendPhoto" content))
@@ -289,6 +291,7 @@
    - audio ; 'file_id' of audio to send that exists on Telegram servers or url
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - caption ; audio caption
    - parse_mode ; entity parsing in audio caption
@@ -301,7 +304,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendAudio" content))
@@ -327,6 +330,7 @@
    - document ; 'file_id' of document to send that exists on Telegram servers or url
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - caption ; document caption
    - parse_mode ; entity parsing in document caption
@@ -337,7 +341,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendDocument" content))
@@ -364,6 +368,7 @@
    - video ; 'file_id' of video to send that exists on Telegram servers or url
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of video in seconds
    - width
@@ -378,7 +383,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendVideo" content))
@@ -405,6 +410,7 @@
    - animation ; 'file_id' of animation to send that exists on Telegram servers or url
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of animation in seconds
    - width
@@ -418,7 +424,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendAnimation" content))
@@ -447,6 +453,7 @@
    - voice ; 'file_id' of audio file that exists on Telegram servers or url
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of voice message in seconds
    - caption ; voice message caption
@@ -456,7 +463,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendVoice" content))
@@ -482,6 +489,7 @@
    - video_note ; 'file_id' of video note that exists on Telegram servers or url
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - duration ; duration of video in seconds
    - length ; video width and height
@@ -490,7 +498,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendVideoNote" content))
@@ -516,11 +524,12 @@
    - media ; json array describing photos/videos to be sent
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendMediaGroup" content))
@@ -547,6 +556,7 @@
    - longitude ; long of location
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - horizontal_accuracy ; 1-1500 meters radius of uncertainty
    - live_period ; seconds for which location will be updated (60-86400)
@@ -556,7 +566,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendLocation" content))
@@ -716,6 +726,7 @@
    - address ; address of venue
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - foursquare_id ; foursquare id of venue
    - foursquare_type ; foursquare type of venue
@@ -725,7 +736,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendVenue" content))
@@ -758,6 +769,7 @@
    - first_name
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - last_name
    - vcard ; 'vCard' formatted additional data
@@ -765,7 +777,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendContact" content))
@@ -802,6 +814,7 @@
    - options ; array/list of answer options
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - is_anonymous ; true if poll is anonymous
    - type ; 'quiz' or 'regular' (default: regular)
@@ -817,7 +830,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendPoll" content))
@@ -844,13 +857,14 @@
    - chat_id ; target chat or username (@user)
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - emoji ; image for dice animation (default: dice)
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
   content-map?)
 
 (defmethod send-dice true
@@ -881,8 +895,9 @@
               record_video_note, upload_video_note)
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; unique id for target message thread."
-  {:changed "0.2.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendChatAction" content))

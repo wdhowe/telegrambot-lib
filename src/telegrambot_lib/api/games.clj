@@ -19,12 +19,13 @@
    - game_short_name ; serves as unique id for the game
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send message silently
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; inline keyboard markup"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendGame" content))

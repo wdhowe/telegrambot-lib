@@ -20,13 +20,14 @@
    - sticker ; sticker to send, file_id for existing on Telegram servers
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - emoji ; Emoji associated with the recently uploaded sticker.
    - disable_notification ; true to send message silently
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendSticker" content))
