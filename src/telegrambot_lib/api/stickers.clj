@@ -356,24 +356,27 @@
    - this ; a bot instance
    - name ; sticker set name
    - user_id ; id of the sticker set owner
+   - format ; Format of the thumbnail: static, animated, or video.
 
    Optional
    - thumbnail ; A .WEBP or .PNG image with the thumbnail, or .TGS animation, or WEBM video.
                  More information: https://core.telegram.org/bots/api#sending-files"
-  {:added "2.6.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "setStickerSetThumbnail" content))
 
-  ([this name user_id]
+  ([this name user_id format]
    (let [content {:name name
-                  :user_id user_id}]
+                  :user_id user_id
+                  :format format}]
      (set-sticker-set-thumbnail this content)))
 
-  ([this name user_id & optional]
+  ([this name user_id format & optional]
    (let [content (merge (first optional)
                         {:name name
-                         :user_id user_id})]
+                         :user_id user_id
+                         :format format})]
      (set-sticker-set-thumbnail this content))))
 
 (defmulti set-custom-emoji-sticker-set-thumbnail
