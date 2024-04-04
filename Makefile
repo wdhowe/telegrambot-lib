@@ -8,7 +8,7 @@ test:
 	@echo "JSON with data.json."
 	lein with-profile data.json test :json
 	@echo "All other tests."
-	lein test
+	lein with-profile cheshire test
 
 deploy: test
 	lein with-profile -dev deploy clojars

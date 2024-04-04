@@ -27,8 +27,7 @@
              ;; Loads from profiles.clj (git ignored).
              :local {}
              
-             :test {:dependencies [[cheshire "5.13.0"]
-                                   [clj-http-fake/clj-http-fake "1.0.4"]]
+             :test {:dependencies [[clj-http-fake/clj-http-fake "1.0.4"]]
                     :plugins [[lein-environ "1.2.0"]]
                     :resource-paths ["env/test/resources"]}
              
