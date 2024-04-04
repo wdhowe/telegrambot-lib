@@ -8,7 +8,7 @@ test:
 	@echo "JSON with data.json."
 	lein with-profile data.json test :json
 	@echo "All other tests."
-	lein with-profile cheshire test
+	lein test
 
 deploy: test
 	lein with-profile -dev deploy clojars
@@ -36,7 +36,7 @@ package:
 
 # Pre-req: clojure -Ttools install io.github.cljdoc/cljdoc-analyzer '{:git/tag "RELEASE"}' :as cljdoc
 # Analyze cljdoc api imports locally.
-cljdoc-analyze:
+cljdoc-analyze: pom package
 	@PROJECT_VERSION=$$(awk '/defproject/ {print $$3}' project.clj | tr -d '"') ; \
 	clojure -Tcljdoc analyze \
 	:project '"telegrambot-lib/telegrambot-lib"' \
