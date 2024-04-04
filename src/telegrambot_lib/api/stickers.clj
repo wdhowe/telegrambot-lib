@@ -202,6 +202,30 @@
   (let [content {:sticker sticker}]
     (delete-sticker-from-set this content)))
 
+(defn replace-sticker-in-set
+  "Use this method to replace an existing sticker in a sticker set with a new one.
+   The method is equivalent to calling deleteStickerFromSet, then addStickerToSet,
+   then setStickerPositionInSet.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - user_id ; id of sticker set owner
+   - name ; sticker set name
+   - old_sticker ; File ID of the replaced sticker.
+   - sticker ; A JSON-serialized object(InputSticker) with info about the added sticker."
+  {:added "2.13.0"}
+
+  ([this content]
+   (http/request this "replaceStickerInSet" content))
+
+  ([this user_id name old_sticker sticker]
+   (let [content {:user_id user_id
+                  :name name
+                  :old_sticker old_sticker
+                  :sticker sticker}]
+     (replace-sticker-in-set this content))))
+
 (defn set-sticker-emoji-list
   "Use this method to change the list of emoji assigned to a regular or custom emoji sticker.
    The sticker must belong to a sticker set created by the bot.

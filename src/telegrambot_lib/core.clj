@@ -175,6 +175,7 @@
   add-sticker-to-set
   set-sticker-position-in-set
   delete-sticker-from-set
+  replace-sticker-in-set
   set-sticker-emoji-list
   set-sticker-keywords
   set-sticker-mask-position
