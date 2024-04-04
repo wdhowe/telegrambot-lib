@@ -143,6 +143,7 @@
   unpin-all-general-forum-topic-messages
   answer-callback-query
   get-user-chat-boosts
+  get-business-connection
   set-my-commands
   delete-my-commands
   get-my-commands
@@ -174,6 +175,7 @@
   add-sticker-to-set
   set-sticker-position-in-set
   delete-sticker-from-set
+  replace-sticker-in-set
   set-sticker-emoji-list
   set-sticker-keywords
   set-sticker-mask-position

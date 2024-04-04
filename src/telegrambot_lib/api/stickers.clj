@@ -20,13 +20,14 @@
    - sticker ; sticker to send, file_id for existing on Telegram servers
 
    Optional
+   - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - emoji ; Emoji associated with the recently uploaded sticker.
    - disable_notification ; true to send message silently
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "sendSticker" content))
@@ -113,31 +114,28 @@
    - name ; short name of sticker set for use in URLs
    - title ; sticker set title
    - stickers ; A JSON-serialized list of 1-50 stickers to be added to the set.
-   - sticker_format ; Format of stickers, 'static', 'animated', or 'video'.
 
    Optional
    - sticker_type ; Type of stickers, 'regular' (default), 'mask', 'custom_emoji'.
    - needs_repainting ; True if stickers must be repainted to color of text in messages. (custom emoji sets only)"
-  {:changed "2.6.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "createNewStickerSet" content))
 
-  ([this user_id name title stickers sticker_format]
+  ([this user_id name title stickers]
    (let [content {:user_id user_id
                   :name name
                   :title title
-                  :stickers stickers
-                  :sticker_format sticker_format}]
+                  :stickers stickers}]
      (create-new-sticker-set this content)))
 
-  ([this user_id name title stickers sticker_format & optional]
+  ([this user_id name title stickers & optional]
    (let [content (merge (first optional)
                         {:user_id user_id
                          :name name
                          :title title
-                         :stickers stickers
-                         :sticker_format sticker_format})]
+                         :stickers stickers})]
      (create-new-sticker-set this content))))
 
 (defn add-sticker-to-set
@@ -201,6 +199,30 @@
   [this sticker]
   (let [content {:sticker sticker}]
     (delete-sticker-from-set this content)))
+
+(defn replace-sticker-in-set
+  "Use this method to replace an existing sticker in a sticker set with a new one.
+   The method is equivalent to calling deleteStickerFromSet, then addStickerToSet,
+   then setStickerPositionInSet.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - user_id ; id of sticker set owner
+   - name ; sticker set name
+   - old_sticker ; File ID of the replaced sticker.
+   - sticker ; A JSON-serialized object(InputSticker) with info about the added sticker."
+  {:added "2.13.0"}
+
+  ([this content]
+   (http/request this "replaceStickerInSet" content))
+
+  ([this user_id name old_sticker sticker]
+   (let [content {:user_id user_id
+                  :name name
+                  :old_sticker old_sticker
+                  :sticker sticker}]
+     (replace-sticker-in-set this content))))
 
 (defn set-sticker-emoji-list
   "Use this method to change the list of emoji assigned to a regular or custom emoji sticker.
@@ -335,24 +357,27 @@
    - this ; a bot instance
    - name ; sticker set name
    - user_id ; id of the sticker set owner
+   - format ; Format of the thumbnail: static, animated, or video.
 
    Optional
    - thumbnail ; A .WEBP or .PNG image with the thumbnail, or .TGS animation, or WEBM video.
                  More information: https://core.telegram.org/bots/api#sending-files"
-  {:added "2.6.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "setStickerSetThumbnail" content))
 
-  ([this name user_id]
+  ([this name user_id format]
    (let [content {:name name
-                  :user_id user_id}]
+                  :user_id user_id
+                  :format format}]
      (set-sticker-set-thumbnail this content)))
 
-  ([this name user_id & optional]
+  ([this name user_id format & optional]
    (let [content (merge (first optional)
                         {:name name
-                         :user_id user_id})]
+                         :user_id user_id
+                         :format format})]
      (set-sticker-set-thumbnail this content))))
 
 (defmulti set-custom-emoji-sticker-set-thumbnail

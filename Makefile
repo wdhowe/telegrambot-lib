@@ -36,7 +36,7 @@ package:
 
 # Pre-req: clojure -Ttools install io.github.cljdoc/cljdoc-analyzer '{:git/tag "RELEASE"}' :as cljdoc
 # Analyze cljdoc api imports locally.
-cljdoc-analyze:
+cljdoc-analyze: pom package
 	@PROJECT_VERSION=$$(awk '/defproject/ {print $$3}' project.clj | tr -d '"') ; \
 	clojure -Tcljdoc analyze \
 	:project '"telegrambot-lib/telegrambot-lib"' \
