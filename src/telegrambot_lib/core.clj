@@ -143,6 +143,7 @@
   unpin-all-general-forum-topic-messages
   answer-callback-query
   get-user-chat-boosts
+  get-business-connection
   set-my-commands
   delete-my-commands
   get-my-commands

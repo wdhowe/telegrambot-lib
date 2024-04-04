@@ -2059,6 +2059,25 @@
                   :user_id user_id}]
      (get-user-chat-boosts this content))))
 
+(defmulti get-business-connection
+  "Use this method to get information about the connection of the bot with a business account.
+   Returns a BusinessConnection object on success.
+
+   Required
+   - this ; a bot instance
+   - business_connection_id ; Unique id of the business connection."
+  {:added "2.13.0"}
+  content-map?)
+
+(defmethod get-business-connection true
+  [this content]
+  (http/request this "getBusinessConnection" content))
+
+(defmethod get-business-connection false
+  [this business_connection_id]
+   (let [content {:business_connection_id business_connection_id}]
+     (get-business-connection this content)))
+
 (defmulti set-my-commands
   "Use this method to change the list of the bot's commands.
    Returns True on success.
