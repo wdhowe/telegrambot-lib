@@ -42,6 +42,6 @@ at <https://www.gnu.org/software/classpath/license.html>.
 [gh-actions]: https://github.com/wdhowe/telegrambot-lib/actions
 [cljdoc-badge]: https://cljdoc.org/badge/telegrambot-lib/telegrambot-lib
 [cljdoc-link]: https://cljdoc.org/d/telegrambot-lib/telegrambot-lib/CURRENT
-[clojure-v]: https://img.shields.io/badge/clojure-1.11.1-blue.svg
+[clojure-v]: https://img.shields.io/badge/clojure-1.11.2-blue.svg
 [clojars]: https://clojars.org/telegrambot-lib
 [clojars-badge]: https://img.shields.io/clojars/v/telegrambot-lib.svg
