@@ -113,31 +113,28 @@
    - name ; short name of sticker set for use in URLs
    - title ; sticker set title
    - stickers ; A JSON-serialized list of 1-50 stickers to be added to the set.
-   - sticker_format ; Format of stickers, 'static', 'animated', or 'video'.
 
    Optional
    - sticker_type ; Type of stickers, 'regular' (default), 'mask', 'custom_emoji'.
    - needs_repainting ; True if stickers must be repainted to color of text in messages. (custom emoji sets only)"
-  {:changed "2.6.0"}
+  {:changed "2.13.0"}
 
   ([this content]
    (http/request this "createNewStickerSet" content))
 
-  ([this user_id name title stickers sticker_format]
+  ([this user_id name title stickers]
    (let [content {:user_id user_id
                   :name name
                   :title title
-                  :stickers stickers
-                  :sticker_format sticker_format}]
+                  :stickers stickers}]
      (create-new-sticker-set this content)))
 
-  ([this user_id name title stickers sticker_format & optional]
+  ([this user_id name title stickers & optional]
    (let [content (merge (first optional)
                         {:user_id user_id
                          :name name
                          :title title
-                         :stickers stickers
-                         :sticker_format sticker_format})]
+                         :stickers stickers})]
      (create-new-sticker-set this content))))
 
 (defn add-sticker-to-set
