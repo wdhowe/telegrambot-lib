@@ -9,4 +9,5 @@
   []
   {:bot-token (:bot-token environ/env)
    :async     false
-   :bot-api   (or (:bot-api environ/env) "https://api.telegram.org/bot")})
+   :bot-api   (or (:bot-api environ/env) "https://api.telegram.org/bot")
+   :headers   (constantly {})})

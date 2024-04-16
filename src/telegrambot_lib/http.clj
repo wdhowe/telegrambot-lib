@@ -85,12 +85,17 @@
   {:body (json/generate-str (dissoc content :content-type))
    :content-type :json})
 
+(defn- get-headers
+  [this]
+  (-> this :headers (apply [])))
+
 (defmulti request
-  "Send the request to the Telegram Bot API `path` with an optional `content`,
-   either sync- or asynchronously, depending on the value of the `:async` key
-   of `this` (the passed bot instance). A sync version returns an \"invocation
-   result\", while an async one returns a one-off channel with an \"invocation
-   result\" which is then closed.
+  "Send the request to the Telegram Bot API `path` with an optional `content`
+   and optional headers map from `:headers` key of `this` (the passed bot
+   instance), either sync- or asynchronously, depending on the value of the
+   `:async` key of `this`. A sync version returns an \"invocation result\",
+   while an async one returns a one-off channel with an \"invocation result\"
+   which is then closed.
 
    The \"invocation result\" is either:
    - the response body in case the Telegram Bot API request was successful, or
@@ -98,7 +103,7 @@
      request was unsuccessful (in terms of the Telegram Bot API), or
    - just an `{:error ex}` map in any other exceptional situation when we are
      unable to retrieve the response body."
-  {:changed "2.10.0"}
+  {:changed "2.13.0"}
   (fn [this & _]
     (true? (:async this))))
 
@@ -109,7 +114,8 @@
   ([this path content]
    (let [url (gen-url this path)
          req (merge (format-content content)
-                    {:async? true})
+                    {:async? true
+                     :headers (get-headers this)})
          resp-channel (a/chan)
          on-success (fn [resp]
                       (let [parsed-resp (parse-resp resp)]
@@ -128,7 +134,8 @@
 
   ([this path content]
    (let [url (gen-url this path)
-         req (format-content content)]
+         req (merge (format-content content)
+                    {:headers (get-headers this)})]
      (try
        (let [resp (client :post url req)]
          (parse-resp resp))
