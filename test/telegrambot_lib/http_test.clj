@@ -1,13 +1,15 @@
 (ns telegrambot-lib.http-test
   (:require [clojure.test :refer [deftest is testing]]
             [clj-http.fake :as fake]
-            [telegrambot-lib.http :as http]))
+            [telegrambot-lib.http :as http]
+            [telegrambot-lib.json :as json]))
 
 (def test-bot
   "A bot data structure for running tests."
   {:bot-api "https://api.telegram.org/bot"
    :bot-token "1234"
-   :async false})
+   :async false
+   :headers (constantly {"ABC" "123"})})
 
 (deftest gen-url-test
   (testing "Verify URL generation."
@@ -71,10 +73,17 @@
 (deftest request-ok-test
   (testing "HTTP request to a valid endpoint with an ok response."
     (fake/with-fake-routes {"https://api.telegram.org/bot1234/getMe"
-                            (fn [_] ok-resp)}
+                            (fn [req] (update ok-resp :body #(->
+                                                              %
+                                                              json/parse-str
+                                                              (assoc :incoming-headers (:headers req))
+                                                              json/generate-str)))}
       (let [resp (http/request test-bot "getMe")]
 
-        (is (= resp {:ok true,
+        (is (= resp {:incoming-headers {:content-type "application/json",
+                                        :accept-encoding "gzip, deflate",
+                                        :ABC "123"}
+                     :ok true,
                      :result
                      {:id 123,
                       :is_bot true,

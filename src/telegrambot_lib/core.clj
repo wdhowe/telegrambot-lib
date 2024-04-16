@@ -26,9 +26,10 @@
    - bot-token ; The token id of your bot. (default: load from environment)
    - async ; Send API requests async or not. (default: false)
    - bot-api ; The Telegram Bot API URL. (default: official hosted API)
+   - headers ; Function of zero arguments returning map. (default: (constantly {}))
    
    Returns: A map data structure of a bot config."
-  {:changed "2.10.0"}
+  {:changed "2.13.0"}
   (fn
     ([] false)
     ([m] (map? m))))
