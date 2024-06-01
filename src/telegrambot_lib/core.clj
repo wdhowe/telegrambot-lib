@@ -21,12 +21,12 @@
      - Example: `(create \"12345\")`
    - Alternatively, parameters can be passed as a map instead.
      - Example: `(create {:bot-token \"12345\"})`
-   
+
    Optional Parameters
    - bot-token ; The token id of your bot. (default: load from environment)
    - async ; Send API requests async or not. (default: false)
    - bot-api ; The Telegram Bot API URL. (default: official hosted API)
-   
+
    Returns: A map data structure of a bot config."
   {:changed "2.10.0"}
   (fn
@@ -35,12 +35,12 @@
 
 (defmethod create true
   [m]
-   (merge (conf/cfg) m))
+  (merge (conf/cfg) m))
 
 (defmethod create false
   ([]
    (create {}))
-  
+
   ([bot-token]
    (create {:bot-token bot-token})))
 
