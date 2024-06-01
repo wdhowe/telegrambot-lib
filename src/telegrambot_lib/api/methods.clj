@@ -599,11 +599,13 @@
    - longitude ; long of new location
 
    Optional
+   - live_period ; New period in seconds which the location can be updated, starting from the message send date.
+                 ; If 0x7FFFFFFF is specified, the location can be updated forever.
    - horizontal_accuracy ; 1-1500 meters radius of uncertainty
    - heading ; 1-360 degrees direction user is moving
    - proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    - reply_markup ; additional interface options"
-  {:changed "0.2.0"}
+  {:changed "2.14.0"}
 
   ([this content]
    (http/request this "editMessageLiveLocation" content))
@@ -811,9 +813,11 @@
    - this ; a bot instance
    - chat_id ; target chat or username (@user)
    - question ; poll question
-   - options ; array/list of answer options
+   - options ; array/list of InputPollOption
 
    Optional
+   - question_parse_mode ; Mode for parsing entities in the question.
+   - question_entities ; A JSON-serialized list of special entities that appear in the poll question.
    - business_connection_id ; Unique id of the business connection.
    - message_thread_id ; id of the target thread of the forum.
    - is_anonymous ; true if poll is anonymous
@@ -830,7 +834,7 @@
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.14.0"}
 
   ([this content]
    (http/request this "sendPoll" content))
@@ -1606,12 +1610,12 @@
   "Use this method to get up to date information about the chat
    (current name of the user for one-on-one conversations,
    current username of a user, group or channel, etc.).
-   Returns a Chat object on success.
+   Returns a ChatFullInfo object on success.
 
    Required
    - this ; a bot instance
    - chat_id ; target chat or username (@user)"
-  {:changed "0.2.0"}
+  {:changed "2.14.0"}
   content-map?)
 
 (defmethod get-chat true
@@ -2090,8 +2094,8 @@
 
 (defmethod get-business-connection false
   [this business_connection_id]
-   (let [content {:business_connection_id business_connection_id}]
-     (get-business-connection this content)))
+  (let [content {:business_connection_id business_connection_id}]
+    (get-business-connection this content)))
 
 (defmulti set-my-commands
   "Use this method to change the list of the bot's commands.

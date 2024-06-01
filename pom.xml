@@ -4,7 +4,7 @@
   <groupId>telegrambot-lib</groupId>
   <artifactId>telegrambot-lib</artifactId>
   <packaging>jar</packaging>
-  <version>2.13.0</version>
+  <version>2.14.0</version>
   <name>telegrambot-lib</name>
   <description>A library for interacting with the Telegram Bot API.</description>
   <url>https://github.com/wdhowe/telegrambot-lib</url>
@@ -18,7 +18,7 @@
     <url>https://github.com/wdhowe/telegrambot-lib</url>
     <connection>scm:git:git://github.com/wdhowe/telegrambot-lib.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wdhowe/telegrambot-lib.git</developerConnection>
-    <tag>fc6a4dae6544e6f6d3ad04ab8f80f43ea61c2272</tag>
+    <tag>e47f5e254d0449d65863bb3e21ad00d80728674a</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -69,7 +69,7 @@
     <dependency>
       <groupId>clj-http</groupId>
       <artifactId>clj-http</artifactId>
-      <version>3.12.3</version>
+      <version>3.13.0</version>
     </dependency>
     <dependency>
       <groupId>environ</groupId>
@@ -79,7 +79,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
-      <version>1.11.2</version>
+      <version>1.11.3</version>
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
