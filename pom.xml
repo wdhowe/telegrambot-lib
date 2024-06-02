@@ -4,7 +4,7 @@
   <groupId>telegrambot-lib</groupId>
   <artifactId>telegrambot-lib</artifactId>
   <packaging>jar</packaging>
-  <version>2.14.0</version>
+  <version>2.15.0</version>
   <name>telegrambot-lib</name>
   <description>A library for interacting with the Telegram Bot API.</description>
   <url>https://github.com/wdhowe/telegrambot-lib</url>
@@ -18,7 +18,7 @@
     <url>https://github.com/wdhowe/telegrambot-lib</url>
     <connection>scm:git:git://github.com/wdhowe/telegrambot-lib.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/wdhowe/telegrambot-lib.git</developerConnection>
-    <tag>e47f5e254d0449d65863bb3e21ad00d80728674a</tag>
+    <tag>aaf0518d942f99c768b94bf6e582506b7c3dd6da</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>

@@ -165,7 +165,8 @@
   answer-shipping-query-ok
   answer-shipping-query-error
   answer-precheckout-query-ok
-  answer-precheckout-query-error]
+  answer-precheckout-query-error
+  refund-star-payment]
  [stickers
   send-sticker
   get-sticker-set

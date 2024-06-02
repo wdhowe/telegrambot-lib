@@ -87,8 +87,9 @@
    Optional
    - parse_mode ; entity parsing in message
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - show_caption_above_media ; True, to show caption above the message media.
    - reply_markup ; inline keyboard markup"
-  {:changed "0.2.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "editMessageCaption" content))

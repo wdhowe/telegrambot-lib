@@ -23,9 +23,10 @@
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send message silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; inline keyboard markup"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendGame" content))

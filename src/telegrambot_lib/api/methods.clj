@@ -81,9 +81,10 @@
    - link_preview_options ; link preview generation options.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendMessage" content))
@@ -183,11 +184,12 @@
    - caption ; new caption for media
    - parse_mode ; entity parsing
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - show_caption_above_media ; True, to show caption above the message media.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.12.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "copyMessage" content))
@@ -258,12 +260,14 @@
    - caption ; photo caption
    - parse_mode ; entity parsing in photo caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - show_caption_above_media ; True, to show caption above the message media.
    - has_spoiler ; true if photo needs to be covered with spoiler animation.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendPhoto" content))
@@ -302,9 +306,10 @@
    - thumbnail ; thumbnail of the file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendAudio" content))
@@ -339,9 +344,10 @@
    - disable_content_type_detection ; disable auto content type detection for files uploaded
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendDocument" content))
@@ -376,14 +382,16 @@
    - caption ; video caption
    - parse_mode ; entity parsing in video caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - show_caption_above_media ; True, to show caption above the message media.
    - has_spoiler ; true if video needs to be covered with spoiler animation.
    - thumbnail ; thumbnail of file sent
    - supports_streaming ; true if uploaded video is ok for streaming
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendVideo" content))
@@ -418,13 +426,15 @@
    - caption ; animation caption
    - parse_mode ; entity parsing in animation caption
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
+   - show_caption_above_media ; True, to show caption above the message media.
    - has_spoiler ; true if animation needs to be covered with spoiler animation.
    - thumbnail ; thumbnail of file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendAnimation" content))
@@ -461,9 +471,10 @@
    - caption_entities ; list of MessageEntity - can use instead of parse_mode
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendVoice" content))
@@ -496,9 +507,10 @@
    - thumbnail ; thumbnail of the file sent
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendVideoNote" content))
@@ -528,8 +540,9 @@
    - message_thread_id ; id of the target thread of the forum.
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendMediaGroup" content))
@@ -564,9 +577,10 @@
    - proximity_alert_radius ; 1-100000 meters max distance for proximity alerts
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendLocation" content))
@@ -736,9 +750,10 @@
    - google_place_type ; Google Places type of venue
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendVenue" content))
@@ -777,9 +792,10 @@
    - vcard ; 'vCard' formatted additional data
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendContact" content))
@@ -832,9 +848,10 @@
    - is_closed ; true if poll needs to be immediately closed
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.14.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendPoll" content))
@@ -866,9 +883,10 @@
    - emoji ; image for dice animation (default: dice)
    - disable_notification ; send silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
   content-map?)
 
 (defmethod send-dice true
