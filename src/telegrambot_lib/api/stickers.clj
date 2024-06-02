@@ -25,9 +25,10 @@
    - emoji ; Emoji associated with the recently uploaded sticker.
    - disable_notification ; true to send message silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; additional interface options"
-  {:changed "2.13.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendSticker" content))

@@ -20,11 +20,11 @@
    - title ; product name
    - description ; product description
    - payload ; internal bot defined invoice payload
-   - provider_token ; payments provider token
    - currency ; three letter ISO 4217 currency code
    - prices ; 'LabeledPrice' array breakdown (price, tax, discount, delivery, etc)
 
    Optional
+   - provider_token ; payments provider token, omit for Telegram Stars payments.
    - message_thread_id ; id of the target thread of the forum.
    - max_tip_amount ; integer of max tip accepted. US $1.45 = 145.
    - suggested_tip_amounts ; json serialized array of integer tip amounts, 4 max suggested tips,
@@ -44,32 +44,31 @@
    - is_flexible ; true if final price depends on shipping method
    - disable_notification ; send message silently
    - protect_content ; protect content from forwarding/saving
+   - message_effect_id ; ID of the message effect to be added to the message.
    - reply_parameters ; Description of the message to reply to
    - reply_markup ; inline keyboard markup"
-  {:changed "2.12.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "sendInvoice" content))
 
-  ([this chat_id title description payload provider_token
+  ([this chat_id title description payload
     currency prices]
    (let [content {:chat_id chat_id
                   :title title
                   :description description
                   :payload payload
-                  :provider_token provider_token
                   :currency currency
                   :prices prices}]
      (send-invoice this content)))
 
-  ([this chat_id title description payload provider_token
+  ([this chat_id title description payload
     currency prices & optional]
    (let [content (merge (first optional)
                         {:chat_id chat_id
                          :title title
                          :description description
                          :payload payload
-                         :provider_token provider_token
                          :currency currency
                          :prices prices})]
      (send-invoice this content))))
@@ -82,11 +81,11 @@
    - title ; product name
    - description ; product description
    - payload ; internal bot defined invoice payload
-   - provider_token ; payments provider token
    - currency ; three letter ISO 4217 currency code
    - prices ; 'LabeledPrice' array breakdown (price, tax, discount, delivery, etc)
 
    Optional
+   - provider_token ; payments provider token, omit for Telegram Stars payments.
    - max_tip_amount ; integer of max tip accepted. US $1.45 = 145.
    - suggested_tip_amounts ; json serialized array of integer tip amounts, 4 max suggested tips,
      positive numbers, increasing order, and must not exceed max_tip_amount.
@@ -102,26 +101,24 @@
    - send_phone_number_to_provider ; true to send phone number to provider
    - send_email_to_provider ; true to send email to provider
    - is_flexible ; true if final price depends on shipping method"
-  {:added "2.1.0"}
+  {:changed "2.15.0"}
 
   ([this content]
    (http/request this "createInvoiceLink" content))
 
-  ([this title description payload provider_token currency prices]
+  ([this title description payload currency prices]
    (let [content {:title title
                   :description description
                   :payload payload
-                  :provider_token provider_token
                   :currency currency
                   :prices prices}]
      (create-invoice-link this content)))
 
-  ([this title description payload provider_token currency prices & optional]
+  ([this title description payload currency prices & optional]
    (let [content (merge (first optional)
                         {:title title
                          :description description
                          :payload payload
-                         :provider_token provider_token
                          :currency currency
                          :prices prices})]
      (create-invoice-link this content))))
@@ -224,3 +221,21 @@
                   :ok false
                   :error_message error_message}]
      (answer-precheckout-query-error this content))))
+
+(defn refund-star-payment
+  "Refunds a successful payment in Telegram Stars.
+   Returns True on success.
+
+   Required
+   - this ; a bot instance
+   - user_id ; ID of the user whose payment will be refunded.
+   - telegram_payment_charge_id ; Telegram payment identifier."
+  {:added "2.15.0"}
+
+  ([this content]
+   (http/request this "refundStarPayment" content))
+
+  ([this user_id telegram_payment_charge_id]
+   (let [content {:user_id user_id
+                  :telegram_payment_charge_id telegram_payment_charge_id}]
+     (refund-star-payment this content))))
