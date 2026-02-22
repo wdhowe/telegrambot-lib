@@ -1,5 +1,8 @@
 # telegrambot-lib
 
+> [!IMPORTANT]
+> This project, `telegrambot-lib`, is no longer actively maintained. Please see @marksto 's project, [clj-tg-bot-api](https://github.com/marksto/clj-tg-bot-api), for an active Telegram Bot API library.
+
 [![Build Status][gh-actions-badge]][gh-actions] [![Clojars Project][clojars-badge]][clojars] [![Clojure Docs][cljdoc-badge]][cljdoc-link] [![Clojure version][clojure-v]](project.clj)
 
 A Clojure library for interacting with the Telegram Bot API.
